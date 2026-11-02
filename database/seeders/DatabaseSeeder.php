@@ -2,24 +2,25 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
-     * Seed the application's database.
+     * Fills the database with the demo data.
+     *
+     * The seeders don't check for existing rows, so run it on a clean
+     * database: php artisan migrate:fresh --seed
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // the order matters: users need suppliers, orders need users, and so on
+        $this->call([
+            SuppliersSeeder::class,
+            UsersSeeder::class,
+            OrdersSeeder::class,
+            BookingsSeeder::class,
+            CalendarSeeder::class,
         ]);
     }
 }
