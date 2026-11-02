@@ -1,0 +1,55 @@
+# Runs the whole test suite on every push and pull request, so a broken change shows up right away.
+# Same steps as the README: composer install, .env from .env.example, key, tests.
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          # same as Laragon: root without a password, so .env.example works unchanged
+          MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_mysql, mbstring
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Prepare the environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Create the database
+        run: php artisan pegal:create-database
+
+      - name: Run the tests
+        run: php artisan test
