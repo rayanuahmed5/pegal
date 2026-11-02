@@ -23,19 +23,19 @@ Moving a card means changing the label (and closing the issue when it is Done). 
 
 | Backlog | To do | Doing | Review | Done | Dropped |
 |---|---|---|---|---|---|
-| #15 PBI-15 What-if scenario | #19 Fresh-clone run check | #17 Create the Scrum board on GitHub | #18 Click through Proof of work as finance | #1 PBI-01 Project starts from the README | #13 PBI-13 Compose file |
-| #16 PBI-16 Follow-up order draft | #20 Final review against the scoring | | | #2 PBI-02 Data model and seed data | |
-| | #21 Commits on Tuesday | | | #3 PBI-03 Demo users per role | |
-| | | | | #4 PBI-04 Booking form | |
-| | | | | #5 PBI-05 Booking rules | |
-| | | | | #6 PBI-06 Budget per order | |
-| | | | | #7 PBI-07 Permissions on the server | |
-| | | | | #8 PBI-08 Forecast | |
-| | | | | #9 PBI-09 Follow-up list | |
-| | | | | #10 PBI-10 Proof of work | |
-| | | | | #11 PBI-11 Mockup | |
-| | | | | #12 PBI-12 API documentation | |
-| | | | | #14 PBI-14 README run check | |
+| #15 PBI-15 What-if scenario | #19 Fresh-clone run check |  | #17 Create the Scrum board on GitHub | #1 PBI-01 Project starts from the README | #13 PBI-13 Compose file |
+| #16 PBI-16 Follow-up order draft | #20 Final review against the scoring |  | #18 Click through Proof of work as finance | #2 PBI-02 Data model and seed data |  |
+|  | #21 Commits on Tuesday |  |  | #3 PBI-03 Demo users per role |  |
+|  |  |  |  | #4 PBI-04 Booking form |  |
+|  |  |  |  | #5 PBI-05 Booking rules |  |
+|  |  |  |  | #6 PBI-06 Budget per order |  |
+|  |  |  |  | #7 PBI-07 Permissions on the server |  |
+|  |  |  |  | #8 PBI-08 Forecast |  |
+|  |  |  |  | #9 PBI-09 Follow-up list |  |
+|  |  |  |  | #10 PBI-10 Proof of work |  |
+|  |  |  |  | #11 PBI-11 Mockup |  |
+|  |  |  |  | #12 PBI-12 API documentation |  |
+|  |  |  |  | #14 PBI-14 README run check |  |
 
 This table is a snapshot; the issues are the live board. The backlog with story points is in [product-backlog.md](product-backlog.md).
 
