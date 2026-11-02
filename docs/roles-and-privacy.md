@@ -42,6 +42,7 @@ We do not store start and end times, health data or sick leave.
 
 - **Transparency vs. privacy:** the project lead needs to know if the budget lasts, not what a person did each day. The project lead sees person-days per order per week. Individual daily hours and vacation stay hidden.
 - **Control vs. employer status:** a client that sees and steers individual working times risks acting as the employer (a legal risk in Germany). Our client roles never see start or end times and never see a per-person daily view, except finance in monthly sums for invoice checks.
+- **Project lead and "own orders":** the matrix says the project lead sees the follow-up list for their own orders. Orders have no owner field yet, so for now the project lead sees all orders, as purchasing does. Both only get order-level numbers. An owner column on orders is the planned fix.
 - **Purchasing speed vs. data minimisation:** purchasing gets order-level numbers only.
 
 ## How it is enforced
