@@ -1,17 +1,3 @@
-<!-- ===== TEMPLATE NOTE: delete this block once your team has started ===== -->
-> **Article26 Hackathon 2026 · Team template**
->
-> This repository is your starting point. It contains **no code and no required technology**, only guidance:
->
-> 1. **Start here:** read the [Build Guide](docs/guide.md) and the [challenge](docs/challenge.md).
-> 2. Fill in [docs/product-vision.md](docs/product-vision.md) together.
-> 3. Keep this README up to date as you build. The technical jury starts your product **from this README alone** ([how they check](docs/scoring.md#run-check-for-the-juror)).
->
-> Using an AI coding agent (GitHub Copilot, Claude Code, Cursor …)? It reads [AGENTS.md](AGENTS.md) and the skills in `.claude/skills/` automatically. In GitHub Copilot Chat (agent mode) or Claude Code, type `/kickoff` to begin, or `/hackathon-review` at any time.
->
-> Looking for an example? The `blueprint` branch contains a small Next.js + PostgreSQL app from an earlier edition. It is one possible approach, not a requirement.
-<!-- ===== END OF TEMPLATE NOTE ===== -->
-
 # Pegal
 
 Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
