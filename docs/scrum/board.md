@@ -51,8 +51,8 @@ This table is a snapshot; the issues are the live board. The backlog with story 
 
 ## Drag-and-drop board (GitHub Projects)
 
-GitHub's Projects boards cannot be created from the tool that built this repository, so the board above uses labels. To get a drag-and-drop view of the same cards, the repository owner can add one in a minute:
+The same cards are shown as a GitHub Project board: https://github.com/users/rayanuahmed5/projects/3
 
-1. On GitHub open **Projects**, then **New project**, choose the **Board** template and name it "Pegal Scrum".
-2. In the new project press **+ Add item**, type `#` and add all issues of the repository (or turn on the "Auto-add" workflow).
-3. Set the board's column field to **Status** with the options Backlog, To do, Doing, Review, Done, and group by it. The card labels show where each issue belongs.
+The project's **Status** field has the options Backlog, To do, Doing, Review, Done (and Dropped). It mirrors the `status:` labels of the issues. When a card moves on the board, change its label too, so the issue list and the board agree.
+
+Which card goes where is in the table above.
