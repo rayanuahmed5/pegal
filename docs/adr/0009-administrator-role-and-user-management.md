@@ -27,3 +27,4 @@ The administrator is **only for accounts**: no orders, no forecast, no proof of 
 - "Assigned PD" is the sum of the budgets of the orders a person works on. Orders are shared, so the column must not be added up across people. The page says so.
 - Passwords are chosen by the administrator and hashed; there is no password reset or e-mail invitation yet. For real use that would come with SSO ([ADR 0002](0002-identity-demo-login-sso-later.md)).
 - Users cannot be edited or deleted yet, only added.
+- Update: editing, password reset and deleting were added later, see [ADR 0010](0010-editing-and-deleting-accounts.md).
