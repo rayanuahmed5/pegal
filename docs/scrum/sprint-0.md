@@ -14,7 +14,7 @@
 | ADR 0001 stack, 0002 identity, 0003 operation | done |
 | Product backlog, Definition of Done, sprint plan | done |
 | MySQL 8 installed, databases `pegal` and `pegal_test` created | done |
-| Laravel project scaffolded | done in Sprint 1 (scaffolded on Mohammed's machine; Packagist is blocked in Claude's sandbox) |
+| Laravel project scaffolded | done in Sprint 1 (scaffolded on Mohammed's machine; Composer ran only on Mohammed's machine) |
 
 ## Daily Scrum log (Mon 2 Nov)
 

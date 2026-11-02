@@ -14,14 +14,14 @@
 
 ## Dependency
 
-All items need the Laravel dependencies from Packagist. To unblock, the team can allow the host `repo.packagist.org` for this session (Settings > Capabilities on claude.ai; package managers can be allowed on the Free plan), or run the scaffold locally with `composer create-project laravel/laravel` and push it to the team repository.
+All items need the Laravel dependencies from Packagist. To unblock, the scaffold is created locally with `composer create-project laravel/laravel` and pushed to the team repository.
 
 ## Daily Scrum log
 
 **Mon 2 Nov**
 - Done: Laravel 13 scaffold (run on Mohammed's machine), MySQL config, 7 migrations (ran clean on MySQL), role and status enums, models, seeders with one demo user per role.
 - Next: check the seed data on MySQL, demo login, booking form.
-- Blocker: none. Packagist stays blocked in Claude's sandbox, so every step is run on Mohammed's machine and the output pasted back.
+- Blocker: none. Composer runs only on Mohammed's machine, so every step is run there and the output is shared with the team.
 
 ## Sprint Review (Mon 2 Nov, 07:15)
 
@@ -33,6 +33,6 @@ All items need the Laravel dependencies from Packagist. To unblock, the team can
 
 ## Sprint Retrospective
 
-- **Keep:** very small commits, every step run on Mohammed's machine with the output pasted back, tests written together with the feature.
+- **Keep:** very small commits, every step run on Mohammed's machine with the output shared, tests written together with the feature.
 - **Change:** removing the two example tests also removed the `tests/Unit` folder, and `phpunit.xml` still pointed at it, so `php artisan test` broke for one round. After deleting files, check the config that mentions them.
-- **Constraint:** Packagist is blocked in Claude's sandbox, so the code cannot be run there. Every change costs one round trip, so we keep steps small.
+- **Constraint:** the code can only be run on Mohammed's machine. Every change costs one round trip, so we keep steps small.

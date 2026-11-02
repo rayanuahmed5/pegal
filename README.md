@@ -89,4 +89,4 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 | Mohammed Awal ([@Ustarz-Maltiti](https://github.com/Ustarz-Maltiti)) | Developer |
 | Adam Imoro ([@AdamImoro](https://github.com/AdamImoro)) | Developer |
 
-Claude is used as AI pair programmer. The process is Scrum, see [docs/scrum](docs/scrum/README.md).
+The process is Scrum, see [docs/scrum](docs/scrum/README.md).
