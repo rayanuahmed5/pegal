@@ -56,6 +56,25 @@ class OrderOverview
         });
     }
 
+    /**
+     * The orders that need a follow-up order (overdue or due within 6 weeks), most urgent first.
+     * Each row also has 'status' (overdue or soon) and 'days' until the reorder date.
+     *
+     * @return Collection<int, array{order: Order, budget: OrderBudget, forecast: ForecastResult, status: string, days: int}>
+     */
+    public function followUps(CarbonImmutable $today): Collection
+    {
+        return $this->rows($today, withForecast: true)
+            ->map(fn (array $row) => $row + [
+                'status' => FollowUp::status($row['forecast'], $today),
+                'days' => FollowUp::daysUntilReorder($row['forecast'], $today),
+            ])
+            ->filter(fn (array $row) => $row['status'] !== null)
+            // earliest reorder date first, so the overdue ones sit at the top
+            ->sortBy(fn (array $row) => $row['forecast']->reorderDate->toDateString())
+            ->values();
+    }
+
     // holidays and vacations as plain arrays, the forecast classes know nothing about the database
     private function workCalendar(): WorkCalendar
     {
