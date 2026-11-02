@@ -50,6 +50,8 @@ paths:
                     forecast:
                       burnPerWeek: 4
                       exhaustionDate: '2026-11-13'
+                      earliestExhaustionDate: '2026-11-10'
+                      latestExhaustionDate: '2026-11-24'
                       exhaustionWeek: 46
                       reorderDate: '2026-10-16'
                       reorderWeek: 42
@@ -147,6 +149,16 @@ components:
               format: date
               nullable: true
               description: Latest day to place a follow-up order (exhaustion date minus the lead time)
+            earliestExhaustionDate:
+              type: string
+              format: date
+              nullable: true
+              description: Day the budget runs out if the busiest of the last 4 weeks repeats, null when it still lasts until the order ends
+            latestExhaustionDate:
+              type: string
+              format: date
+              nullable: true
+              description: Day the budget runs out if the quietest of the last 4 weeks repeats, null when it still lasts until the order ends
             exhaustionWeek:
               type: integer
               nullable: true

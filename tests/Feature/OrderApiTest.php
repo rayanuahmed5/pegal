@@ -71,6 +71,8 @@ class OrderApiTest extends TestCase
             ->assertJsonPath('data.0.supplier', 'Test Consulting')
             ->assertJsonPath('data.0.forecast.exhaustionDate', '2026-11-27')
             ->assertJsonPath('data.0.forecast.reorderDate', '2026-10-30')
+            ->assertJsonPath('data.0.forecast.earliestExhaustionDate', '2026-11-06')
+            ->assertJsonPath('data.0.forecast.latestExhaustionDate', null)
             ->assertJsonPath('data.0.forecast.exhaustionWeek', 48)
             ->assertJsonPath('data.0.forecast.reorderWeek', 44)
             ->assertJsonPath('data.0.forecast.light', 'red')
