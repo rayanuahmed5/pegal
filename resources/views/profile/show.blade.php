@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My profile · Pegal')
+@section('title', 'My profile · Pegel')
 
 @section('content')
     <h1>My profile</h1>

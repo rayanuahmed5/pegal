@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 // what the administrator sees: every account with its role, the person-days it is assigned
-// and the person-days it has booked. Pegal has no prices, so "amount" means person-days (PD).
+// and the person-days it has booked. Pegel has no prices, so "amount" means person-days (PD).
 class UserOverview
 {
     public function total(): int

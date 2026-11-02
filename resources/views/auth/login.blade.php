@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Sign in · Pegal')
+@section('title', 'Sign in · Pegel')
 
 @section('content')
     <div class="login">
-        <h1>Sign in to Pegal</h1>
+        <h1>Sign in to Pegel</h1>
         <p class="muted">Book working time and keep an eye on the budget of every order.</p>
 
         <div class="card">

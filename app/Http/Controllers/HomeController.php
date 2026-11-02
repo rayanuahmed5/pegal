@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-// the front door: guests see what Pegal is about, signed-in users land on their own page
+// the front door: guests see what Pegel is about, signed-in users land on their own page
 class HomeController extends Controller
 {
     public function __invoke(Request $request): View

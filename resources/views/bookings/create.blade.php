@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Book time · Pegal')
+@section('title', 'Book time · Pegel')
 
 @section('content')
     <h1>Book time</h1>

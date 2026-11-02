@@ -6,7 +6,7 @@
 
 ## Context
 
-The client is a large company and will want single sign-on (SSO) with its own identity provider. Every customer of Pegal may use a different provider. Consultants belong to the supplier and may have their own company identity. In the hackathon we have no identity provider and no time to set one up.
+The client is a large company and will want single sign-on (SSO) with its own identity provider. Every customer of Pegel may use a different provider. Consultants belong to the supplier and may have their own company identity. In the hackathon we have no identity provider and no time to set one up.
 
 ## Options considered
 
@@ -16,7 +16,7 @@ The client is a large company and will want single sign-on (SSO) with its own id
 
 ## Decision
 
-**Demo:** option 1, with seeded demo users, one per role, passwords listed in the README. **Production:** OpenID Connect, configured per customer (issuer, client id, secret stored per tenant); users are matched by e-mail and mapped to a Pegal role by group claim. The login is isolated behind Laravel's authentication guard, so replacing it does not touch the domain code.
+**Demo:** option 1, with seeded demo users, one per role, passwords listed in the README. **Production:** OpenID Connect, configured per customer (issuer, client id, secret stored per tenant); users are matched by e-mail and mapped to a Pegel role by group claim. The login is isolated behind Laravel's authentication guard, so replacing it does not touch the domain code.
 
 ## Consequences
 

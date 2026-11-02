@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home · Pegal')
+@section('title', 'Home · Pegel')
 
 @section('content')
     @php($role = $user->role)
@@ -34,7 +34,7 @@
             <a class="action-tile" href="{{ route('admin.users.create') }}">
                 <span class="tile-icon"><x-icon name="plus" /></span>
                 <strong>Add user</strong>
-                <span class="muted small">Give a new person access to Pegal.</span>
+                <span class="muted small">Give a new person access to Pegel.</span>
             </a>
         @else
             <a class="action-tile" href="{{ route('orders.index') }}">

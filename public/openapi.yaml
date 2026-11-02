@@ -1,9 +1,9 @@
 openapi: 3.0.3
 info:
-  title: Pegal API
+  title: Pegel API
   version: 1.0.0
   description: |
-    JSON view of the budget and forecast data that the Pegal pages show.
+    JSON view of the budget and forecast data that the Pegel pages show.
 
     **Sign-in:** the API uses the same session cookie as the web pages (see ADR 0002, demo sign-in).
     Sign in at `/login` in the browser, then open or "Try out" these endpoints in the same browser.

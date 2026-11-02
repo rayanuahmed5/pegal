@@ -29,4 +29,4 @@ We choose **option 4**. The rules live in `App\Domain\UserAccounts`, are enforce
 
 - Easier: no change to the schema, proof of work can never be lost by accident, and the demo shows a rule being refused.
 - Harder: a consultant who leaves keeps an account that can still sign in. The workaround is a password reset by the administrator. A proper fix is a "deactivated" flag or anonymisation after the retention period; both are open backlog items.
-- A password reset does not sign the person out of a session that is already open. With SSO ([ADR 0002](0002-identity-demo-login-sso-later.md)) passwords leave Pegal anyway.
+- A password reset does not sign the person out of a session that is already open. With SSO ([ADR 0002](0002-identity-demo-login-sso-later.md)) passwords leave Pegel anyway.

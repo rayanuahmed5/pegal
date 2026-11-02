@@ -2,11 +2,11 @@
 
 ## Product name
 
-**Pegal**, a Laravel and MySQL comparison build of the Pegel idea (German "Pegel" means water-level gauge: a gauge that shows how much budget is left in each order). It is kept separate from the team's other `pegel` repository so the two approaches can be compared.
+**Pegel** (German for water-level gauge: a gauge that shows how much budget is left in each order).
 
 ## In one sentence
 
-For **the client's project lead**, who **learns how much of an order's budget is used only when the monthly invoice arrives**, our product **Pegal** is a **time booking and budget forecast web application** that **shows every booked hour's effect on the order budget immediately and warns when a follow-up order must be placed**. Unlike spreadsheets and the old tool, it **forecasts when the budget runs out and the latest date to reorder**.
+For **the client's project lead**, who **learns how much of an order's budget is used only when the monthly invoice arrives**, our product **Pegel** is a **time booking and budget forecast web application** that **shows every booked hour's effect on the order budget immediately and warns when a follow-up order must be placed**. Unlike spreadsheets and the old tool, it **forecasts when the budget runs out and the latest date to reorder**.
 
 ## Who we build for first
 
@@ -31,7 +31,7 @@ The **client's project lead**: the person who must know "will my budget last unt
 
 ## What makes us special
 
-- **The Pegal gauge:** one glance shows ordered, used and remaining budget plus a traffic light.
+- **The Pegel gauge:** one glance shows ordered, used and remaining budget plus a traffic light.
 - **Honest forecast:** exhaustion date and latest reorder date, with the assumptions shown (average burn, absences, holidays, purchasing lead time).
 - **Privacy by design:** the client sees person-days per order per week, not what an individual did each day.
 

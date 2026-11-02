@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add user · Pegal')
+@section('title', 'Add user · Pegel')
 
 @section('content')
     <h1>Add user</h1>

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Administration · Pegal')
+@section('title', 'Administration · Pegel')
 
 @section('content')
     @php($pd = fn (float $number) => rtrim(rtrim(number_format($number, 2), '0'), '.'))
 
     <h1>Administration</h1>
-    <p class="muted">Everybody who can sign in to Pegal, and what each person is assigned and has booked.</p>
+    <p class="muted">Everybody who can sign in to Pegel, and what each person is assigned and has booked.</p>
 
     @if (session('status'))
         <p class="flash">{{ session('status') }}</p>
@@ -62,7 +62,7 @@
             </tbody>
         </table>
         <p class="muted small">
-            Pegal counts in person-days (PD), one PD is 8 hours, there are no prices in the system.
+            Pegel counts in person-days (PD), one PD is 8 hours, there are no prices in the system.
             <strong>Assigned</strong> is the budget of all orders a person works on; orders are shared with colleagues, so do not add this column up.
             <strong>Spent</strong> is what the person booked, rejected bookings do not count.
         </p>

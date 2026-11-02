@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit ' . $user->name . ' · Pegal')
+@section('title', 'Edit ' . $user->name . ' · Pegel')
 
 @section('content')
     @php($isMe = $user->is(auth()->user()))

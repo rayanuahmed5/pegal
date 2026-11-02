@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pegal · Know your budget before the invoice does')
+@section('title', 'Pegel · Know your budget before the invoice does')
 @section('main_class', 'landing')
 
 @section('content')
@@ -11,7 +11,7 @@
                 <h1>Know how much budget is left before the invoice tells you.</h1>
                 <p class="lead">
                     External consultants book their hours, and every hour shows up on the order budget right away.
-                    Pegal warns you when the budget will run out and tells you the latest date to reorder.
+                    Pegel warns you when the budget will run out and tells you the latest date to reorder.
                 </p>
                 <p class="hero-actions">
                     <a class="button" href="{{ route('login') }}">Sign in <x-icon name="arrow" /></a>
@@ -114,6 +114,6 @@
     </section>
 
     <footer class="landing-footer">
-        <div class="band-inner">Pegal · built at the Article26 Hackathon 2026</div>
+        <div class="band-inner">Pegel · built at the Article26 Hackathon 2026</div>
     </footer>
 @endsection

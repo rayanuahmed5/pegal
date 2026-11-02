@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Orders · Pegal')
+@section('title', 'Orders · Pegel')
 
 @section('content')
     <h1>Orders and budget</h1>
