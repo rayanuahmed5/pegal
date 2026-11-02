@@ -6,7 +6,7 @@
 
 ## Context
 
-Users asked for a button in the top bar to switch between dark and light mode. [ADR 0004](0004-ui-blade-and-one-stylesheet.md) says the interface is Blade plus one plain stylesheet, with no build step. The switch has to work on every page (guests too), be remembered, and not flash white when a dark page loads.
+Users asked for a button in the top bar to switch between dark and light mode. [ADR 0004](0004-ui-blade-and-plain-css.md) says the interface is Blade plus one plain stylesheet, with no build step. The switch has to work on every page (guests too), be remembered, and not flash white when a dark page loads.
 
 ## Options considered
 
