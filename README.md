@@ -14,6 +14,8 @@ Pegal is a time booking and budget forecast web app: external consultants book h
 
 `.env.example` expects the MySQL user `root` with an empty password. If yours is different, change `DB_USERNAME` and `DB_PASSWORD` in `.env` after the copy step below.
 
+**The team's own setup is [Laragon](https://laragon.org) on Windows** (PHP 8.3 or newer, Composer and MySQL 8 come with it; start its services before the setup steps). Laragon's MySQL uses `root` without a password, so `.env.example` works unchanged. No Docker is used (see [ADR 0007](docs/adr/0007-operation-php-and-mysql-without-containers.md)).
+
 ## Setup
 
 From a fresh clone, in the project folder:
@@ -37,6 +39,8 @@ php artisan serve
 ```
 
 Open http://127.0.0.1:8000 and sign in with one of the demo users below.
+
+**With Laragon:** put the project folder in `C:\laragon\www\pegal`. Laragon can serve it by itself as a local site (auto virtual host), usually http://pegal.test, after you press *Start All* and reload the web server. If that address does not open, use `php artisan serve` as above, it always works.
 
 ## API
 
