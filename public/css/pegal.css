@@ -130,3 +130,20 @@ button.link {
 table { width: 100%; border-collapse: collapse; font-size: .9rem; }
 th, td { text-align: left; padding: .35rem .5rem; border-bottom: 1px solid var(--line); }
 th { color: var(--muted); font-weight: 600; }
+
+/* messages and small helpers */
+.flash {
+    padding: .6rem .9rem;
+    border-radius: .4rem;
+    background: #e3f0ef;
+    color: var(--accent-dark);
+}
+
+.small { font-size: .85rem; margin: .25rem 0 0; }
+
+.cancel { margin-left: .75rem; color: var(--accent); }
+
+/* booking status, plain words with a colour hint */
+.status { font-size: .8rem; padding: .1rem .55rem; border-radius: 999px; background: var(--line); }
+.status-approved { background: #dcefe3; color: var(--green); }
+.status-rejected { background: #f6dcd9; color: var(--red); }
