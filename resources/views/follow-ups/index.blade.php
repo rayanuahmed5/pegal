@@ -33,8 +33,8 @@
                             </td>
                             <td>{{ $row['order']->supplier->name }}</td>
                             <td class="num">{{ rtrim(rtrim(number_format($row['budget']->remainingPd(), 2), '0'), '.') }}</td>
-                            <td>{{ $row['forecast']->exhaustionDate->format('j M Y') }}</td>
-                            <td>{{ $row['forecast']->reorderDate->format('j M Y') }}</td>
+                            <td>{{ $row['forecast']->exhaustionDate->format('j M Y') }}<br><span class="muted small">week {{ $row['forecast']->exhaustionWeek() }}</span></td>
+                            <td>{{ $row['forecast']->reorderDate->format('j M Y') }}<br><span class="muted small">week {{ $row['forecast']->reorderWeek() }}</span></td>
                             <td>
                                 {{-- words first, the colour is only a hint --}}
                                 <span class="light {{ $row['status'] === 'overdue' ? 'light-red' : 'light-amber' }}">

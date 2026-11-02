@@ -125,8 +125,8 @@ class OrderPageTest extends TestCase
         $this->actingAs($this->user($role))
             ->get('/orders')
             ->assertOk()
-            ->assertSee('Runs out 27 Nov 2026')
-            ->assertSee('Reorder by 30 Oct 2026')
+            ->assertSee('Runs out 27 Nov 2026 (week 48)', false)
+            ->assertSee('Reorder by 30 Oct 2026 (week 44)', false)
             ->assertSee('Reorder now')
             ->assertSee('PD missing until the order ends')
             ->assertSee('Assumptions');
