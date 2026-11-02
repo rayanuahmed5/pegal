@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\BookingStatus;
+use App\Domain\BookingRejected;
+use App\Domain\TimeBooking;
+use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -32,7 +34,7 @@ class BookingController extends Controller
         return view('bookings.create', ['orders' => $orders]);
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, TimeBooking $timeBooking): RedirectResponse
     {
         $user = $request->user();
 
@@ -47,7 +49,18 @@ class BookingController extends Controller
             'hours.multiple_of' => 'Please use quarter hours, for example 7.5.',
         ]);
 
-        $user->bookings()->create($data + ['status' => BookingStatus::Submitted]);
+        // the rules live in TimeBooking, here we only pass on its answer
+        try {
+            $timeBooking->book(
+                $user,
+                Order::findOrFail($data['order_id']),
+                $data['worked_on'],
+                (float) $data['hours'],
+                $data['description'],
+            );
+        } catch (BookingRejected $e) {
+            return back()->withInput()->withErrors(['booking' => $e->getMessage()]);
+        }
 
         return redirect()->route('bookings.index')->with('status', 'Booking saved.');
     }
