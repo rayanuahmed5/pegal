@@ -1,6 +1,6 @@
 # 0003 · Operation: containers that run in the cloud or at the customer
 
-- **Status:** accepted
+- **Status:** superseded by [0007](0007-operation-php-and-mysql-without-containers.md) on 2 Nov 2026, the team decided not to use Docker
 - **Date:** 2026-11-02
 - **Deciders:** Mohammed (Product Owner), development team
 
