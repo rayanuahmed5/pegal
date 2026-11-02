@@ -17,6 +17,12 @@ class RoleTest extends TestCase
         }
     }
 
+    public function test_the_administrator_is_on_neither_side(): void
+    {
+        $this->assertFalse(Role::Admin->isClientSide());
+        $this->assertSame('Administrator', Role::Admin->label());
+    }
+
     public function test_every_role_has_a_label_and_an_intro(): void
     {
         foreach (Role::cases() as $role) {

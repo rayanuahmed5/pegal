@@ -2,18 +2,20 @@
 
 namespace App\Domain;
 
-// the four roles from docs/roles-and-privacy.md
+// the roles from docs/roles-and-privacy.md: four for the work, one administrator for the accounts
 enum Role: string
 {
     case Consultant = 'consultant';
     case ProjectLead = 'project_lead';
     case Purchasing = 'purchasing';
     case Finance = 'finance';
+    case Admin = 'admin';
 
-    // consultants work for the supplier, everyone else sits on the client side
+    // consultants work for the supplier, the other work roles sit on the client side
+    // the administrator looks after accounts and belongs to neither side
     public function isClientSide(): bool
     {
-        return $this !== self::Consultant;
+        return $this !== self::Consultant && $this !== self::Admin;
     }
 
     // what we show next to the user's name
@@ -24,6 +26,7 @@ enum Role: string
             self::ProjectLead => 'Project lead',
             self::Purchasing => 'Purchasing',
             self::Finance => 'Finance',
+            self::Admin => 'Administrator',
         };
     }
 
@@ -35,6 +38,7 @@ enum Role: string
             self::ProjectLead => 'See how much budget your orders have left and when it runs out.',
             self::Purchasing => 'See which orders need a follow-up order, and by when.',
             self::Finance => 'Check the monthly proof of work per order before the invoice is paid.',
+            self::Admin => 'See all accounts with their roles and person-days, and add new users.',
         };
     }
 }
