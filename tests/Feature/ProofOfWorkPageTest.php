@@ -194,4 +194,16 @@ class ProofOfWorkPageTest extends TestCase
             ->assertSee('Rejected by Miriam Schulz')
             ->assertSee('Reason: Hours do not match the invoice');
     }
+
+    public function test_finance_never_sees_start_and_end_times(): void
+    {
+        [$order, $ama] = $this->submittedOctober();
+        Booking::query()->update(['starts_at' => '07:45:00', 'ends_at' => '15:45:00']);
+
+        $this->actingAs($this->finance())
+            ->get('/proof-of-work?month=2026-10')
+            ->assertOk()
+            ->assertDontSee('07:45')
+            ->assertDontSee('15:45');
+    }
 }
