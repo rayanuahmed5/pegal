@@ -20,6 +20,9 @@
         @else
             <p>
                 <a class="button" href="{{ route('orders.index') }}">Orders and budget</a>
+                @if (in_array($user->role, [\App\Domain\Role::ProjectLead, \App\Domain\Role::Purchasing], true))
+                    <a class="cancel" href="{{ route('follow-ups.index') }}">Follow-up orders</a>
+                @endif
             </p>
             <p class="muted small">Forecast and approvals are being built, one step at a time.</p>
         @endif
