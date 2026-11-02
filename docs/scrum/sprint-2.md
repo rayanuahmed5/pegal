@@ -1,7 +1,13 @@
 # Sprint 2: bookings that follow the rules
 
 **Window:** Mon 2 Nov 2026, 07:30 to 16:00 (UTC)
-**Goal:** A booking that breaks a rule is rejected with a message a person understands, and the project lead can see how much of each order's budget is used.
+
+## Sprint Goal
+
+> A booking that breaks a rule is rejected with a message a person understands, and the project lead can see how much of each order's budget is used.
+
+**Why this goal:** the client only trusts the hours if the rules hold on the server, and the first question of every project lead is how much budget is gone.
+**Goal met:** yes.
 
 ## Sprint backlog
 
