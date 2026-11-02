@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BookingController;
@@ -43,6 +44,13 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:finance')->group(function () {
         Route::get('/proof-of-work', [ProofOfWorkController::class, 'index'])->name('proof-of-work.index');
         Route::post('/proof-of-work', [ProofOfWorkController::class, 'decide'])->name('proof-of-work.decide');
+    });
+
+    // the administrator sees all accounts and adds new ones, nobody else gets in
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::get('/users/create', [AdminController::class, 'create'])->name('users.create');
+        Route::post('/users', [AdminController::class, 'store'])->name('users.store');
     });
 
     // JSON endpoints, documented in public/openapi.yaml. They use the same sign-in session as the
