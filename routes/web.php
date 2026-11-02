@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // only for people who are not signed in yet
@@ -23,5 +24,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index');
         Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create');
         Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
+    });
+
+    // budget per order is for the client side only, the consultant gets a 403
+    Route::middleware('role:project_lead,purchasing,finance')->group(function () {
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     });
 });
