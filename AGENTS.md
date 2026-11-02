@@ -64,7 +64,7 @@ The team fills this in once the stack is chosen. Keep it short and exact.
 
 - Product: Pegal, time booking and budget forecast for a client buying external consulting work
 - Track: code (clickable HTML mockup as fallback)
-- Stack: Laravel 12 (PHP 8.3) with MySQL 8, see `docs/adr/0001-stack-laravel-mysql.md`
+- Stack: Laravel 13 (PHP 8.3) with MySQL 8, see `docs/adr/0001-stack-laravel-mysql.md`
 - Process: Scrum, see `docs/scrum/README.md` (backlog, sprints, Definition of Done)
 - Install: `TODO` (Sprint 1)
 - Run: `TODO` (Sprint 1)

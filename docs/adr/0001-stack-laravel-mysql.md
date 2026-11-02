@@ -16,7 +16,7 @@ We need a stack that gives us routing, validation, authentication, migrations, s
 
 ## Decision
 
-We choose **Laravel 12 on PHP 8.3 with MySQL 8**, because the team set this stack for the hackathon and Laravel covers most needs without extra libraries. A `compose.yaml` will start MySQL so the jury needs no local database install.
+We choose **Laravel 13 on PHP 8.3 with MySQL 8**, because the team set this stack for the hackathon and Laravel covers most needs without extra libraries. A `compose.yaml` will start MySQL so the jury needs no local database install.
 
 ## Consequences
 
