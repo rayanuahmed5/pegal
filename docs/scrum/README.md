@@ -29,6 +29,10 @@ We use Scrum, compressed to fit the hackathon window (ends **Tuesday 3 Nov 2026,
 | [Sprint 3](sprint-3.md) | Mon 2 Nov 08:10 (started early) to Tue 3 Nov 08:00 | Forecast, follow-up list, proof of work, mockup, API docs, README |
 | Freeze | Tue 3 Nov 08:00 to 11:00 | Run check from a fresh clone, final review against scoring, no new features |
 
+## Board
+
+The Scrum board (To do, Doing, Review, Done) lives in the GitHub issues of this repository, see [board.md](board.md).
+
 ## Definition of Done (applies to every backlog item)
 
 1. Works end to end and data survives a restart (MySQL).
