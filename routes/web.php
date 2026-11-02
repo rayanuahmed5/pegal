@@ -5,6 +5,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProofOfWorkController;
 use Illuminate\Support\Facades\Route;
 
 // only for people who are not signed in yet
@@ -35,5 +36,11 @@ Route::middleware('auth')->group(function () {
     // follow-up list: purchasing and project lead (role matrix), not finance
     Route::middleware('role:project_lead,purchasing')->group(function () {
         Route::get('/follow-ups', [FollowUpController::class, 'index'])->name('follow-ups.index');
+    });
+
+    // proof of work is for finance only: approve or reject the monthly hours
+    Route::middleware('role:finance')->group(function () {
+        Route::get('/proof-of-work', [ProofOfWorkController::class, 'index'])->name('proof-of-work.index');
+        Route::post('/proof-of-work', [ProofOfWorkController::class, 'decide'])->name('proof-of-work.decide');
     });
 });
