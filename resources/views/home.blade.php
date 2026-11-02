@@ -11,6 +11,14 @@
     <div class="card">
         <h2>What you do here</h2>
         <p>{{ $user->role->intro() }}</p>
-        <p class="muted">The screens for this are being built, one step at a time.</p>
+
+        @if ($user->role === \App\Domain\Role::Consultant)
+            <p>
+                <a class="button" href="{{ route('bookings.create') }}">Book time</a>
+                <a class="cancel" href="{{ route('bookings.index') }}">My bookings</a>
+            </p>
+        @else
+            <p class="muted">The screens for this are being built, one step at a time.</p>
+        @endif
     </div>
 @endsection
