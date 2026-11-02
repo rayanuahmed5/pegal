@@ -23,8 +23,8 @@ Moving a card means changing the label (and closing the issue when it is Done). 
 
 | Backlog | To do | Doing | Review | Done | Dropped |
 |---|---|---|---|---|---|
-| #15 PBI-15 What-if scenario | #21 Commits on Tuesday |  | #18 Click through Proof of work as finance (Adam Imoro) | #1 to #12 PBI-01 to PBI-12 | #13 PBI-13 Compose file |
-| #16 PBI-16 Follow-up order draft | #27 Add all issues to the GitHub Project (manual) |  |  | #14 PBI-14 README run check |  |
+| #15 PBI-15 What-if scenario | #21 Commits on Tuesday |  | #18 Click through Proof of work as finance (Adam Imoro), #16 PBI-16 Follow-up order draft | #1 to #12 PBI-01 to PBI-12 | #13 PBI-13 Compose file |
+|  | #27 Add all issues to the GitHub Project (manual) |  |  | #14 PBI-14 README run check |  |
 |  | #28 Admin mockup page (Mohammed Awal) |  |  | #17 Scrum board, #19 Fresh-clone run check, #20 Final review |  |
 |  | #29 Manual test of every role (Adam Imoro) |  |  | #22 PBI-17 Planned absence rule |  |
 |  | #30 Product Owner acceptance (Abdulai Umar Faruk) |  |  | #23 PBI-18 Missing PD and calendar weeks |  |
