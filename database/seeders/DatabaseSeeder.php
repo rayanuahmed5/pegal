@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      * Fills the database with the demo data.
      *
      * Safe to run again: if there are users already, nothing is added, so a
-     * restart (or the Docker start script) never doubles the demo data.
+     * restart or a second seed run never doubles the demo data.
      * For a clean start use: php artisan migrate:fresh --seed
      */
     public function run(): void
