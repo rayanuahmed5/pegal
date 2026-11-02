@@ -1,16 +1,16 @@
 # Sprint 1: walking skeleton
 
-**Window:** Mon 2 Nov 2026, 03:00 to 12:00 (UTC)
+**Window:** Mon 2 Nov 2026, 03:00 to 07:15 (UTC), closed early because the goal was met
 **Goal:** A consultant signs in, books time on an assigned order, and the booking is stored in MySQL and survives a restart.
 
 ## Sprint backlog
 
 | Item | Tasks | Status |
 |---|---|---|
-| PBI-01 Project setup | Scaffold Laravel 13, configure MySQL in `.env.example`, README Prerequisites/Setup/Run/Test | scaffold done (Laravel 13), MySQL config done, README commands next |
-| PBI-02 Data model and seeds | 7 migrations, models, seeders | todo |
-| PBI-03 Demo login | Seed four demo users, login page | todo |
-| PBI-04 Book time | Booking form, own bookings list, one feature test | todo |
+| PBI-01 Project setup | Scaffold Laravel 13, configure MySQL in `.env.example`, README Prerequisites/Setup/Run/Test | done |
+| PBI-02 Data model and seeds | 7 migrations, models, seeders | done |
+| PBI-03 Demo login | Seed four demo users, login page | done |
+| PBI-04 Book time | Booking form, own bookings list, one feature test | done |
 
 ## Dependency
 
