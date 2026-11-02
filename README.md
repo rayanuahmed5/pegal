@@ -22,10 +22,11 @@ From a fresh clone, in the project folder:
 composer install
 cp .env.example .env
 php artisan key:generate
+php artisan pegal:create-database
 php artisan migrate --seed
 ```
 
-`migrate` offers to create the `pegal` database if it is missing, answer yes. You can also create it first: `CREATE DATABASE pegal CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`
+`pegal:create-database` creates the empty MySQL database `pegal` if it is missing (it never asks a question, and is harmless if the database exists). `migrate --seed` then creates the tables and the demo data.
 
 To wipe the data and load the demo data again: `php artisan migrate:fresh --seed`
 
