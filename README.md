@@ -2,7 +2,7 @@
 
 Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
 
-> **Status (Mon 2 Nov 2026):** Sprints 1 and 2 are done: demo sign-in, booking with rules, budget per order. Sprint 3 is running: the forecast with traffic light is in, next come the follow-up list, proof of work and the hand-in files.
+> **Status (Mon 2 Nov 2026):** Sprints 1 and 2 are done. Sprint 3 is running: forecast with traffic light, follow-up list and proof of work are built. Still to come: mockup, API docs, compose file and the final run check.
 
 ## Prerequisites
 
@@ -51,12 +51,12 @@ All demo users have the password `pegal-demo`. They exist for the demo only.
 
 | Role | Sign in with | What to try |
 |---|---|---|
-| Consultant | `consultant@pegal.test` | Open **Book time**, book hours on an assigned order, see them under **My bookings** |
-| Project lead | `lead@pegal.test` | Sign in and open `/bookings`: the server answers 403, this role has no booking page |
-| Purchasing | `purchasing@pegal.test` | Same: sign-in works, booking pages are closed to this role |
-| Finance | `finance@pegal.test` | Same: sign-in works, booking pages are closed to this role |
+| Consultant | `consultant@pegal.test` | **Book time** on an assigned order, see it under **My bookings**. Try 11 hours in one day, or more than the order has left: the server rejects it with a message. `/orders` answers 403 |
+| Project lead | `lead@pegal.test` | **Orders and budget**: ordered, used and left person-days, a gauge, the forecast with reorder date and its assumptions. **Follow-up orders**: what needs a new order soon. `/bookings` answers 403 |
+| Purchasing | `purchasing@pegal.test` | Same pages as the project lead: **Orders and budget** with forecast and **Follow-up orders**, most urgent first |
+| Finance | `finance@pegal.test` | **Proof of work**: hours per person and order for a month, **Approve** or **Reject**. **Orders and budget** without forecast. `/follow-ups` answers 403 |
 
-The project lead, purchasing and finance open **Orders and budget** (`/orders`) from the home page. Project lead and purchasing also see the forecast, finance does not (role matrix).
+The demo data is written for today's date in the hackathon week (Mon 2 Nov 2026): the data warehouse order (4500012390) shows red, the other two orders amber.
 
 ## Evidence map
 
@@ -65,8 +65,8 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 | Criterion | Evidence |
 |---|---|
 | 1 · Persistence and data model | [Migrations](database/migrations) (suppliers, users with role, orders, assignments, bookings, absences, public holidays), [ER diagram](docs/domain.md), [seeders](database/seeders) |
-| 2 · Business rules and unit tests | Rules (assignment, order period, 10 h per person and day, remaining budget) in [app/Domain/TimeBooking.php](app/Domain/TimeBooking.php), unit tests in [tests/Unit/TimeBookingTest.php](tests/Unit/TimeBookingTest.php), form-level tests in [tests/Feature/BookingTest.php](tests/Feature/BookingTest.php) |
-| 3 · Roles, permissions and privacy | [Permission concept](docs/roles-and-privacy.md), enforced by [EnsureUserHasRole](app/Http/Middleware/EnsureUserHasRole.php) and [routes/web.php](routes/web.php), 403 tests in [BookingTest](tests/Feature/BookingTest.php) |
+| 2 · Business rules and unit tests | Rules (assignment, order period, 10 h per person and day, remaining budget) in [app/Domain/TimeBooking.php](app/Domain/TimeBooking.php), unit tests in [tests/Unit/TimeBookingTest.php](tests/Unit/TimeBookingTest.php), form-level tests in [tests/Feature/BookingTest.php](tests/Feature/BookingTest.php). Forecast: [BudgetForecast](app/Domain/BudgetForecast.php), [BurnRate](app/Domain/BurnRate.php), [WorkCalendar](app/Domain/WorkCalendar.php), [FollowUp](app/Domain/FollowUp.php) with their unit tests in [tests/Unit](tests/Unit). Proof of work: [ProofOfWork](app/Domain/ProofOfWork.php) and [its tests](tests/Unit/ProofOfWorkTest.php) |
+| 3 · Roles, permissions and privacy | [Permission concept](docs/roles-and-privacy.md), enforced on the server by [EnsureUserHasRole](app/Http/Middleware/EnsureUserHasRole.php) and [routes/web.php](routes/web.php), 403 tests in [BookingTest](tests/Feature/BookingTest.php), [OrderPageTest](tests/Feature/OrderPageTest.php), [FollowUpPageTest](tests/Feature/FollowUpPageTest.php) and [ProofOfWorkPageTest](tests/Feature/ProofOfWorkPageTest.php) |
 | 4 · Architecture and engineering | A structure: `app/Http`, `app/Domain`, `app/Models` · B [ADRs](docs/adr/) 0001 to 0004 · C Git history (many small commits since Mon 2 Nov) · D API docs: planned · E compose file: planned · F [mockup](docs/mockup): planned |
 
 ## Team
