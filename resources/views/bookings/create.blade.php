@@ -7,6 +7,10 @@
     <p class="muted">Pick the order, the day and how long you worked.</p>
 
     <div class="card">
+        @error('booking')
+            <p class="alert" role="alert">{{ $message }}</p>
+        @enderror
+
         @if ($orders->isEmpty())
             <p>You are not assigned to an order yet, so there is nothing to book on.</p>
         @else
