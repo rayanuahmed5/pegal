@@ -1,0 +1,24 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('bookings', function (Blueprint $table) {
+            // optional on purpose (ADR 0008): without them only hours per day are kept
+            $table->time('starts_at')->nullable()->after('worked_on');
+            $table->time('ends_at')->nullable()->after('starts_at');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::table('bookings', function (Blueprint $table) {
+            $table->dropColumn(['starts_at', 'ends_at']);
+        });
+    }
+};
