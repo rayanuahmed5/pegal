@@ -30,6 +30,35 @@
     --shadow: rgba(28, 43, 45, .08);
 }
 
+/*
+  Dark mode: only the variables change, nothing else in this file knows about it.
+  The accent is lighter here, so buttons get dark text (--on-accent) to stay readable.
+*/
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0f1719;
+    --card: #172326;
+    --ink: #e4eeee;
+    --muted: #9bb0b2;
+    --line: #2c3d40;
+    --accent: #3aa6a9;
+    --accent-dark: #8fd6d8;
+    --green: #5cc089;
+    --amber: #e0a63a;
+    --red: #ee7a70;
+    --on-accent: #06292a;
+    --tint: #1c3a3c;
+    --green-bg: #1c3626;
+    --amber-bg: #3c3016;
+    --amber-ink: #f0c36b;
+    --red-bg: #43201d;
+    --red-dark: #d3564b;
+    --alert-bg: #3a1f1d;
+    --alert-line: #7a3a35;
+    --alert-ink: #f1a9a2;
+    --shadow: rgba(0, 0, 0, .4);
+}
+
 * { box-sizing: border-box; }
 
 body {
@@ -333,3 +362,28 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 
 /* text only screen readers hear, e.g. the header of the actions column */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* theme switch in the top bar */
+.topbar-right { display: flex; align-items: center; gap: 1rem; }
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin: 0;
+    padding: .3rem .75rem;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 600;
+}
+.theme-toggle:hover { background: var(--page); }
+.theme-toggle .icon { width: 1.1em; height: 1.1em; margin: 0; }
+
+/* the button shows what a click will switch to */
+.theme-toggle .when-dark { display: none; }
+:root[data-theme="dark"] .theme-toggle .when-light { display: none; }
+:root[data-theme="dark"] .theme-toggle .when-dark { display: inline-flex; align-items: center; gap: .35rem; }
+.theme-toggle .when-light { display: inline-flex; align-items: center; gap: .35rem; }
