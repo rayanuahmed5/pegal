@@ -8,7 +8,7 @@
 | Item | Tasks | Status |
 |---|---|---|
 | PBI-08 Forecast | Burn rate, working calendar, exhaustion and reorder date, traffic light, shown on the orders page with assumptions; unit tests | done (75 tests green) |
-| PBI-09 Follow-up list | Orders whose reorder date is within 6 weeks, most urgent first, for purchasing (all orders) and project lead | todo |
+| PBI-09 Follow-up list | Orders whose reorder date is within 6 weeks, most urgent first, for purchasing (all orders) and project lead | built, waiting for the local test run |
 | PBI-10 Proof of work | Finance sees monthly hours per person per order without times and approves or rejects | todo |
 | PBI-11 Mockup | Clickable HTML screens per role in `docs/mockup/` | todo |
 | PBI-12 API docs | OpenAPI file for the JSON endpoints, viewable in the browser | todo |
