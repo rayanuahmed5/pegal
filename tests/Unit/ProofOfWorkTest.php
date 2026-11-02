@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Domain\BookingStatus;
 use App\Domain\NothingToDecide;
 use App\Domain\ProofOfWork;
+use App\Domain\ReasonRequired;
 use App\Domain\Role;
 use App\Domain\TimeBooking;
 use App\Models\Booking;
@@ -124,7 +125,7 @@ class ProofOfWorkTest extends TestCase
     {
         $this->book($this->ama, '2026-10-01', 4);
 
-        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected);
+        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected, reason: 'Hours do not match the invoice');
 
         $this->assertSame(BookingStatus::Rejected, $this->statusOf($this->ama, '2026-10-01'));
     }
@@ -136,7 +137,7 @@ class ProofOfWorkTest extends TestCase
 
         $this->expectNotToPerformAssertions();
 
-        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected);
+        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected, reason: 'Hours do not match the invoice');
 
         // the 8 hours are free again, so this does not throw BookingRejected
         app(TimeBooking::class)->book($this->jonas, $this->order, '2026-10-02', 8, 'Work');
@@ -147,7 +148,7 @@ class ProofOfWorkTest extends TestCase
         $this->book($this->ama, '2026-10-01', 4, BookingStatus::Approved);
         $this->book($this->ama, '2026-10-02', 4, BookingStatus::Submitted);
 
-        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected);
+        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected, reason: 'Hours do not match the invoice');
 
         $this->assertSame(BookingStatus::Approved, $this->statusOf($this->ama, '2026-10-01'));
         $this->assertSame(BookingStatus::Rejected, $this->statusOf($this->ama, '2026-10-02'));
@@ -168,5 +169,50 @@ class ProofOfWorkTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Submitted);
+    }
+
+    private function finance(): User
+    {
+        return User::factory()->create(['name' => 'Miriam', 'role' => Role::Finance]);
+    }
+
+    public function test_rejecting_without_a_reason_is_refused_and_changes_nothing(): void
+    {
+        $this->book($this->ama, '2026-10-01', 4);
+
+        try {
+            (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected, $this->finance(), '   ');
+            $this->fail('A rejection without a reason should have been refused.');
+        } catch (ReasonRequired $e) {
+            $this->assertStringContainsString('Please give a reason', $e->getMessage());
+        }
+
+        $this->assertSame(BookingStatus::Submitted, $this->statusOf($this->ama, '2026-10-01'));
+    }
+
+    public function test_a_rejection_keeps_the_reason_the_decider_and_the_time(): void
+    {
+        $this->book($this->ama, '2026-10-01', 4);
+        $finance = $this->finance();
+
+        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected, $finance, 'Not on the invoice');
+
+        $booking = Booking::firstOrFail();
+        $this->assertSame('Not on the invoice', $booking->decision_reason);
+        $this->assertSame($finance->id, $booking->decided_by);
+        $this->assertNotNull($booking->decided_at);
+    }
+
+    public function test_an_approval_needs_no_reason_but_keeps_the_decider(): void
+    {
+        $this->book($this->ama, '2026-10-01', 4);
+        $finance = $this->finance();
+
+        (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Approved, $finance);
+
+        $booking = Booking::firstOrFail();
+        $this->assertNull($booking->decision_reason);
+        $this->assertSame($finance->id, $booking->decided_by);
+        $this->assertNotNull($booking->decided_at);
     }
 }

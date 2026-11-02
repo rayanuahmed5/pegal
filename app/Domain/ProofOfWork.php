@@ -52,11 +52,25 @@ class ProofOfWork
      * @return int how many bookings were decided
      *
      * @throws NothingToDecide when no submitted hours are left in that month
+     * @throws ReasonRequired when rejecting without a reason
      */
-    public function decide(Order $order, User $consultant, CarbonImmutable $month, BookingStatus $decision): int
-    {
+    public function decide(
+        Order $order,
+        User $consultant,
+        CarbonImmutable $month,
+        BookingStatus $decision,
+        ?User $decidedBy = null,
+        ?string $reason = null,
+    ): int {
         if ($decision === BookingStatus::Submitted) {
             throw new InvalidArgumentException('A decision is either approved or rejected.');
+        }
+
+        $reason = trim((string) $reason);
+
+        // the consultant can only fix what they understand
+        if ($decision === BookingStatus::Rejected && $reason === '') {
+            throw new ReasonRequired('Please give a reason, the consultant will read it next to the rejected hours.');
         }
 
         $decided = Booking::query()
@@ -64,7 +78,12 @@ class ProofOfWork
             ->where('user_id', $consultant->id)
             ->whereBetween('worked_on', $this->monthRange($month))
             ->where('status', BookingStatus::Submitted->value)
-            ->update(['status' => $decision->value]);
+            ->update([
+                'status' => $decision->value,
+                'decided_by' => $decidedBy?->id,
+                'decided_at' => now(),
+                'decision_reason' => $decision === BookingStatus::Rejected ? $reason : null,
+            ]);
 
         if ($decided === 0) {
             throw new NothingToDecide(sprintf(
