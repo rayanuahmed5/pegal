@@ -11,7 +11,7 @@
 | PBI-09 Follow-up list | Orders whose reorder date is within 6 weeks, most urgent first, for purchasing (all orders) and project lead | done (built Mon 08:50, tests pending local run) |
 | PBI-10 Proof of work | Finance sees monthly hours per person per order without times and approves or rejects | built, waiting for the local test run |
 | PBI-11 Mockup | Clickable HTML screens per role in `docs/mockup/` | todo |
-| PBI-12 API docs | OpenAPI file for the JSON endpoints, viewable in the browser | todo |
+| PBI-12 API docs | Two JSON endpoints (`/api/orders`, `/api/follow-ups`) with a resource class as DTO, OpenAPI file, Swagger UI page | built, waiting for the local test run |
 | PBI-13 Compose | `compose.yaml` with MySQL and the app | built, not yet run on a machine with Docker |
 | PBI-14 README run check | Fresh clone, the six README sections, evidence map links | todo |
 
