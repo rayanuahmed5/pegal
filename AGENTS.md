@@ -66,7 +66,7 @@ The team fills this in once the stack is chosen. Keep it short and exact.
 - Track: code (clickable HTML mockup as fallback)
 - Stack: Laravel 13 (PHP 8.3) with MySQL 8, see `docs/adr/0001-stack-laravel-mysql.md`
 - Process: Scrum, see `docs/scrum/README.md` (backlog, sprints, Definition of Done)
-- Install: `TODO` (Sprint 1)
-- Run: `TODO` (Sprint 1)
-- Test: `TODO` (Sprint 1)
+- Install: `composer install`, `cp .env.example .env`, `php artisan key:generate`, `php artisan migrate --seed`
+- Run: `php artisan serve` (http://127.0.0.1:8000)
+- Test: `php artisan test` (uses the MySQL database pegal_test, created automatically)
 - Folder structure: `app/Http` (web/API), `app/Domain` (rules, forecast), `app/Models` (persistence)
