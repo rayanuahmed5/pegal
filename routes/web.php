@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FollowUpController;
@@ -42,5 +43,14 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:finance')->group(function () {
         Route::get('/proof-of-work', [ProofOfWorkController::class, 'index'])->name('proof-of-work.index');
         Route::post('/proof-of-work', [ProofOfWorkController::class, 'decide'])->name('proof-of-work.decide');
+    });
+
+    // JSON endpoints, documented in public/openapi.yaml. They use the same sign-in session as the
+    // pages and the same role checks, so the API can never show more than the pages do
+    Route::prefix('api')->name('api.')->group(function () {
+        Route::get('/orders', [OrderApiController::class, 'index'])
+            ->middleware('role:project_lead,purchasing,finance')->name('orders');
+        Route::get('/follow-ups', [OrderApiController::class, 'followUps'])
+            ->middleware('role:project_lead,purchasing')->name('follow-ups');
     });
 });
