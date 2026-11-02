@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['order_id', 'user_id', 'worked_on', 'hours', 'description', 'status'])]
+#[Fillable(['order_id', 'user_id', 'worked_on', 'hours', 'description', 'status', 'decided_by', 'decided_at', 'decision_reason'])]
 class Booking extends Model
 {
     protected function casts(): array
@@ -16,6 +16,7 @@ class Booking extends Model
             'worked_on' => 'date',
             'hours' => 'decimal:2',
             'status' => BookingStatus::class,
+            'decided_at' => 'datetime',
         ];
     }
 
@@ -28,5 +29,11 @@ class Booking extends Model
     public function consultant(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // the finance user who approved or rejected the hours
+    public function decidedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'decided_by');
     }
 }
