@@ -18,7 +18,10 @@ All items need the Laravel dependencies from Packagist. To unblock, the Product 
 
 ## Daily Scrum log
 
-(to be filled each day)
+**Mon 2 Nov**
+- Done: Laravel 13 scaffold (run on Mohammed's machine), MySQL config, 7 migrations (ran clean on MySQL), role and status enums, models, seeders with one demo user per role.
+- Next: check the seed data on MySQL, demo login, booking form.
+- Blocker: none. Packagist stays blocked in Claude's sandbox, so every step is run on Mohammed's machine and the output pasted back.
 
 ## Review and retrospective
 
