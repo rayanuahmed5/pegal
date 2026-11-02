@@ -12,7 +12,7 @@
 | PBI-10 Proof of work | Finance sees monthly hours per person per order without times and approves or rejects | done |
 | PBI-11 Mockup | Clickable HTML screens per role in `docs/mockup/` | done |
 | PBI-12 API docs | Two JSON endpoints (`/api/orders`, `/api/follow-ups`) with a resource class as DTO, OpenAPI file, Swagger UI page | done |
-| PBI-13 Compose | `compose.yaml` with MySQL and the app | built, not yet run on a machine with Docker |
+| PBI-13 Compose | `compose.yaml` with MySQL and the app | dropped, the team is not using Docker (ADR 0007) |
 | PBI-14 README run check | Fresh clone, the six README sections, evidence map links | done |
 
 Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a fresh-clone check can happen twice, then PBI-13, PBI-12 and PBI-11. Stretch items PBI-15 and PBI-16 only if time is left.
@@ -32,6 +32,8 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 **Mon 2 Nov, 09:05** PBI-09, PBI-10 and PBI-12 are done and green on the local machine (feature tests for the follow-up list, proof of work and the JSON API all pass). Impediment on the way: a test helper named `status()` clashed with a final PHPUnit method and stopped the whole test run; renamed, noted for the retrospective. PBI-13 (compose) is built but not yet run with Docker. Next: PBI-11 mockup, then PBI-14 README run check.
 
 **Mon 2 Nov, 09:25** PBI-14 done: a fresh clone in a new folder, followed from the README only, installed, migrated, seeded and ran. First `hackathon-review` against the scoring: all building blocks present; the one gap is the Git history, which only has commits from Monday (see the retrospective).
+
+**Mon 2 Nov, 09:30** Product Owner decision: the team is not using Docker. PBI-13 is dropped, the compose file, Dockerfile and start script are removed, and ADR 0007 replaces ADR 0003 for the "operation" topic. The product still delivers the other building blocks (structure, ADRs, API docs, mockup, Git history).
 
 ## Review and retrospective
 
