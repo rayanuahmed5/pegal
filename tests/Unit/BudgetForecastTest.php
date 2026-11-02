@@ -180,6 +180,59 @@ class BudgetForecastTest extends TestCase
         $this->assertSame(0.0, $result->missingPd);
     }
 
+    public function test_a_slow_and_a_fast_pace_give_a_range_around_the_date(): void
+    {
+        // 10 PD left: at 5 PD per week Fri 13 Nov, at 10 per week Fri 6 Nov, at 2.5 per week Fri 27 Nov
+        $result = (new BudgetForecast(new WorkCalendar()))->calculate(
+            orderedPd: 20,
+            remainingPd: 10,
+            burnPerWeek: 5,
+            today: CarbonImmutable::parse('2026-11-02'),
+            orderEnd: CarbonImmutable::parse('2027-02-05'),
+            reorderLeadWeeks: 4,
+            consultantIds: [1, 2],
+            slowBurnPerWeek: 2.5,
+            fastBurnPerWeek: 10,
+        );
+
+        $this->assertSame('2026-11-06', $result->earliestExhaustionDate->toDateString());
+        $this->assertSame('2026-11-13', $result->exhaustionDate->toDateString());
+        $this->assertSame('2026-11-27', $result->latestExhaustionDate->toDateString());
+        $this->assertTrue($result->hasRange());
+        $this->assertSame(45, $result->earliestWeek());
+        $this->assertSame(48, $result->latestWeek());
+    }
+
+    public function test_without_a_slow_and_fast_pace_the_range_is_the_date_itself(): void
+    {
+        $result = $this->forecast(10, 5, 20);
+
+        $this->assertSame($result->exhaustionDate->toDateString(), $result->earliestExhaustionDate->toDateString());
+        $this->assertSame($result->exhaustionDate->toDateString(), $result->latestExhaustionDate->toDateString());
+        $this->assertFalse($result->hasRange());
+    }
+
+    public function test_the_slow_pace_can_last_until_the_order_ends(): void
+    {
+        // 0.5 PD per week for the 14 weeks left uses only 7 of the 10 PD
+        $result = (new BudgetForecast(new WorkCalendar()))->calculate(
+            orderedPd: 20,
+            remainingPd: 10,
+            burnPerWeek: 5,
+            today: CarbonImmutable::parse('2026-11-02'),
+            orderEnd: CarbonImmutable::parse('2027-02-05'),
+            reorderLeadWeeks: 4,
+            consultantIds: [1, 2],
+            slowBurnPerWeek: 0.5,
+            fastBurnPerWeek: 5,
+        );
+
+        $this->assertNull($result->latestExhaustionDate);
+        $this->assertNotNull($result->earliestExhaustionDate);
+        $this->assertTrue($result->hasRange());
+        $this->assertNull($result->latestWeek());
+    }
+
     public function test_the_assumptions_are_part_of_the_result(): void
     {
         $result = $this->forecast(40, 5);

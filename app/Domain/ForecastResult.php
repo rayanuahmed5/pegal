@@ -12,6 +12,8 @@ final class ForecastResult
      * @param  string  $light  green, amber or red
      * @param  array<int, string>  $assumptions  short sentences for the page
      * @param  float  $missingPd  person-days still needed after the budget ends, until the order ends
+     * @param  ?CarbonImmutable  $earliestExhaustionDate  if the fastest of the last 4 weeks repeats
+     * @param  ?CarbonImmutable  $latestExhaustionDate  if the slowest of the last 4 weeks repeats (null: lasts until the end)
      */
     public function __construct(
         public readonly float $burnPerWeek,
@@ -20,7 +22,25 @@ final class ForecastResult
         public readonly string $light,
         public readonly array $assumptions,
         public readonly float $missingPd = 0.0,
+        public readonly ?CarbonImmutable $earliestExhaustionDate = null,
+        public readonly ?CarbonImmutable $latestExhaustionDate = null,
     ) {
+    }
+
+    // true when the fast and the slow case give different dates, so the range is worth showing
+    public function hasRange(): bool
+    {
+        return $this->earliestExhaustionDate?->toDateString() !== $this->latestExhaustionDate?->toDateString();
+    }
+
+    public function earliestWeek(): ?int
+    {
+        return $this->earliestExhaustionDate === null ? null : (int) $this->earliestExhaustionDate->format('W');
+    }
+
+    public function latestWeek(): ?int
+    {
+        return $this->latestExhaustionDate === null ? null : (int) $this->latestExhaustionDate->format('W');
     }
 
     // ISO calendar week of the exhaustion date, planners at the client talk in weeks

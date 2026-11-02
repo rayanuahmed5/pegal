@@ -24,6 +24,8 @@ final class BudgetForecast
 
     /**
      * @param  array<int, int>  $consultantIds  the people assigned to the order
+     * @param  ?float  $slowBurnPerWeek  pace of the quietest of the last weeks, default the average
+     * @param  ?float  $fastBurnPerWeek  pace of the busiest of the last weeks, default the average
      */
     public function calculate(
         float $orderedPd,
@@ -33,8 +35,14 @@ final class BudgetForecast
         CarbonImmutable $orderEnd,
         int $reorderLeadWeeks,
         array $consultantIds,
+        ?float $slowBurnPerWeek = null,
+        ?float $fastBurnPerWeek = null,
     ): ForecastResult {
         $exhaustion = $this->findExhaustionDate($remainingPd, $burnPerWeek, $today, $orderEnd, $consultantIds);
+
+        // the same walk with the slower and the faster pace gives the honest range around the date
+        $latest = $this->findExhaustionDate($remainingPd, $slowBurnPerWeek ?? $burnPerWeek, $today, $orderEnd, $consultantIds);
+        $earliest = $this->findExhaustionDate($remainingPd, $fastBurnPerWeek ?? $burnPerWeek, $today, $orderEnd, $consultantIds);
         $reorder = $exhaustion?->subWeeks($reorderLeadWeeks);
 
         return new ForecastResult(
@@ -44,6 +52,8 @@ final class BudgetForecast
             $this->trafficLight($orderedPd, $remainingPd, $exhaustion, $reorder, $today),
             $this->assumptions($burnPerWeek, $reorderLeadWeeks),
             $exhaustion === null ? 0.0 : $this->missingPd($exhaustion, $burnPerWeek, $orderEnd, $consultantIds),
+            $earliest,
+            $latest,
         );
     }
 
@@ -128,6 +138,7 @@ final class BudgetForecast
             'The same pace continues; weekends and public holidays burn nothing.',
             'Planned vacations of the assigned consultants slow the pace down on those days.',
             'Purchasing needs '.$reorderLeadWeeks.' weeks to place a follow-up order.',
+            'The range shows what happens if the slowest or the busiest of those weeks repeats instead of the average.',
         ];
     }
 }
