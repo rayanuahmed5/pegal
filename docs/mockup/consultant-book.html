@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book time · Pegal mockup</title>
+<link rel="stylesheet" href="mockup.css">
+</head>
+<body>
+<div class="note">Clickable mockup with made-up demo data. The running app is in the repository root, start it with the README.</div>
+<header class="topbar">
+  <a class="brand" href="index.html">Pegal</a>
+  <div class="who"><span>Ama Mensah</span><span class="role">Consultant</span><a href="index.html">Sign out</a></div>
+</header>
+<main class="page">
+
+<h1>Book time</h1>
+<p class="muted">Pick the order, the day and how long you worked.</p>
+<div class="card">
+  <p class="alert" role="alert">Booking rejected: that would be 11 hours on 2 Nov 2026, the limit is 10 hours per day. You already booked 3 hours that day.</p>
+  <form onsubmit="return false">
+    <label>Order</label>
+    <select><option>4500012345 · Customer portal migration</option></select>
+    <label>Day</label><input type="date" value="2026-11-02">
+    <label>Hours</label><input type="number" step="0.25" value="8">
+    <p class="muted small">Quarter hours are fine, for example 7.5.</p>
+    <label>What did you do?</label><input type="text" value="API migration">
+    <p><button type="submit">Save booking</button><a class="cancel" href="consultant-bookings.html">Cancel</a></p>
+  </form>
+</div>
+<p class="small"><a href="consultant-bookings.html">My bookings</a> · <a href="index.html">Other roles</a></p>
+
+</main>
+</body>
+</html>
