@@ -2,7 +2,7 @@
 
 - **Status:** accepted (replaces [0003](0003-operation-docker-compose-cloud-and-on-prem.md))
 - **Date:** 2026-11-02
-- **Deciders:** Mohammed (Product Owner), development team
+- **Deciders:** development team (Mohammed Raiyan Ahmed)
 
 ## Context
 

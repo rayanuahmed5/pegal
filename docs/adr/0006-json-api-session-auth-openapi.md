@@ -2,7 +2,7 @@
 
 - **Status:** accepted
 - **Date:** 2026-11-02
-- **Deciders:** Mohammed (Product Owner), development team
+- **Deciders:** development team (Mohammed Raiyan Ahmed)
 
 ## Context
 

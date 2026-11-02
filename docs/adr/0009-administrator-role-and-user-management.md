@@ -2,11 +2,11 @@
 
 - **Status:** accepted
 - **Date:** 2026-11-02
-- **Deciders:** Mohammed (Product Owner), development team
+- **Deciders:** development team (Mohammed Raiyan Ahmed)
 
 ## Context
 
-Users only existed through the seeder. The Product Owner wants an administrator who can see everybody, their role, what they are assigned and what they have booked, and who can add new users. Pegal has no prices, only person-days (PD), so "amount" has to be PD.
+Users only existed through the seeder. The team wants an administrator who can see everybody, their role, what they are assigned and what they have booked, and who can add new users. Pegal has no prices, only person-days (PD), so "amount" has to be PD.
 
 ## Options considered
 

@@ -2,7 +2,7 @@
 
 - **Status:** superseded by [0007](0007-operation-php-and-mysql-without-containers.md) on 2 Nov 2026, the team decided not to use Docker
 - **Date:** 2026-11-02
-- **Deciders:** Mohammed (Product Owner), development team
+- **Deciders:** development team (Mohammed Raiyan Ahmed)
 
 ## Context
 
