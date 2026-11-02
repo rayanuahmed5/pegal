@@ -15,8 +15,6 @@ info:
 servers:
   - url: http://127.0.0.1:8000
     description: Local development (php artisan serve)
-  - url: http://localhost:8000
-    description: Docker Compose
 tags:
   - name: Orders
     description: Budget and forecast per order
