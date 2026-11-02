@@ -180,3 +180,8 @@ summary { cursor: pointer; color: var(--accent); }
 .row-actions button { padding: .25rem .7rem; font-size: .85rem; margin-right: .3rem; }
 button.danger { background: var(--red); }
 button.danger:hover { background: #8f2d25; }
+
+/* administration: small number cards above the user table */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: .75rem; margin-bottom: 1rem; }
+.stats .card { margin: 0; padding: .8rem 1rem; }
+.stat-number { font-size: 1.8rem; font-weight: 700; color: var(--accent-dark); line-height: 1.1; }
