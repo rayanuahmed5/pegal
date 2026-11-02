@@ -2,7 +2,7 @@
 
 We use Scrum, compressed to fit the hackathon window (ends **Tuesday 3 Nov 2026, 11:00**). Times are UTC.
 
-## Roles (proposed, to be confirmed by the team)
+## Roles
 
 | Scrum role | Who |
 |---|---|
@@ -19,11 +19,22 @@ We use Scrum, compressed to fit the hackathon window (ends **Tuesday 3 Nov 2026,
 | Sprint Review | End of each sprint | Demo of the increment; Product Owner accepts or rejects items |
 | Sprint Retrospective | After each review | One thing to keep, one to change |
 
+## Before Sprint 1: product backlog and setup
+
+The first Product Backlog was prepared before Sprint 1 started (Mon 2 Nov, 01:30 to 03:00 UTC). This is backlog creation, not a Sprint:
+
+- Challenge, guide and scoring read
+- Product vision ([product-vision.md](../product-vision.md))
+- Domain model and ER diagram ([domain.md](../domain.md))
+- Roles and privacy concept ([roles-and-privacy.md](../roles-and-privacy.md))
+- ADR 0001 stack, 0002 identity, 0003 operation (0003 later replaced by 0007)
+- Product backlog ([product-backlog.md](product-backlog.md)), Definition of Done and sprint plan
+- MySQL 8 installed, databases `pegal` and `pegal_test` created
+
 ## Sprints
 
 | Sprint | Window | Goal |
 |---|---|---|
-| [Sprint 0](sprint-0.md) | Mon 2 Nov 01:30 to 03:00 | Everything needed to start: vision, backlog, domain, roles, ADRs, working environment |
 | [Sprint 1](sprint-1.md) | Mon 2 Nov 03:00 to 07:15 (closed early, goal met) | Walking skeleton: a consultant can book time and the data is stored in MySQL |
 | [Sprint 2](sprint-2.md) | Mon 2 Nov 07:30 to 08:10 (closed early, goal met) | Bookings follow the rules (with tests) and the project lead sees the budget per order |
 | [Sprint 3](sprint-3.md) | Mon 2 Nov 08:10 (started early) to Tue 3 Nov 08:00 | Forecast, follow-up list, proof of work, mockup, API docs, README |

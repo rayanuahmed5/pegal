@@ -26,4 +26,4 @@ Ordered by value. Estimates are story points (1, 2, 3, 5, 8). Status: `todo`, `d
 | PBI-20 | consultant, optional start and end times with overlap and 11-hour rest checks | ADR 0008; rules enforced on the server with accept and reject tests; times visible to the consultant only | 5 | 3 | done |
 | PBI-21 | administrator, a dashboard with all users, their roles, assigned and spent PD, and a form to add users | ADR 0009; `/admin` for admins only (403 for others); account rule with accept and reject tests; demo user `admin@pegal.test` | 5 | 3 | done |
 
-Done in Sprint 0: vision, domain model, roles and privacy concept, ADRs 0001 to 0003, Scrum setup.
+Prepared before Sprint 1: vision, domain model, roles and privacy concept, ADRs 0001 to 0003, Scrum setup (see [README](README.md#before-sprint-1-product-backlog-and-setup)).
