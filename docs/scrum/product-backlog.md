@@ -4,10 +4,10 @@ Ordered by value. Estimates are story points (1, 2, 3, 5, 8). Status: `todo`, `d
 
 | ID | As a ... I want ... so that ... | Acceptance criteria | Pts | Sprint | Status |
 |---|---|---|---|---|---|
-| PBI-01 | developer, a Laravel + MySQL project that starts from the README | Fresh clone: install, migrate, seed, run and test commands work; `.env.example` has safe defaults | 3 | 1 | todo |
-| PBI-02 | team, a data model with seed data | Migrations for the 7 tables in [domain.md](../domain.md); seeders create 2 suppliers, 3 orders, 4 consultants and bookings; data survives restart | 3 | 1 | todo |
-| PBI-03 | user, to sign in as a demo user per role | Four demo users (consultant, project lead, purchasing, finance) can sign in; passwords in README | 2 | 1 | todo |
-| PBI-04 | consultant, to book date, hours and description on an assigned order | Form and list of own bookings; stored in MySQL; hours in 0.25 steps | 3 | 1 | todo |
+| PBI-01 | developer, a Laravel + MySQL project that starts from the README | Fresh clone: install, migrate, seed, run and test commands work; `.env.example` has safe defaults | 3 | 1 | done |
+| PBI-02 | team, a data model with seed data | Migrations for the 7 tables in [domain.md](../domain.md); seeders create 2 suppliers, 3 orders, 4 consultants and bookings; data survives restart | 3 | 1 | done |
+| PBI-03 | user, to sign in as a demo user per role | Four demo users (consultant, project lead, purchasing, finance) can sign in; passwords in README | 2 | 1 | done |
+| PBI-04 | consultant, to book date, hours and description on an assigned order | Form and list of own bookings; stored in MySQL; hours in 0.25 steps | 3 | 1 | done |
 | PBI-05 | client, bookings that follow the rules | Rejected with a clear message when: over the remaining budget; more than 10 h per person per day; date outside the order period; order not assigned. Accept and reject tests for each | 8 | 2 | todo |
 | PBI-06 | project lead, used and remaining budget per order | Order page shows ordered, used, remaining PD and a traffic light | 3 | 2 | todo |
 | PBI-07 | team, permissions enforced on the server | Policies per role as in the matrix; wrong role gets 403; feature tests | 5 | 2 | todo |
