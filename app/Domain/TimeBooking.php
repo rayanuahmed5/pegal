@@ -32,6 +32,7 @@ class TimeBooking
 
             $this->checkAssigned($consultant, $order);
             $this->checkOrderPeriod($order, $day);
+            $this->checkNoAbsence($consultant, $day);
             $this->checkDailyLimit($consultant, $day, $hours);
             $this->checkBudget($order, $hours);
 
@@ -65,6 +66,24 @@ class TimeBooking
                 $order->number,
                 $this->niceDay($from),
                 $this->niceDay($to),
+            ));
+        }
+    }
+
+    // nobody works on a day they have planned vacation, the same absences also slow the forecast down
+    private function checkNoAbsence(User $consultant, string $day): void
+    {
+        $absence = $consultant->absences()
+            ->whereDate('starts_on', '<=', $day)
+            ->whereDate('ends_on', '>=', $day)
+            ->first();
+
+        if ($absence !== null) {
+            throw new BookingRejected(sprintf(
+                'Booking rejected: you have a planned absence from %s to %s, which includes %s.',
+                $this->niceDay($absence->starts_on->toDateString()),
+                $this->niceDay($absence->ends_on->toDateString()),
+                $this->niceDay($day),
             ));
         }
     }
