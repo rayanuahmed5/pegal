@@ -25,7 +25,9 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 
 ## Daily Scrum log
 
-**Mon 2 Nov, 08:20** PBI-08 is done: `WorkCalendar`, `BurnRate`, `BudgetForecast` and `ForecastResult` in `app/Domain`, forecast column on `/orders`. `php artisan test` shows 75 passed. Still to look at: the page in the browser. Next: PBI-09, the follow-up list.
+**Mon 2 Nov, 08:20** PBI-08 is done: `WorkCalendar`, `BurnRate`, `BudgetForecast` and `ForecastResult` in `app/Domain`, forecast column on `/orders`. `php artisan test` shows 75 passed. Next: PBI-09, the follow-up list.
+
+**Mon 2 Nov, 08:25** PBI-08 checked in the browser as the project lead. Customer portal: burn 6 PD per week, runs out 18 Jan 2027, reorder by 21 Dec 2026 (amber). Data warehouse: runs out 13 Nov 2026, reorder date 16 Oct has passed (red). Mobile app relaunch: runs out 23 Mar 2027, reorder by 9 Feb 2027 (amber). The numbers match a hand calculation: warehouse burns 4 PD per week with 8 PD left, which is ten working days.
 
 ## Review and retrospective
 
