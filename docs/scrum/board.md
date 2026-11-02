@@ -19,16 +19,16 @@ The board lives on GitHub, next to the code. One card is one issue, and the **co
 
 Moving a card means changing the label (and closing the issue when it is Done). Only one `status:` label is on a card at a time.
 
-## Board on Mon 2 Nov 2026, 12:45 UTC
+## Board on Mon 2 Nov 2026, 13:10 UTC
 
 | Backlog | To do | Doing | Review | Done | Dropped |
 |---|---|---|---|---|---|
-| #15 PBI-15 What-if scenario |  |  | #18 Click through Proof of work as finance | #1 to #12 PBI-01 to PBI-12 | #13 PBI-13 Compose file |
-| #16 PBI-16 Follow-up order draft |  |  |  | #14 PBI-14 README run check |  |
-|  | #21 Commits on Tuesday |  |  | #17 Create the Scrum board on GitHub, #19 Fresh-clone run check, #20 Final review against the scoring |  |
-|  | #27 Add all issues to the GitHub Project (manual) |  |  | #22 PBI-17 Planned absence rule |  |
-|  |  |  |  | #23 PBI-18 Missing PD and calendar weeks |  |
-|  |  |  |  | #24 PBI-19 Rejection reason and decider |  |
+| #15 PBI-15 What-if scenario | #21 Commits on Tuesday |  | #18 Click through Proof of work as finance (Adam Imoro) | #1 to #12 PBI-01 to PBI-12 | #13 PBI-13 Compose file |
+| #16 PBI-16 Follow-up order draft | #27 Add all issues to the GitHub Project (manual) |  |  | #14 PBI-14 README run check |  |
+|  | #28 Admin mockup page (Mohammed Awal) |  |  | #17 Scrum board, #19 Fresh-clone run check, #20 Final review |  |
+|  | #29 Manual test of every role (Adam Imoro) |  |  | #22 PBI-17 Planned absence rule |  |
+|  | #30 Product Owner acceptance (Abdulai Umar Faruk) |  |  | #23 PBI-18 Missing PD and calendar weeks |  |
+|  | #31 Sprint 3 retrospective (Brakoh Kennet) |  |  | #24 PBI-19 Rejection reason and decider |  |
 |  |  |  |  | #25 PBI-20 Start and end times, rest rule |  |
 |  |  |  |  | #26 PBI-21 Administrator dashboard |  |
 
