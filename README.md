@@ -47,9 +47,16 @@ The tests use their own database, `pegal_test`, on the same MySQL server. It is 
 
 ## Demo users
 
+All demo users have the password `pegal-demo`. They exist for the demo only.
+
 | Role | Sign in with | What to try |
 |---|---|---|
-| TODO | TODO | TODO |
+| Consultant | `consultant@pegal.test` | Open **Book time**, book hours on an assigned order, see them under **My bookings** |
+| Project lead | `lead@pegal.test` | Sign in and open `/bookings`: the server answers 403, this role has no booking page |
+| Purchasing | `purchasing@pegal.test` | Same: sign-in works, booking pages are closed to this role |
+| Finance | `finance@pegal.test` | Same: sign-in works, booking pages are closed to this role |
+
+The budget views for the client roles come in Sprint 2 and 3.
 
 ## Evidence map
 
