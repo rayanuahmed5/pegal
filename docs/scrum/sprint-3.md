@@ -49,6 +49,7 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 
 **Mon 2 Nov, 14:00** Forecast range (fast and slow pace from the quietest and busiest of the last 4 weeks, ADR 0005 update) and PBI-16, the follow-up order proposal for purchasing: suggested PD (missing PD rounded up), start on the first working day after the budget ends, end with the current order, order-by date and week. Order-level numbers only. Waiting for the Product Owner's check.
 **Mon 2 Nov, 19:20** Mohammed added a landing page for guests at `/`, a gauge favicon with icon tiles on the home page, a profile page for every role with change password, and account management for the administrator: edit name, email, role and supplier, reset a password, delete an account without bookings ([ADR 0010](../adr/0010-editing-and-deleting-accounts.md)). Adam renamed the product to Pegel everywhere it is shown. `php artisan test`: 236 passed (659 assertions).
+**Mon 2 Nov, 20:30** Mop-up before the freeze, two small items. PBI-22: a month and year filter on My bookings (`PeriodFilter` in the domain, with accept and reject tests) and a month box on the proof of work page. PBI-23: a dark and light mode button in the top bar, built with CSS variables so the stylesheet stays the only place for colours ([ADR 0011](../adr/0011-dark-mode-with-css-variables.md)). Both were committed in small steps.
 
 ## Review and retrospective
 
