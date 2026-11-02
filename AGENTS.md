@@ -60,10 +60,11 @@ The skills live in `.claude/skills/`. Claude Code and GitHub Copilot (VS Code ag
 
 The team fills this in once the stack is chosen. Keep it short and exact.
 
-- Product: TODO
-- Track: TODO (code / mockup / concept)
-- Stack: TODO
-- Install: `TODO`
-- Run: `TODO`
-- Test: `TODO`
-- Folder structure: TODO
+- Product: Pegel, time booking and budget forecast for a client buying external consulting work
+- Track: code (clickable HTML mockup as fallback)
+- Stack: Laravel 12 (PHP 8.3) with MySQL 8, see `docs/adr/0001-stack-laravel-mysql.md`
+- Process: Scrum, see `docs/scrum/README.md` (backlog, sprints, Definition of Done)
+- Install: `TODO` (Sprint 1)
+- Run: `TODO` (Sprint 1)
+- Test: `TODO` (Sprint 1)
+- Folder structure: `app/Http` (web/API), `app/Domain` (rules, forecast), `app/Models` (persistence)
