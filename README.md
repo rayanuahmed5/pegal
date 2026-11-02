@@ -2,38 +2,48 @@
 
 Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
 
-> **Status (Mon 2 Nov 2026):** Sprint 0 done (vision, domain model, roles concept, ADRs, backlog). The Laravel application is built in Sprint 1; Setup, Run and Test below are filled in then.
+> **Status (Mon 2 Nov 2026):** Sprint 1 is done: demo sign-in for four roles, consultant booking, demo data and tests. Next up: booking rules, the budget gauge and the forecast.
 
 ## Prerequisites
 
 | Tool | Version | Check |
 |---|---|---|
-| PHP | 8.3 | `php --version` |
+| PHP (with the `pdo_mysql` extension) | 8.3 or newer | `php --version` |
 | Composer | 2.x | `composer --version` |
-| MySQL | 8.0 | `mysql --version` |
+| MySQL | 8.0, running on `127.0.0.1:3306` | `mysql --version` |
+
+`.env.example` expects the MySQL user `root` with an empty password. If yours is different, change `DB_USERNAME` and `DB_PASSWORD` in `.env` after the copy step below.
 
 ## Setup
 
-Exact commands, in order, from a fresh clone. Example:
+From a fresh clone, in the project folder:
 
 ```bash
-TODO   # e.g. cp .env.example .env
-TODO   # e.g. npm ci
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
 ```
+
+`migrate` offers to create the `pegal` database if it is missing, answer yes. You can also create it first: `CREATE DATABASE pegal CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`
+
+To wipe the data and load the demo data again: `php artisan migrate:fresh --seed`
 
 ## Run
 
 ```bash
-TODO   # the command that starts the application
+php artisan serve
 ```
 
-Open TODO (e.g. http://localhost:3000).
+Open http://127.0.0.1:8000 and sign in with one of the demo users below.
 
 ## Test
 
 ```bash
-TODO   # one command that runs all tests
+php artisan test
 ```
+
+The tests use their own database, `pegal_test`, on the same MySQL server. It is created automatically, and your demo data is never touched.
 
 ## Demo users
 
