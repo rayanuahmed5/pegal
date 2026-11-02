@@ -12,11 +12,11 @@ Ordered by value. Estimates are story points (1, 2, 3, 5, 8). Status: `todo`, `d
 | PBI-06 | project lead, used and remaining budget per order | Order page shows ordered, used and remaining PD as a gauge bar; the traffic light comes with the forecast (PBI-08) | 3 | 2 | done |
 | PBI-07 | team, permissions enforced on the server | Policies per role as in the matrix; wrong role gets 403; feature tests | 5 | 2 | done |
 | PBI-08 | project lead, a forecast of when the budget runs out | Burn rate over 4 weeks, exhaustion date adjusted for absences and holidays, latest reorder date, assumptions shown; unit tests | 8 | 3 | done |
-| PBI-09 | purchasing, a list of orders needing a follow-up order | Orders whose reorder date is within 6 weeks, sorted by urgency | 3 | 3 | todo |
-| PBI-10 | finance, monthly proof of work per order | Monthly hours per person per order without times; approve or reject | 5 | 3 | todo |
+| PBI-09 | purchasing, a list of orders needing a follow-up order | Orders whose reorder date is within 6 weeks, sorted by urgency | 3 | 3 | done |
+| PBI-10 | finance, monthly proof of work per order | Monthly hours per person per order without times; approve or reject | 5 | 3 | done |
 | PBI-11 | jury, a clickable mockup of the main screens per role | HTML files in `docs/mockup/`, linked, committed | 3 | 3 | todo |
-| PBI-12 | jury, API documentation | Machine-readable OpenAPI file for the JSON endpoints, viewable in the browser | 3 | 3 | todo |
-| PBI-13 | jury, `compose.yaml` that starts MySQL and the app | `docker compose up` gives a working app with seed data | 3 | 3 | todo |
+| PBI-12 | jury, API documentation | Machine-readable OpenAPI file for the JSON endpoints, viewable in the browser | 3 | 3 | done |
+| PBI-13 | jury, `compose.yaml` that starts MySQL and the app | `docker compose up` gives a working app with seed data | 3 | 3 | built |
 | PBI-14 | jury, a README that works in 5 minutes | Six sections complete, evidence map links valid, a person outside the setup ran it | 3 | 3 | todo |
 | PBI-15 | project lead, what-if scenario (extra consultant, longer project) | Forecast recalculated with changed inputs | 5 | stretch | todo |
 | PBI-16 | purchasing, a prepared follow-up order proposal | Draft with suggested PD and start week | 3 | stretch | todo |
