@@ -39,6 +39,8 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 
 **Mon 2 Nov, 13:00** Product Owner request: an administrator with a dashboard (users in total, role of every user, assigned and spent amount per user) who can add users. Pegal has no prices, so the amounts are person-days. Built as PBI-21: `Role::Admin`, demo user `admin@pegal.test`, `UserOverview` and `UserAccounts` in the domain with unit tests, `/admin` and `/admin/users/create` behind `role:admin`, feature tests, [ADR 0009](../adr/0009-administrator-role-and-user-management.md). The seeder only runs on an empty database, so an existing local database needs `php artisan migrate:fresh --seed` to get the admin user.
 
+**Mon 2 Nov, 12:30** Second fresh-clone run check (#19): Mohammed cloned the repository again on his machine, followed the README and the app ran.
+
 ## Review and retrospective
 
 ### Review (Mon 2 Nov, 09:40)
