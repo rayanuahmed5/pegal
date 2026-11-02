@@ -22,6 +22,13 @@
                 </form>
             </div>
         @endauth
+
+        {{-- guests only need one way in, the login page hides it because they are already there --}}
+        @guest
+            @unless (request()->routeIs('login'))
+                <a class="topbar-signin" href="{{ route('login') }}">Sign in</a>
+            @endunless
+        @endguest
     </header>
 
     <main class="page">

@@ -11,9 +11,17 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_a_guest_is_sent_to_the_login_page(): void
+    public function test_a_guest_sees_the_landing_page_with_a_way_to_sign_in(): void
     {
-        $this->get('/')->assertRedirect('/login');
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Know how much budget is left')
+            ->assertSee(route('login'));
+    }
+
+    public function test_a_guest_is_still_sent_to_the_login_page_for_app_pages(): void
+    {
+        $this->get('/orders')->assertRedirect('/login');
     }
 
     public function test_a_user_can_sign_in_with_the_right_password(): void

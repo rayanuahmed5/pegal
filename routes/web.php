@@ -10,6 +10,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProofOfWorkController;
 use Illuminate\Support\Facades\Route;
 
+// open to everyone: guests get the landing page, signed-in users their own home page
+Route::get('/', HomeController::class)->name('home');
+
 // only for people who are not signed in yet
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'show'])->name('login');
@@ -20,7 +23,6 @@ Route::middleware('guest')->group(function () {
 
 // everything else needs a signed-in user
 Route::middleware('auth')->group(function () {
-    Route::get('/', HomeController::class)->name('home');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
     // booking time is for consultants only, checked on the server by the role middleware
