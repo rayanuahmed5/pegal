@@ -27,4 +27,20 @@ Planned order of work: PBI-05 first, because PBI-06 reads the same "used budget"
 
 ## Review and retrospective
 
-(at the end of the sprint)
+### Review (Mon 2 Nov, 08:10)
+
+Shown to the Product Owner (Mohammed) in the browser as the project lead:
+
+- A booking that breaks a rule is rejected with a plain message (budget, 10 hours a day, order period, assignment).
+- The orders page shows ordered, used and left person-days per order with a green, amber or red bar. Customer portal 60% (green), data warehouse 80% (amber), mobile app relaunch 16.7% (green).
+- A consultant gets a 403 on the orders page, a guest goes to the login page.
+
+Sprint goal reached. `php artisan test`: 44 passed.
+
+Feedback: the data warehouse order is amber, not red, because the bar only looks at budget used. Whether it is really in trouble depends on how fast the budget burns, and that is the forecast in Sprint 3 (PBI-08).
+
+### Retrospective
+
+- **Went well:** all rules sit in one class (`TimeBooking`), so the form, the tests and later the API can share them. `OrderBudget` takes plain numbers, which kept its tests fast. Small commits, each pushed right away.
+- **Could be better:** I could not run PHP tests in the sandbox, so every step waited for a local run. Keep steps small so a failure is easy to find.
+- **Next sprint:** the forecast needs the burn rate, absences and holidays. Build the date logic as plain functions first, test it hard, and only then put it on a page.
