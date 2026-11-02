@@ -24,9 +24,9 @@ We use Scrum, compressed to fit the hackathon window (ends **Tuesday 3 Nov 2026,
 | Sprint | Window | Goal |
 |---|---|---|
 | [Sprint 0](sprint-0.md) | Mon 2 Nov 01:30 to 03:00 | Everything needed to start: vision, backlog, domain, roles, ADRs, working environment |
-| [Sprint 1](sprint-1.md) | Mon 2 Nov 03:00 to 12:00 | Walking skeleton: a consultant can book time and the data is stored in MySQL |
-| Sprint 2 | Mon 2 Nov 12:00 to 22:00 | Business rules with tests, roles enforced on the server |
-| Sprint 3 | Tue 3 Nov 00:00 to 08:00 | Budget gauge and forecast, mockup, API docs, Compose, README |
+| [Sprint 1](sprint-1.md) | Mon 2 Nov 03:00 to 07:15 (closed early, goal met) | Walking skeleton: a consultant can book time and the data is stored in MySQL |
+| [Sprint 2](sprint-2.md) | Mon 2 Nov 07:30 to 16:00 | Bookings follow the rules (with tests) and the project lead sees the budget per order |
+| Sprint 3 | Mon 2 Nov 16:00 to Tue 3 Nov 08:00 | Budget gauge and forecast, mockup, API docs, Compose, README |
 | Freeze | Tue 3 Nov 08:00 to 11:00 | Run check from a fresh clone, final review against scoring, no new features |
 
 ## Definition of Done (applies to every backlog item)
