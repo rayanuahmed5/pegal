@@ -11,6 +11,7 @@ final class ForecastResult
     /**
      * @param  string  $light  green, amber or red
      * @param  array<int, string>  $assumptions  short sentences for the page
+     * @param  float  $missingPd  person-days still needed after the budget ends, until the order ends
      */
     public function __construct(
         public readonly float $burnPerWeek,
@@ -18,6 +19,7 @@ final class ForecastResult
         public readonly ?CarbonImmutable $reorderDate,
         public readonly string $light,
         public readonly array $assumptions,
+        public readonly float $missingPd = 0.0,
     ) {
     }
 

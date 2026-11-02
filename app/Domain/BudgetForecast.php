@@ -43,6 +43,7 @@ final class BudgetForecast
             $reorder,
             $this->trafficLight($orderedPd, $remainingPd, $exhaustion, $reorder, $today),
             $this->assumptions($burnPerWeek, $reorderLeadWeeks),
+            $exhaustion === null ? 0.0 : $this->missingPd($exhaustion, $burnPerWeek, $orderEnd, $consultantIds),
         );
     }
 
@@ -74,6 +75,24 @@ final class BudgetForecast
         }
 
         return null;
+    }
+
+    // how many person-days the order would still burn between the day after the budget ends
+    // and the order's end, at the same pace: the size of the follow-up order purchasing has to place
+    private function missingPd(
+        CarbonImmutable $exhaustion,
+        float $burnPerWeek,
+        CarbonImmutable $orderEnd,
+        array $consultantIds,
+    ): float {
+        $burnPerDay = $burnPerWeek / self::WORKING_DAYS_PER_WEEK;
+        $missing = 0.0;
+
+        for ($day = $exhaustion->addDay(); $day->toDateString() <= $orderEnd->toDateString(); $day = $day->addDay()) {
+            $missing += $burnPerDay * $this->calendar->availableShare($day->toDateString(), $consultantIds);
+        }
+
+        return round($missing, 1);
     }
 
     // green: lasts until the end. amber: runs out earlier but there is still time to reorder.
