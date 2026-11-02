@@ -16,11 +16,11 @@ We need a stack that gives us routing, validation, authentication, migrations, s
 
 ## Decision
 
-We choose **Laravel 13 on PHP 8.3 with MySQL 8**, because the team set this stack for the hackathon and Laravel covers most needs without extra libraries. A `compose.yaml` will start MySQL so the jury needs no local database install.
+We choose **Laravel 13 on PHP 8.3 with MySQL 8**, because the team set this stack for the hackathon and Laravel covers most needs without extra libraries. The jury needs PHP, Composer and a MySQL server; the README lists the exact commands.
 
 ## Consequences
 
 - Easier: migrations and seeders give reproducible data; policies give server-side permissions; PHPUnit gives unit tests.
-- Harder: more setup than SQLite; the jury needs PHP, Composer and Docker (or a local MySQL).
+- Harder: more setup than SQLite; the jury needs PHP, Composer and a local MySQL.
 - Decision on data granularity: we store hours per day, not start and end times, so the 11-hour rest rule of the Working Time Act is not enforced. This is documented in the product vision.
 - Layers: `app/Http` (requests and resources), `app/Domain` (rules and forecast), `app/Models` (persistence).
