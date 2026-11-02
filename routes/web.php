@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProofOfWorkController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,11 @@ Route::middleware('guest')->group(function () {
 // everything else needs a signed-in user
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+    // every role has a profile; it always works on the signed-in user, so there is no id to tamper with
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])
+        ->middleware('throttle:6,1')->name('profile.password');
 
     // booking time is for consultants only, checked on the server by the role middleware
     Route::middleware('role:consultant')->group(function () {

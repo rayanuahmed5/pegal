@@ -18,6 +18,8 @@ See [guide 2.4](guide.md#24-roles-and-privacy).
 
 | Action or data | Consultant | Project lead | Purchasing | Finance |
 |---|---|---|---|---|
+| See own profile (name, email, role, supplier) | ✔ | ✔ | ✔ | ✔ |
+| Change own password (needs the current password) | ✔ | ✔ | ✔ | ✔ |
 | Book own working time on an assigned order | ✔ | – | – | – |
 | See own bookings | ✔ | – | – | – |
 | See single bookings of an order (with person) | – | Σ by week, no person | – | ✔ monthly per person, no times |

@@ -15,7 +15,9 @@
 
         @auth
             <div class="who">
-                <span>{{ auth()->user()->name }}</span>
+                <a class="who-name" href="{{ route('profile.show') }}" title="My profile">
+                    <x-icon name="user" /> {{ auth()->user()->name }}
+                </a>
                 <span class="role">{{ auth()->user()->role->label() }}</span>
 
                 {{-- logging out is a POST so a stray link can't sign somebody out --}}

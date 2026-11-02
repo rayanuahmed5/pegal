@@ -298,3 +298,14 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .action-tile .tile-icon { margin-bottom: .5rem; }
 .action-tile:hover, .action-tile:focus-visible { border-color: var(--accent); box-shadow: 0 6px 18px rgba(28, 43, 45, .08); }
 .action-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* the name in the top bar opens the profile */
+.who-name { display: inline-flex; align-items: center; gap: .3rem; color: var(--ink); text-decoration: none; }
+.who-name:hover { color: var(--accent); }
+
+/* profile page: an icon next to a short list of label and value */
+.profile-card { display: flex; gap: 1.25rem; align-items: flex-start; }
+.details { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: .9rem 1.5rem; margin: 0; flex: 1; }
+.details dt { color: var(--muted); font-size: .8rem; }
+.details dd { margin: 0; font-weight: 600; word-break: break-word; }
+.card h2 .icon { color: var(--accent); }
