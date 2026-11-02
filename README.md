@@ -37,6 +37,10 @@ php artisan serve
 
 Open http://127.0.0.1:8000 and sign in with one of the demo users below.
 
+## API
+
+Two JSON endpoints show the same data as the pages: `GET /api/orders` and `GET /api/follow-ups`. They use the sign-in session and the same role checks. The OpenAPI file is [public/openapi.yaml](public/openapi.yaml); with the app running, open http://127.0.0.1:8000/api-docs.html (needs internet for the Swagger UI script), sign in first, then use "Try it out".
+
 ## Run with Docker
 
 No PHP or MySQL on your machine? Docker is enough:
@@ -77,7 +81,7 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 | 1 · Persistence and data model | [Migrations](database/migrations) (suppliers, users with role, orders, assignments, bookings, absences, public holidays), [ER diagram](docs/domain.md), [seeders](database/seeders) |
 | 2 · Business rules and unit tests | Rules (assignment, order period, 10 h per person and day, remaining budget) in [app/Domain/TimeBooking.php](app/Domain/TimeBooking.php), unit tests in [tests/Unit/TimeBookingTest.php](tests/Unit/TimeBookingTest.php), form-level tests in [tests/Feature/BookingTest.php](tests/Feature/BookingTest.php). Forecast: [BudgetForecast](app/Domain/BudgetForecast.php), [BurnRate](app/Domain/BurnRate.php), [WorkCalendar](app/Domain/WorkCalendar.php), [FollowUp](app/Domain/FollowUp.php) with their unit tests in [tests/Unit](tests/Unit). Proof of work: [ProofOfWork](app/Domain/ProofOfWork.php) and [its tests](tests/Unit/ProofOfWorkTest.php) |
 | 3 · Roles, permissions and privacy | [Permission concept](docs/roles-and-privacy.md), enforced on the server by [EnsureUserHasRole](app/Http/Middleware/EnsureUserHasRole.php) and [routes/web.php](routes/web.php), 403 tests in [BookingTest](tests/Feature/BookingTest.php), [OrderPageTest](tests/Feature/OrderPageTest.php), [FollowUpPageTest](tests/Feature/FollowUpPageTest.php) and [ProofOfWorkPageTest](tests/Feature/ProofOfWorkPageTest.php) |
-| 4 · Architecture and engineering | A structure: `app/Http`, `app/Domain`, `app/Models` · B [ADRs](docs/adr/) 0001 to 0004 · C Git history (many small commits since Mon 2 Nov) · D API docs: planned · E [compose.yaml](compose.yaml) with [Dockerfile](Dockerfile) · F [mockup](docs/mockup): planned |
+| 4 · Architecture and engineering | A structure: `app/Http`, `app/Domain`, `app/Models` · B [ADRs](docs/adr/) 0001 to 0004 · C Git history (many small commits since Mon 2 Nov) · D API docs: [openapi.yaml](public/openapi.yaml), in the browser at `/api-docs.html` · E [compose.yaml](compose.yaml) with [Dockerfile](Dockerfile) · F [mockup](docs/mockup): planned |
 
 ## Team
 
