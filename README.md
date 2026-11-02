@@ -83,10 +83,10 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 
 | Name | Scrum role |
 |---|---|
-| Abdulai Umar Faruk | Product Owner |
-| Brakoh Kennet | Scrum Master |
+| Abdulai Umar Faruk ([@tadashihamada-chetty](https://github.com/tadashihamada-chetty)) | Product Owner |
+| Brakoh Kennet (`brakokenneth199-cmyk`, invitation pending) | Scrum Master |
 | Mohammed Raiyan Ahmed ([@rayanuahmed5](https://github.com/rayanuahmed5)) | Developer |
-| Mohammed Awal | Developer |
-| Adam Imoro | Developer |
+| Mohammed Awal ([@Ustarz-Maltiti](https://github.com/Ustarz-Maltiti)) | Developer |
+| Adam Imoro ([@AdamImoro](https://github.com/AdamImoro)) | Developer |
 
 Claude is used as AI pair programmer. The process is Scrum, see [docs/scrum](docs/scrum/README.md).
