@@ -279,4 +279,177 @@ class TimeBookingTest extends TestCase
 
         $this->assertDatabaseCount('bookings', 0);
     }
+
+    // start and end times (ADR 0008)
+
+    private function timed(User $consultant, Order $order, string $day, string $from, string $to, float $hours, BookingStatus $status = BookingStatus::Approved): void
+    {
+        Booking::create([
+            'order_id' => $order->id,
+            'user_id' => $consultant->id,
+            'worked_on' => $day,
+            'starts_at' => $from,
+            'ends_at' => $to,
+            'hours' => $hours,
+            'description' => 'Earlier work',
+            'status' => $status,
+        ]);
+    }
+
+    private function bookTimed(User $consultant, Order $order, string $day, ?string $from, ?string $to, float $hours)
+    {
+        return app(TimeBooking::class)->book($consultant, $order, $day, $hours, 'Timed work', $from, $to);
+    }
+
+    public function test_it_keeps_start_and_end_when_they_fit_the_hours(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+
+        $booking = $this->bookTimed($consultant, $order, '2026-11-02', '09:00', '17:00', 8);
+
+        $this->assertSame('09:00:00', $booking->fresh()->starts_at);
+        $this->assertSame('17:00:00', $booking->fresh()->ends_at);
+    }
+
+    public function test_it_rejects_an_end_before_the_start(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('the end time must be after the start time');
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '17:00', '09:00', 8);
+    }
+
+    public function test_it_rejects_only_one_of_start_and_end(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('please give both a start and an end time, or neither');
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '09:00', null, 8);
+    }
+
+    public function test_it_rejects_hours_that_do_not_match_start_and_end(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('09:00 to 17:00 is 8 hours, but you entered 6 hours');
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '09:00', '17:00', 6);
+    }
+
+    public function test_it_rejects_times_that_are_not_quarter_hours(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('please use quarter hours');
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '09:10', '12:00', 2.8333);
+    }
+
+    // overlap
+
+    public function test_it_rejects_a_booking_that_overlaps_another_one_of_the_same_day(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($consultant, $order, '2026-11-02', '09:00', '13:00', 4);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('12:00 to 16:00 overlaps your booking from 09:00 to 13:00 on 2 Nov 2026');
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '12:00', '16:00', 4);
+    }
+
+    public function test_back_to_back_bookings_do_not_overlap(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($consultant, $order, '2026-11-02', '09:00', '13:00', 4);
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '13:00', '17:00', 4);
+
+        $this->assertDatabaseCount('bookings', 2);
+    }
+
+    public function test_a_rejected_booking_does_not_block_its_time_slot(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($consultant, $order, '2026-11-02', '09:00', '13:00', 4, BookingStatus::Rejected);
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '10:00', '12:00', 2);
+
+        $this->assertDatabaseCount('bookings', 2);
+    }
+
+    // 11 hours of rest
+
+    public function test_it_rejects_less_than_eleven_hours_of_rest_after_the_day_before(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($consultant, $order, '2026-11-02', '14:00', '22:00', 8);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('only 10 hours of rest between work ending at 22:00 on 2 Nov 2026 and starting at 08:00 on 3 Nov 2026');
+
+        $this->bookTimed($consultant, $order, '2026-11-03', '08:00', '12:00', 4);
+    }
+
+    public function test_exactly_eleven_hours_of_rest_is_fine(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($consultant, $order, '2026-11-02', '14:00', '22:00', 8);
+
+        $this->bookTimed($consultant, $order, '2026-11-03', '09:00', '13:00', 4);
+
+        $this->assertDatabaseCount('bookings', 2);
+    }
+
+    public function test_it_rejects_a_booking_that_leaves_too_little_rest_before_the_next_day(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($consultant, $order, '2026-11-03', '06:00', '10:00', 4);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('only 10 hours of rest between work ending at 20:00 on 2 Nov 2026 and your booking starting at 06:00 on 3 Nov 2026');
+
+        $this->bookTimed($consultant, $order, '2026-11-02', '12:00', '20:00', 8);
+    }
+
+    public function test_a_rejected_or_untimed_booking_the_day_before_does_not_count_for_the_rest(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($consultant, $order, '2026-11-02', '14:00', '23:00', 9, BookingStatus::Rejected);
+        $this->alreadyBooked($consultant, $order, '2026-11-02', 2);
+
+        $this->bookTimed($consultant, $order, '2026-11-03', '07:00', '11:00', 4);
+
+        $this->assertDatabaseCount('bookings', 3);
+    }
+
+    public function test_the_rest_rule_is_per_person(): void
+    {
+        $consultant = $this->consultant();
+        $colleague = $this->consultant();
+        $order = $this->order($consultant);
+        $this->timed($colleague, $order, '2026-11-02', '14:00', '23:00', 9);
+
+        $this->bookTimed($consultant, $order, '2026-11-03', '07:00', '11:00', 4);
+
+        $this->assertDatabaseCount('bookings', 2);
+    }
 }
