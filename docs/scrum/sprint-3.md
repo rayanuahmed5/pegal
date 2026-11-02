@@ -10,7 +10,7 @@
 | PBI-08 Forecast | Burn rate, working calendar, exhaustion and reorder date, traffic light, shown on the orders page with assumptions; unit tests | done (75 tests green) |
 | PBI-09 Follow-up list | Orders whose reorder date is within 6 weeks, most urgent first, for purchasing (all orders) and project lead | done |
 | PBI-10 Proof of work | Finance sees monthly hours per person per order without times and approves or rejects | done |
-| PBI-11 Mockup | Clickable HTML screens per role in `docs/mockup/` | todo |
+| PBI-11 Mockup | Clickable HTML screens per role in `docs/mockup/` | done |
 | PBI-12 API docs | Two JSON endpoints (`/api/orders`, `/api/follow-ups`) with a resource class as DTO, OpenAPI file, Swagger UI page | done |
 | PBI-13 Compose | `compose.yaml` with MySQL and the app | built, not yet run on a machine with Docker |
 | PBI-14 README run check | Fresh clone, the six README sections, evidence map links | todo |
