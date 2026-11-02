@@ -29,7 +29,7 @@ Planned order of work: PBI-05 first, because PBI-06 reads the same "used budget"
 
 ### Review (Mon 2 Nov, 08:10)
 
-Shown to the Product Owner (Mohammed) in the browser as the project lead:
+Checked by Mohammed (developer) in the browser as the project lead:
 
 - A booking that breaks a rule is rejected with a plain message (budget, 10 hours a day, order period, assignment).
 - The orders page shows ordered, used and left person-days per order with a green, amber or red bar. Customer portal 60% (green), data warehouse 80% (amber), mobile app relaunch 16.7% (green).

@@ -24,7 +24,7 @@
 
 ## Sprint Review
 
-Increment: complete planning documentation and a running MySQL. No application code yet. The Product Owner needs to decide how to unblock Laravel (see [Sprint 1](sprint-1.md)).
+Increment: complete planning documentation and a running MySQL. No application code yet. The team needs to decide how to unblock Laravel (see [Sprint 1](sprint-1.md)).
 
 ## Retrospective
 

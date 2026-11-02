@@ -14,7 +14,7 @@
 
 ## Dependency
 
-All items need the Laravel dependencies from Packagist. To unblock, the Product Owner can allow the host `repo.packagist.org` for this session (Settings > Capabilities on claude.ai; package managers can be allowed on the Free plan), or run the scaffold locally with `composer create-project laravel/laravel` and push it to the team repository.
+All items need the Laravel dependencies from Packagist. To unblock, the team can allow the host `repo.packagist.org` for this session (Settings > Capabilities on claude.ai; package managers can be allowed on the Free plan), or run the scaffold locally with `composer create-project laravel/laravel` and push it to the team repository.
 
 ## Daily Scrum log
 
@@ -27,7 +27,7 @@ All items need the Laravel dependencies from Packagist. To unblock, the Product 
 
 **Increment:** a consultant can sign in, book hours on an assigned order and see the bookings; the other three roles can sign in and are kept out of the booking pages by the server. Data lives in MySQL and comes back with `php artisan migrate:fresh --seed`. 15 tests pass.
 
-**Accepted by the Product Owner** (Mohammed) after running the app and `php artisan test` on his own machine: PBI-01, PBI-02, PBI-03 and PBI-04.
+**Checked by Mohammed** (developer) after running the app and `php artisan test` on his own machine: PBI-01, PBI-02, PBI-03 and PBI-04.
 
 **Not done:** nothing from the sprint backlog. The booking rules (budget, daily hours, order period) were never in this sprint, they start Sprint 2.
 
