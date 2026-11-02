@@ -66,6 +66,8 @@ All demo users have the password `pegal-demo`. They exist for the demo only.
 | Finance | `finance@pegal.test` | **Proof of work**: hours per person and order for a month, **Approve** or **Reject** (a rejection needs a reason, the consultant reads it). **Orders and budget** without forecast. `/follow-ups` answers 403 |
 | Administrator | `admin@pegal.test` | **Administration**: users in total and per role, and per person the assigned and spent person-days. **Add user** creates an account that can sign in right away. `/orders` answers 403 |
 
+A five-minute demo path through all roles is in [docs/demo-script.md](docs/demo-script.md).
+
 The demo data is written for today's date in the hackathon week (Mon 2 Nov 2026): the data warehouse order (4500012390) shows red, the other two orders amber.
 
 ## Evidence map
