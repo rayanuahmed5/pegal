@@ -35,8 +35,21 @@
                     <p class="error">{{ $message }}</p>
                 @enderror
 
+                <label for="starts_at">From (optional)</label>
+                <input id="starts_at" type="time" name="starts_at" step="900" value="{{ old('starts_at') }}">
+                @error('starts_at')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+
+                <label for="ends_at">To (optional)</label>
+                <input id="ends_at" type="time" name="ends_at" step="900" value="{{ old('ends_at') }}">
+                <p class="muted small">With both times we calculate the hours and also check overlaps and the 11 hours of rest. Only you can see these times.</p>
+                @error('ends_at')
+                    <p class="error">{{ $message }}</p>
+                @enderror
+
                 <label for="hours">Hours</label>
-                <input id="hours" type="number" name="hours" step="0.25" min="0.25" max="24" value="{{ old('hours', '8') }}" required>
+                <input id="hours" type="number" name="hours" step="0.25" min="0.25" max="24" value="{{ old('hours', '8') }}">
                 <p class="muted small">Quarter hours are fine, for example 7.5.</p>
                 @error('hours')
                     <p class="error">{{ $message }}</p>

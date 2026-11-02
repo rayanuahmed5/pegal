@@ -26,7 +26,12 @@
                 </tr>
                 @foreach ($bookings as $booking)
                     <tr>
-                        <td>{{ $booking->worked_on->format('d M Y') }}</td>
+                        <td>
+                            {{ $booking->worked_on->format('d M Y') }}
+                            @if ($booking->starts_at)
+                                <div class="muted small">{{ substr($booking->starts_at, 0, 5) }}–{{ substr($booking->ends_at, 0, 5) }}</div>
+                            @endif
+                        </td>
                         <td>{{ $booking->order->number }} · {{ $booking->order->title }}</td>
                         <td>{{ (float) $booking->hours }}</td>
                         <td>{{ $booking->description }}</td>

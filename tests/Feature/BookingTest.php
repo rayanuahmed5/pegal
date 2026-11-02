@@ -196,4 +196,51 @@ class BookingTest extends TestCase
     {
         $this->get('/bookings')->assertRedirect('/login');
     }
+
+    public function test_start_and_end_set_the_hours(): void
+    {
+        [$consultant, $order] = $this->consultantWithOrder();
+
+        $this->actingAs($consultant)
+            ->post('/bookings', $this->validBooking($order, ['starts_at' => '08:30', 'ends_at' => '12:00', 'hours' => '8']))
+            ->assertRedirect('/bookings');
+
+        $this->assertDatabaseHas('bookings', ['user_id' => $consultant->id, 'hours' => 3.5, 'starts_at' => '08:30:00']);
+    }
+
+    public function test_one_time_without_the_other_is_refused(): void
+    {
+        [$consultant, $order] = $this->consultantWithOrder();
+
+        $this->actingAs($consultant)
+            ->post('/bookings', $this->validBooking($order, ['starts_at' => '08:30']))
+            ->assertSessionHasErrors('ends_at');
+
+        $this->assertDatabaseCount('bookings', 0);
+    }
+
+    public function test_an_overlap_shows_the_message_and_saves_nothing_new(): void
+    {
+        [$consultant, $order] = $this->consultantWithOrder();
+        $this->actingAs($consultant)
+            ->post('/bookings', $this->validBooking($order, ['starts_at' => '09:00', 'ends_at' => '13:00']));
+
+        $this->actingAs($consultant)
+            ->post('/bookings', $this->validBooking($order, ['starts_at' => '12:00', 'ends_at' => '14:00']))
+            ->assertSessionHasErrors('booking');
+
+        $this->assertDatabaseCount('bookings', 1);
+    }
+
+    public function test_the_consultant_sees_the_times_on_their_own_list(): void
+    {
+        [$consultant, $order] = $this->consultantWithOrder();
+        $this->actingAs($consultant)
+            ->post('/bookings', $this->validBooking($order, ['starts_at' => '07:45', 'ends_at' => '11:45']));
+
+        $this->actingAs($consultant)
+            ->get('/bookings')
+            ->assertOk()
+            ->assertSee('07:45–11:45');
+    }
 }
