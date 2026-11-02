@@ -37,4 +37,22 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 
 ## Review and retrospective
 
-(at the end of the sprint)
+### Review (Mon 2 Nov, 09:40)
+
+Shown to the Product Owner (Mohammed) on his machine with Laragon:
+
+- **Project lead and purchasing:** orders with budget gauge and forecast (traffic light, exhaustion date, reorder date, assumptions), and the follow-up list, most urgent first (data warehouse order overdue).
+- **Finance:** monthly proof of work per person and order, approve or reject; orders without forecast.
+- **JSON API** (`/api/orders`, `/api/follow-ups`) with the same permissions, described in OpenAPI and viewable at `/api-docs.html`.
+- **Clickable mockup** in `docs/mockup`, one set of screens per role.
+- **README run check:** a fresh clone followed from the README alone started and a demo user could sign in.
+- **Dropped:** PBI-13 (compose file), the team is not using Docker.
+
+`php artisan test`: 122 passed (313 assertions). Sprint goal reached.
+
+### Retrospective
+
+- **Went well:** the pure domain classes (`WorkCalendar`, `BudgetForecast`, `FollowUp`) were tested with exact dates before any page existed, and then the pages and the API reused them through `OrderOverview`. Small commits, each pushed.
+- **Could be better:** a test helper named `status()` clashed with a final PHPUnit method and stopped the whole run; and the Git history only starts on Monday, so the history will cover two hackathon days instead of five.
+- **Decision to keep:** no Docker (ADR 0007). A compose file nobody runs is a risk, so it was removed.
+- **Next (freeze, Tue 3 Nov 08:00 to 11:00):** no new features. A fresh-clone run check, a final review against the scoring, and a few small fixes at most.
