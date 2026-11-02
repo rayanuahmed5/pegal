@@ -19,7 +19,7 @@ Ordered by value. Estimates are story points (1, 2, 3, 5, 8). Status: `todo`, `d
 | PBI-13 | jury, `compose.yaml` that starts MySQL and the app | `docker compose up` gives a working app with seed data. Dropped on Mon 2 Nov 09:30: the team is not using Docker (see ADR 0007) | 3 | 3 | dropped |
 | PBI-14 | jury, a README that works in 5 minutes | Six sections complete, evidence map links valid, a person outside the setup ran it | 3 | 3 | done |
 | PBI-15 | project lead, what-if scenario (extra consultant, longer project) | Forecast recalculated with changed inputs | 5 | stretch | todo |
-| PBI-16 | purchasing, a prepared follow-up order proposal | Draft with suggested PD and start week | 3 | stretch | todo |
+| PBI-16 | purchasing, a prepared follow-up order proposal | Draft with suggested PD and start week | 3 | 3 | review |
 | PBI-17 | consultant, no booking on a day of my planned absence | Server rejects it with the absence dates in the message; days around it are fine | 2 | 3 | done |
 | PBI-18 | purchasing, how many PD are missing until the order ends, and the calendar weeks | Forecast shows missing PD and ISO weeks on the pages and in the API | 3 | 3 | done |
 | PBI-19 | consultant, to know who rejected my hours and why | Finance must give a reason; consultant sees decider, date and reason under My bookings | 3 | 3 | done |

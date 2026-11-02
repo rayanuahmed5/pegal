@@ -62,7 +62,7 @@ All demo users have the password `pegal-demo`. They exist for the demo only.
 |---|---|---|
 | Consultant | `consultant@pegal.test` | **Book time** on an assigned order, see it under **My bookings**. Try 11 hours in one day, a day inside a planned absence (Ama: 21 Dec to 1 Jan), two overlapping times, or more than the order has left: the server rejects it with a message. Start and end are optional, only you see them. `/orders` answers 403 |
 | Project lead | `lead@pegal.test` | **Orders and budget**: ordered, used and left person-days, a gauge, the forecast with reorder date and its assumptions. **Follow-up orders**: what needs a new order soon. `/bookings` answers 403 |
-| Purchasing | `purchasing@pegal.test` | Same pages as the project lead: **Orders and budget** with forecast and **Follow-up orders**, most urgent first |
+| Purchasing | `purchasing@pegal.test` | Same pages as the project lead: **Orders and budget** with forecast and **Follow-up orders**, most urgent first. Click **Draft** on a follow-up order for the ready-made proposal (PD, period, order-by week) |
 | Finance | `finance@pegal.test` | **Proof of work**: hours per person and order for a month, **Approve** or **Reject** (a rejection needs a reason, the consultant reads it). **Orders and budget** without forecast. `/follow-ups` answers 403 |
 | Administrator | `admin@pegal.test` | **Administration**: users in total and per role, and per person the assigned and spent person-days. **Add user** creates an account that can sign in right away. `/orders` answers 403 |
 

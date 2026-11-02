@@ -41,6 +41,8 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 
 **Mon 2 Nov, 12:30** Second fresh-clone run check (#19): Mohammed cloned the repository again on his machine, followed the README and the app ran.
 
+**Mon 2 Nov, 14:00** Forecast range (fast and slow pace from the quietest and busiest of the last 4 weeks, ADR 0005 update) and PBI-16, the follow-up order proposal for purchasing: suggested PD (missing PD rounded up), start on the first working day after the budget ends, end with the current order, order-by date and week. Order-level numbers only. Waiting for the Product Owner's check.
+
 ## Review and retrospective
 
 ### Review (Mon 2 Nov, 09:40)

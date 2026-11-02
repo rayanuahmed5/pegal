@@ -24,6 +24,7 @@ See [guide 2.4](guide.md#24-roles-and-privacy).
 | See used / remaining budget per order | only assigned orders | ✔ | ✔ | ✔ |
 | See forecast and reorder date | – | ✔ | ✔ | – |
 | See list of orders that need a follow-up order | – | ✔ own orders | ✔ all | – |
+| Open the draft of a follow-up order (scope, period, order-by date; order-level numbers only) | – | ✔ | ✔ | – |
 | Approve or reject proof of work | – | – | – | ✔ |
 | See vacation of a consultant | own only | Σ (days without a name) | – | – |
 | Create or change orders and assignments | – | – | ✔ | – |
