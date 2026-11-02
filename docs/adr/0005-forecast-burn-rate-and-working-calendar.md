@@ -23,3 +23,7 @@ We choose **option 2**, implemented as plain domain classes in `app/Domain` with
 - Easier: the classes are pure, so they are tested with exact dates (holiday in the way, one of two consultants away, borders of each colour). The date is explainable: "6 PD per week, 56 left, Christmas in between".
 - Harder: the burn rate of the last 4 weeks already contains past holidays and vacations, which makes it slightly low for those weeks. We accept this and say so in the assumptions. A project that speeds up or slows down changes the forecast only slowly.
 - A what-if scenario (extra consultant, longer project) can reuse `BudgetForecast` with other inputs (backlog item PBI-15).
+
+## Update, Mon 2 Nov: a range instead of one date
+
+The challenge asks for honest uncertainty. The forecast still has one most likely date (average of the last 4 weeks), and now also two bounds: the date if the **busiest** of those 4 weeks repeats, and the date if the **quietest** one repeats (`BurnRate::slowestAndFastest`). A week without bookings counts as 0, so a quiet or holiday week can make the slow case "lasts until the order ends". The orders page shows the bounds as "Fast pace" and "Slow pace" and the API returns `earliestExhaustionDate` and `latestExhaustionDate`. We chose observed weeks over a made-up plus or minus percentage, so every number can be traced to real bookings.
