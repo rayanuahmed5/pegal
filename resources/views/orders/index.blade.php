@@ -55,6 +55,9 @@
                                     @else
                                         Runs out {{ $forecast->exhaustionDate->format('j M Y') }}<br>
                                         Reorder by {{ $forecast->reorderDate->format('j M Y') }}
+                                        @if ($forecast->missingPd > 0)
+                                            <br>About {{ rtrim(rtrim(number_format($forecast->missingPd, 1), '0'), '.') }} PD missing until the order ends
+                                        @endif
                                     @endif
                                 </div>
                                 <details class="small">
