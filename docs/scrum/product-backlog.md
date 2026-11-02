@@ -25,6 +25,8 @@ Ordered by value. Estimates are story points (1, 2, 3, 5, 8). Status: `todo`, `d
 | PBI-19 | consultant, to know who rejected my hours and why | Finance must give a reason; consultant sees decider, date and reason under My bookings | 3 | 3 | done |
 | PBI-20 | consultant, optional start and end times with overlap and 11-hour rest checks | ADR 0008; rules enforced on the server with accept and reject tests; times visible to the consultant only | 5 | 3 | done |
 | PBI-21 | administrator, a dashboard with all users, their roles, assigned and spent PD, and a form to add users | ADR 0009; `/admin` for admins only (403 for others); account rule with accept and reject tests; demo user `admin@pegal.test` | 5 | 3 | done |
+| PBI-22 | consultant and finance, to filter bookings by month and year | `PeriodFilter` in the domain refuses a made-up month or year with a message; My bookings has a month and year filter (all matches, not only 50); proof of work has a month box; accept and reject tests | 3 | 3 | done |
+| PBI-23 | user, a button in the top bar to switch between dark and light mode | ADR 0011; on every page for guests and all roles; choice remembered; no white flash; colours come from variables | 3 | 3 | done |
 
 Prepared before Sprint 1: vision, domain model, roles and privacy concept, ADRs 0001 to 0003, Scrum setup (see [README](README.md#before-sprint-1-product-backlog-and-setup)).
 
