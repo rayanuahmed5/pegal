@@ -12,9 +12,9 @@
 > Looking for an example? The `blueprint` branch contains a small Next.js + PostgreSQL app from an earlier edition. It is one possible approach, not a requirement.
 <!-- ===== END OF TEMPLATE NOTE ===== -->
 
-# Pegel
+# Pegal
 
-Pegel is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
+Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
 
 > **Status (Mon 2 Nov 2026):** Sprint 0 done (vision, domain model, roles concept, ADRs, backlog). The Laravel application is built in Sprint 1; Setup, Run and Test below are filled in then.
 

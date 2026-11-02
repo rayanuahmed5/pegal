@@ -7,7 +7,7 @@ See [guide 2.3](guide.md#23-model-the-domain).
 | Term | Meaning |
 |---|---|
 | Order (Bestellung) | A purchase order with number, period, budget in person-days and a supplier; every booking belongs to exactly one order |
-| Person-day (PD) | One person working one day; in Pegel **1 PD = 8 hours** |
+| Person-day (PD) | One person working one day; in Pegal **1 PD = 8 hours** |
 | Budget | Ordered person-days of an order |
 | Used budget | Sum of the hours of all non-rejected bookings on the order, divided by 8 |
 | Remaining budget | Budget minus used budget |

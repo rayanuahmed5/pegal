@@ -13,7 +13,7 @@
 | Roles and privacy concept ([roles-and-privacy.md](../roles-and-privacy.md)) | done |
 | ADR 0001 stack, 0002 identity, 0003 operation | done |
 | Product backlog, Definition of Done, sprint plan | done |
-| MySQL 8 installed, databases `pegel` and `pegel_test` created | done |
+| MySQL 8 installed, databases `pegal` and `pegal_test` created | done |
 | Laravel project scaffolded | **blocked** (see below) |
 
 ## Daily Scrum log (Mon 2 Nov)
