@@ -42,5 +42,5 @@ Feedback: the data warehouse order is amber, not red, because the bar only looks
 ### Retrospective
 
 - **Went well:** all rules sit in one class (`TimeBooking`), so the form, the tests and later the API can share them. `OrderBudget` takes plain numbers, which kept its tests fast. Small commits, each pushed right away.
-- **Could be better:** I could not run PHP tests in the sandbox, so every step waited for a local run. Keep steps small so a failure is easy to find.
+- **Could be better:** PHP tests only run on Mohammed's machine, so every step waited for a local run. Keep steps small so a failure is easy to find.
 - **Next sprint:** the forecast needs the burn rate, absences and holidays. Build the date logic as plain functions first, test it hard, and only then put it on a page.
