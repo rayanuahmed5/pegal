@@ -23,6 +23,16 @@ All items need the Laravel dependencies from Packagist. To unblock, the Product 
 - Next: check the seed data on MySQL, demo login, booking form.
 - Blocker: none. Packagist stays blocked in Claude's sandbox, so every step is run on Mohammed's machine and the output pasted back.
 
-## Review and retrospective
+## Sprint Review (Mon 2 Nov, 07:15)
 
-(at the end of the sprint)
+**Increment:** a consultant can sign in, book hours on an assigned order and see the bookings; the other three roles can sign in and are kept out of the booking pages by the server. Data lives in MySQL and comes back with `php artisan migrate:fresh --seed`. 15 tests pass.
+
+**Accepted by the Product Owner** (Mohammed) after running the app and `php artisan test` on his own machine: PBI-01, PBI-02, PBI-03 and PBI-04.
+
+**Not done:** nothing from the sprint backlog. The booking rules (budget, daily hours, order period) were never in this sprint, they start Sprint 2.
+
+## Sprint Retrospective
+
+- **Keep:** very small commits, every step run on Mohammed's machine with the output pasted back, tests written together with the feature.
+- **Change:** removing the two example tests also removed the `tests/Unit` folder, and `phpunit.xml` still pointed at it, so `php artisan test` broke for one round. After deleting files, check the config that mentions them.
+- **Constraint:** Packagist is blocked in Claude's sandbox, so the code cannot be run there. Every change costs one round trip, so we keep steps small.
