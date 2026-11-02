@@ -1,6 +1,6 @@
 # Pegal
 
-Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
+Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md); the Scrum board is in the [GitHub issues](https://github.com/rayanuahmed5/pegal/issues) ([how it works](docs/scrum/board.md)).
 
 > **Status (Mon 2 Nov 2026):** Sprints 1 to 3 are done: booking with rules, budget and forecast, follow-up list, proof of work, JSON API with OpenAPI docs and a clickable mockup. 122 tests pass. Left: the final checks before the Tuesday freeze.
 
