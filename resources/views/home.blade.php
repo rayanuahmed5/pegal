@@ -18,7 +18,10 @@
                 <a class="cancel" href="{{ route('bookings.index') }}">My bookings</a>
             </p>
         @else
-            <p class="muted">The screens for this are being built, one step at a time.</p>
+            <p>
+                <a class="button" href="{{ route('orders.index') }}">Orders and budget</a>
+            </p>
+            <p class="muted small">Forecast and approvals are being built, one step at a time.</p>
         @endif
     </div>
 @endsection
