@@ -64,27 +64,30 @@ class OrderApiTest extends TestCase
     #[DataProvider('forecastRoles')]
     public function test_project_lead_and_purchasing_get_budget_and_forecast(Role $role): void
     {
-        $this->actingAs($this->user($role))
+        $response = $this->actingAs($this->user($role))
             ->getJson('/api/orders')
             ->assertOk()
             ->assertJsonPath('data.0.number', '4500000002')
             ->assertJsonPath('data.0.supplier', 'Test Consulting')
-            ->assertJsonPath('data.0.budget.orderedPd', 10)
-            ->assertJsonPath('data.0.budget.usedPd', 5)
-            ->assertJsonPath('data.0.budget.remainingPd', 5)
             ->assertJsonPath('data.0.forecast.exhaustionDate', '2026-11-27')
             ->assertJsonPath('data.0.forecast.reorderDate', '2026-10-30')
             ->assertJsonPath('data.0.forecast.light', 'red')
             ->assertJsonStructure(['data' => [['forecast' => ['burnPerWeek', 'assumptions']]]]);
+
+        // numbers are compared loosely, 5.0 and 5 are the same amount of person-days
+        $this->assertEquals(10, $response->json('data.0.budget.orderedPd'));
+        $this->assertEquals(5, $response->json('data.0.budget.usedPd'));
+        $this->assertEquals(5, $response->json('data.0.budget.remainingPd'));
     }
 
     public function test_finance_gets_the_budget_but_no_forecast(): void
     {
-        $this->actingAs($this->user(Role::Finance))
+        $response = $this->actingAs($this->user(Role::Finance))
             ->getJson('/api/orders')
             ->assertOk()
-            ->assertJsonPath('data.0.budget.usedPd', 5)
             ->assertJsonPath('data.0.forecast', null);
+
+        $this->assertEquals(5, $response->json('data.0.budget.usedPd'));
     }
 
     public function test_the_api_shows_no_person_names(): void
