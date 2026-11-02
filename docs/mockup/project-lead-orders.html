@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orders and budget · Pegal mockup</title>
+<link rel="stylesheet" href="mockup.css">
+</head>
+<body>
+<div class="note">Clickable mockup with made-up demo data. The running app is in the repository root, start it with the README.</div>
+<header class="topbar">
+  <a class="brand" href="index.html">Pegal</a>
+  <div class="who"><span>Katrin Weber</span><span class="role">Project lead</span><a href="index.html">Sign out</a></div>
+</header>
+<main class="page">
+
+<h1>Orders and budget</h1>
+<p class="muted">Person-days (PD) ordered, used and still free. One PD is 8 hours; rejected bookings do not count.</p>
+<p><a href="purchasing-follow-ups.html">Follow-up orders</a></p>
+<div class="card">
+<table>
+<thead><tr><th>Order</th><th>Supplier</th><th>Period</th><th class="num">Ordered</th><th class="num">Used</th><th class="num">Left</th><th>Budget used</th><th>Forecast</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>4500012345</strong><br><span class="muted small">Customer portal migration</span></td><td>Nordlicht Consulting</td><td class="small">27 Jul 2026<br>to 5 Feb 2027</td>
+<td class="num">140</td><td class="num">84</td><td class="num">56</td>
+<td><div class="gauge gauge-ok"><div class="gauge-fill" style="width:60%"></div></div><span class="small">60% used</span></td>
+<td><span class="light light-amber">Plan a follow-up</span><div class="small">Runs out 18 Jan 2027<br>Reorder by 21 Dec 2026</div></td></tr>
+<tr>
+<td><strong>4500012390</strong><br><span class="muted small">Data warehouse reporting</span></td><td>Brückenwerk Software</td><td class="small">1 Sep 2026<br>to 18 Dec 2026</td>
+<td class="num">40</td><td class="num">32</td><td class="num">8</td>
+<td><div class="gauge gauge-warning"><div class="gauge-fill" style="width:80%"></div></div><span class="small">80% used</span></td>
+<td><span class="light light-red">Reorder now</span><div class="small">Runs out 13 Nov 2026<br>Reorder by 16 Oct 2026</div></td></tr>
+<tr>
+<td><strong>4500012417</strong><br><span class="muted small">Mobile app relaunch</span></td><td>Brückenwerk Software</td><td class="small">5 Oct 2026<br>to 31 Mar 2027</td>
+<td class="num">120</td><td class="num">20</td><td class="num">100</td>
+<td><div class="gauge gauge-ok"><div class="gauge-fill" style="width:16.7%"></div></div><span class="small">16.7% used</span></td>
+<td><span class="light light-amber">Plan a follow-up</span><div class="small">Runs out 23 Mar 2027<br>Reorder by 9 Feb 2027</div></td></tr>
+</tbody>
+</table>
+<p class="small muted">Assumption shown in the app: burn rate is the average of the last 4 weeks, weekends and public holidays burn nothing, planned vacations slow the pace down. No person is named anywhere.</p>
+</div>
+<p class="small"><a href="index.html">Other roles</a></p>
+
+</main>
+</body>
+</html>
