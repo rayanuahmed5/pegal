@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Domain\BookingStatus;
 use App\Domain\NothingToDecide;
 use App\Domain\ProofOfWork;
+use App\Domain\ReasonRequired;
 use App\Models\Order;
 use App\Models\User;
 use Carbon\CarbonImmutable;
@@ -34,6 +35,8 @@ class ProofOfWorkController extends Controller
             'user_id' => ['required', 'exists:users,id'],
             'month' => ['required', 'regex:/^\d{4}-(0[1-9]|1[0-2])$/'],
             'decision' => ['required', 'in:approve,reject'],
+            // only a rejection needs words, an approval needs none
+            'reason' => ['nullable', 'string', 'max:255'],
         ]);
 
         $order = Order::findOrFail($data['order_id']);
@@ -47,7 +50,11 @@ class ProofOfWorkController extends Controller
                 $consultant,
                 $month,
                 $approve ? BookingStatus::Approved : BookingStatus::Rejected,
+                $request->user(),
+                $data['reason'] ?? null,
             );
+        } catch (ReasonRequired $e) {
+            return back()->withInput()->withErrors(['reason' => $e->getMessage()]);
         } catch (NothingToDecide $e) {
             return back()->withErrors(['decision' => $e->getMessage()]);
         }

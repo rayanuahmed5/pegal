@@ -55,7 +55,13 @@ class ProofOfWorkPageTest extends TestCase
 
     private function decision(Order $order, User $ama, string $decision, string $month = '2026-10'): array
     {
-        return ['order_id' => $order->id, 'user_id' => $ama->id, 'month' => $month, 'decision' => $decision];
+        return [
+            'order_id' => $order->id,
+            'user_id' => $ama->id,
+            'month' => $month,
+            'decision' => $decision,
+            'reason' => $decision === 'reject' ? 'Hours do not match the invoice' : null,
+        ];
     }
 
     public function test_finance_sees_the_monthly_sum_per_person(): void
@@ -161,5 +167,31 @@ class ProofOfWorkPageTest extends TestCase
         $this->actingAs($this->finance())
             ->post('/proof-of-work', $this->decision($order, $ama, 'delete'))
             ->assertSessionHasErrors('decision');
+    }
+
+    public function test_rejecting_without_a_reason_shows_a_message_and_changes_nothing(): void
+    {
+        [$order, $ama] = $this->submittedOctober();
+
+        $this->actingAs($this->finance())
+            ->from('/proof-of-work?month=2026-10')
+            ->post('/proof-of-work', array_merge($this->decision($order, $ama, 'reject'), ['reason' => '']))
+            ->assertSessionHasErrors('reason');
+
+        $this->assertSame(2, Booking::where('status', BookingStatus::Submitted->value)->count());
+    }
+
+    public function test_the_consultant_sees_who_rejected_the_hours_and_why(): void
+    {
+        [$order, $ama] = $this->submittedOctober();
+        $finance = User::factory()->create(['name' => 'Miriam Schulz', 'role' => Role::Finance]);
+
+        $this->actingAs($finance)->post('/proof-of-work', $this->decision($order, $ama, 'reject'));
+
+        $this->actingAs($ama)
+            ->get('/bookings')
+            ->assertOk()
+            ->assertSee('Rejected by Miriam Schulz')
+            ->assertSee('Reason: Hours do not match the invoice');
     }
 }

@@ -65,6 +65,9 @@
                                             <input type="hidden" name="user_id" value="{{ $row['consultant']->id }}">
                                             <input type="hidden" name="month" value="{{ $month->format('Y-m') }}">
                                             <input type="hidden" name="decision" value="{{ $decision }}">
+                                            @if ($decision === 'reject')
+                                                <input type="text" name="reason" maxlength="255" placeholder="Reason (required)" aria-label="Reason for rejecting" required>
+                                            @endif
                                             <button type="submit" class="{{ $decision === 'reject' ? 'danger' : '' }}">{{ $label }}</button>
                                         </form>
                                     @endforeach
