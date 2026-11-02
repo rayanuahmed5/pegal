@@ -1,7 +1,13 @@
 # Sprint 1: walking skeleton
 
 **Window:** Mon 2 Nov 2026, 03:00 to 07:15 (UTC), closed early because the goal was met
-**Goal:** A consultant signs in, books time on an assigned order, and the booking is stored in MySQL and survives a restart.
+
+## Sprint Goal
+
+> A consultant can sign in, book time on an assigned order, and the booking is stored in MySQL and survives a restart.
+
+**Why this goal:** it is the smallest flow that works from start to finish. Every later feature (rules, budget, forecast) builds on a stored booking.
+**Goal met:** yes, the sprint was closed early.
 
 ## Sprint backlog
 
