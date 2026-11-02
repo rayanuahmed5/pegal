@@ -28,11 +28,17 @@ Ordered by value. Estimates are story points (1, 2, 3, 5, 8). Status: `todo`, `d
 
 Prepared before Sprint 1: vision, domain model, roles and privacy concept, ADRs 0001 to 0003, Scrum setup (see [README](README.md#before-sprint-1-product-backlog-and-setup)).
 
-| ID | As a ... I want ... so that ... | Acceptance criteria | Pts | Sprint | Status |
-|---|---|---|---:|---:|---|
-| PBI-01 | As a developer, I want to disable the faulty calculation feature while preserving time-recording functionality so that incorrect payroll and invoice calculations are prevented without interrupting time capture. | Faulty calculation feature is disabled; consultants can still record time; users cannot trigger the faulty calculations; other application functions remain operational. | 3 | 4 | todo |
-| PBI-02 | As a developer, I want to identify and reconstruct records affected by the calculation defect so that accurate employee and project data can be restored. | All affected records are identified; the affected period is established; original time-recording data is retrieved; affected records are corrected or reconstructed; corrected records are verified. | 8 | 4 | todo |
-| PBI-03 | As a developer, I want to implement a reconciliation process for affected payroll figures and invoices so that discrepancies between original and corrected calculations can be identified and resolved. | Affected payroll and invoices can be identified; original and corrected figures can be compared; discrepancies are documented; necessary adjustments can be prepared; adjustments can be reviewed and approved by authorised personnel. | 5 | 4 | todo |
-| PBI-04 | As a developer, I want to fix and thoroughly test the calculation defect before restoring the feature so that future payroll and invoice calculations produce accurate results. | Root cause of the defect is identified; correction is implemented; unit and integration tests pass; regression tests pass; corrected records produce expected results; feature is restored only after successful verification. | 8 | 4 | todo |
+## Crisis challenge (raised by Umar, Product Owner)
 
-Prepared after the crisis challenged was posed. As our mitigation and resolution strategy.....
+Concept only: nothing is built for this and it has no effect on the product (see the challenge brief). A client reports that the working-time calculation has been wrong for two weeks. We keep the running sprint, the Product Owner puts these items at the top of the Product Backlog and the Developers renegotiate the Sprint Backlog with him. The IDs start with CR so they do not clash with PBI-01 to PBI-21 above.
+
+**Goal:** Restore confidence in the time accounts by containing the calculation defect, correcting the affected records and verifying a safe return to normal operation, without interrupting time recording.
+
+| ID | As a ... I want ... so that ... | Acceptance criteria | Pts | When | Status |
+|---|---|---|---:|---|---|
+| CR-01 | As a developer, I want to disable the faulty calculation feature while preserving time-recording functionality so that incorrect time accounts are prevented without interrupting time capture. | Faulty calculation feature is disabled; consultants can still record time; users cannot trigger the faulty calculations; other application functions remain operational. | 3 | days 1 to 2 | todo |
+| CR-02 | As a developer, I want to identify and reconstruct records affected by the calculation defect so that accurate employee and project data can be restored. | All affected records are identified; the affected period is established; original time-recording data is retrieved; affected records are corrected or reconstructed; corrected records are verified. | 8 | days 3 to 7 | todo |
+| CR-03 | As a developer, I want to fix and thoroughly test the calculation defect before restoring the feature so that future time accounts are accurate. | Root cause of the defect is identified; correction is implemented; unit and integration tests pass; regression tests pass; corrected records produce expected results; a second person reviews; the feature is restored only after successful verification. | 8 | days 3 to 7 | todo |
+| CR-04 | As a developer, I want to implement a reconciliation process for the affected time accounts so that discrepancies between original and corrected figures can be identified and resolved. | Affected accounts can be identified; original and corrected figures can be compared; discrepancies are documented; adjustments can be prepared, reviewed and approved by authorised personnel; each client sees the result at the Sprint Review. | 5 | days 8 to 10 | todo |
+
+Prepared after the crisis challenge was posed, as our mitigation and resolution strategy.
