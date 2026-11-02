@@ -172,3 +172,11 @@ th { color: var(--muted); font-weight: 600; }
 .light-red { background: #f6dcd9; color: var(--red); }
 details ul { margin: .3rem 0 0; padding-left: 1.1rem; }
 summary { cursor: pointer; color: var(--accent); }
+
+/* proof of work page: month switcher and the two decision buttons next to each other */
+.month-nav { display: flex; gap: 1rem; align-items: center; margin: 1rem 0; }
+.month-nav a { color: var(--accent); }
+.row-actions form { display: inline; }
+.row-actions button { padding: .25rem .7rem; font-size: .85rem; margin-right: .3rem; }
+button.danger { background: var(--red); }
+button.danger:hover { background: #8f2d25; }
