@@ -27,6 +27,15 @@
         <a href="{{ route('proof-of-work.index', ['month' => $next]) }}">{{ $month->addMonth()->format('M Y') }} &rarr;</a>
     </p>
 
+    {{-- jump straight to any month and year; month=YYYY-MM is what the page already understands --}}
+    <form method="GET" action="{{ route('proof-of-work.index') }}" class="filter">
+        <label>
+            Go to month
+            <input type="month" name="month" value="{{ $month->format('Y-m') }}" min="2000-01" max="2100-12">
+        </label>
+        <button type="submit">Show</button>
+    </form>
+
     <div class="card">
         @if ($rows->isEmpty())
             <p class="muted">Nobody booked time in {{ $month->format('F Y') }}.</p>
