@@ -60,6 +60,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::get('/users/create', [AdminController::class, 'create'])->name('users.create');
         Route::post('/users', [AdminController::class, 'store'])->name('users.store');
+        Route::get('/users/{user}/edit', [AdminController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [AdminController::class, 'update'])->name('users.update');
+        Route::put('/users/{user}/password', [AdminController::class, 'resetPassword'])->name('users.password');
+        Route::delete('/users/{user}', [AdminController::class, 'destroy'])->name('users.destroy');
     });
 
     // JSON endpoints, documented in public/openapi.yaml. They use the same sign-in session as the

@@ -309,3 +309,14 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .details dt { color: var(--muted); font-size: .8rem; }
 .details dd { margin: 0; font-weight: 600; word-break: break-word; }
 .card h2 .icon { color: var(--accent); }
+
+/* admin: edit link per user row, and the delete card that should look a bit dangerous */
+.icon-link { display: inline-flex; align-items: center; gap: .25rem; color: var(--accent); text-decoration: none; font-weight: 600; }
+.icon-link:hover { text-decoration: underline; }
+.icon-link .icon { width: 16px; height: 16px; }
+.back { margin-left: 0; text-decoration: none; }
+.danger-zone { border-color: #e5a29b; }
+.danger-zone h2 .icon { color: var(--red); }
+
+/* text only screen readers hear, e.g. the header of the actions column */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

@@ -37,6 +37,7 @@
                     <th class="num">Assigned orders</th>
                     <th class="num">Assigned (PD)</th>
                     <th class="num">Spent (PD)</th>
+                    <th><span class="sr-only">Actions</span></th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +52,11 @@
                         <td class="num">{{ $row['assignedOrders'] }}</td>
                         <td class="num">{{ $pd($row['assignedPd']) }}</td>
                         <td class="num">{{ $pd($row['spentPd']) }}</td>
+                        <td class="num">
+                            <a class="icon-link" href="{{ route('admin.users.edit', $row['user']) }}">
+                                <x-icon name="pencil" /> Edit
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

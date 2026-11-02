@@ -10,7 +10,7 @@ See [guide 2.4](guide.md#24-roles-and-privacy).
 | Project lead | client | Owns the project; watches budget and forecast of their orders |
 | Purchasing | client | Places follow-up orders; needs to know early when an order runs out |
 | Finance / controlling | client | Checks proof of work against invoices and approves it |
-| Administrator | neither | Looks after accounts: sees all users with role, assigned and spent PD, adds new users ([ADR 0009](adr/0009-administrator-role-and-user-management.md)) |
+| Administrator | neither | Looks after accounts: sees all users with role, assigned and spent PD, adds, edits and deletes users and resets passwords ([ADR 0009](adr/0009-administrator-role-and-user-management.md)) |
 
 ## Role matrix
 
@@ -38,6 +38,9 @@ See [guide 2.4](guide.md#24-roles-and-privacy).
 | See all users with name, e-mail, role and supplier | ✔ |
 | See assigned PD and spent PD per person (sums only) | ✔ |
 | Add a new user | ✔ |
+| Change a user's name, email, role or supplier (not their own role; a consultant with bookings stays consultant) | ✔ |
+| Reset a user's password | ✔ |
+| Delete a user without bookings (not their own account; bookings are proof of work and are kept) | ✔ |
 | Orders, budget, forecast, follow-up list | – |
 | Proof of work, single bookings, descriptions, start and end times | – |
 | Book time | – |
