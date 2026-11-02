@@ -17,6 +17,9 @@
                     <th class="num">Used</th>
                     <th class="num">Left</th>
                     <th>Budget used</th>
+                    @if ($showForecast)
+                        <th>Forecast</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +43,30 @@
                             </div>
                             <span class="small">{{ $budget->percentUsed() }}% used</span>
                         </td>
+                        @if ($showForecast)
+                            @php($forecast = $row['forecast'])
+                            <td>
+                                <span class="light light-{{ $forecast->light }}">
+                                    {{ ['green' => 'On track', 'amber' => 'Plan a follow-up', 'red' => 'Reorder now'][$forecast->light] }}
+                                </span>
+                                <div class="small">
+                                    @if ($forecast->lastsUntilEnd())
+                                        Budget lasts until the order ends.
+                                    @else
+                                        Runs out {{ $forecast->exhaustionDate->format('j M Y') }}<br>
+                                        Reorder by {{ $forecast->reorderDate->format('j M Y') }}
+                                    @endif
+                                </div>
+                                <details class="small">
+                                    <summary>Assumptions</summary>
+                                    <ul>
+                                        @foreach ($forecast->assumptions as $assumption)
+                                            <li>{{ $assumption }}</li>
+                                        @endforeach
+                                    </ul>
+                                </details>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
