@@ -2,7 +2,7 @@
 
 Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
 
-> **Status (Mon 2 Nov 2026):** Sprint 1 is done: demo sign-in for four roles, consultant booking, demo data and tests. Next up: booking rules, the budget gauge and the forecast.
+> **Status (Mon 2 Nov 2026):** Sprints 1 and 2 are done: demo sign-in, booking with rules, budget per order. Sprint 3 is running: the forecast with traffic light is in, next come the follow-up list, proof of work and the hand-in files.
 
 ## Prerequisites
 
@@ -56,7 +56,7 @@ All demo users have the password `pegal-demo`. They exist for the demo only.
 | Purchasing | `purchasing@pegal.test` | Same: sign-in works, booking pages are closed to this role |
 | Finance | `finance@pegal.test` | Same: sign-in works, booking pages are closed to this role |
 
-The budget views for the client roles come in Sprint 2 and 3.
+The project lead, purchasing and finance open **Orders and budget** (`/orders`) from the home page. Project lead and purchasing also see the forecast, finance does not (role matrix).
 
 ## Evidence map
 
