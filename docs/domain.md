@@ -42,13 +42,13 @@ erDiagram
     ORDER_now ||--o{ INVOICE_later : "is invoiced by"
 ```
 
-Planned tables (MySQL):
+Tables (MySQL):
 
 - `suppliers(id, name)`
-- `users(id, name, email, password, role, supplier_id null)` where role is `consultant`, `project_lead`, `purchasing` or `finance`
+- `users(id, name, email, password, role, supplier_id null)` where role is `consultant`, `project_lead`, `purchasing`, `finance` or `admin`
 - `orders(id, number, title, supplier_id, cost_center, project_element, budget_pd, starts_on, ends_on, reorder_lead_weeks)`
 - `assignments(id, order_id, user_id)` unique on order and user
-- `bookings(id, order_id, user_id, worked_on, hours, description, status)` with status `submitted`, `approved` or `rejected`
+- `bookings(id, order_id, user_id, worked_on, starts_at null, ends_at null, hours, description, status, decided_by null, decided_at null, decision_reason null)` with status `submitted`, `approved` or `rejected`; `decided_by` is the finance user who approved or rejected, the reason is required for a rejection
 - `absences(id, user_id, starts_on, ends_on)`
 - `public_holidays(id, holiday_on, name)`
 
