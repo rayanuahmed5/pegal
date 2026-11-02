@@ -56,5 +56,5 @@ Planned tables (MySQL):
 
 - **Remaining budget** = `budget_pd - sum(hours of bookings with status != rejected) / 8`.
 - **Forecast** = remaining PD divided by the burn rate gives weeks left; working days that fall on absences or public holidays are skipped when counting forward from today. The result and its assumptions are shown, never hidden.
-- **Why hours per day, not start and end times:** fewer clicks per booking and less personal data. Consequence: the 11-hour rest rule cannot be checked (see [ADR 0001](adr/0001-stack-laravel-mysql.md) and the vision).
+- **Hours per day, start and end times optional:** hours stay the default (fewer clicks, less personal data). If a consultant adds start and end, the overlap check and the 11-hour rest rule run too, see [ADR 0008](adr/0008-optional-start-and-end-times.md). Times are shown to the consultant only.
 - Layering in code: `app/Http` (API/web objects), `app/Domain` (rules, forecast), `app/Models` (persistence entities).

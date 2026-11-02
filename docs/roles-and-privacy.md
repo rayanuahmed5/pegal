@@ -36,7 +36,7 @@ See [guide 2.4](guide.md#24-roles-and-privacy).
 | Booking description | Shows what was done, for proof of work | Consultant; finance | Same as bookings |
 | Planned vacation | Forecast only | Consultant; project lead only as anonymous sum | Until the vacation has passed plus 3 months |
 
-We do not store start and end times, health data or sick leave.
+Start and end times are optional (see [ADR 0008](adr/0008-optional-start-and-end-times.md)) and visible only to the consultant who booked them. We do not store health data or sick leave.
 
 ## Conflicts and how we resolve them
 
