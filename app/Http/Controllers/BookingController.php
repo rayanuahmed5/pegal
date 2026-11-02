@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Domain\BookingRejected;
+use App\Domain\InvalidPeriod;
+use App\Domain\PeriodFilter;
 use App\Domain\TimeBooking;
 use App\Models\Order;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -13,17 +16,49 @@ use Illuminate\View\View;
 // a consultant's own bookings (the routes only let consultants in)
 class BookingController extends Controller
 {
-    // newest first, the latest 50 are plenty for a start
+    // newest first; without a filter the latest 50 are plenty, with one every match is shown
     public function index(Request $request): View
     {
-        $bookings = $request->user()->bookings()
+        $user = $request->user();
+        $today = CarbonImmutable::today();
+
+        try {
+            $filter = PeriodFilter::fromInput($request->query('year'), $request->query('month'), $today);
+        } catch (InvalidPeriod $e) {
+            // a made-up value in the address bar shows a message and the unfiltered list
+            $filter = PeriodFilter::none();
+            $filterError = $e->getMessage();
+        }
+
+        $query = $user->bookings()
             ->with(['order', 'decidedBy'])
             ->orderByDesc('worked_on')
-            ->orderByDesc('id')
-            ->limit(50)
-            ->get();
+            ->orderByDesc('id');
 
-        return view('bookings.index', ['bookings' => $bookings]);
+        if ($filter->isActive()) {
+            $query->whereBetween('worked_on', [$filter->from, $filter->to]);
+        } else {
+            $query->limit(50);
+        }
+
+        // the years the person actually booked in, plus this year so the list is never empty
+        $years = $user->bookings()
+            ->selectRaw('YEAR(worked_on) as year')
+            ->distinct()
+            ->pluck('year')
+            ->map(fn ($year) => (int) $year)
+            ->push($today->year)
+            ->when($filter->year, fn ($list, $year) => $list->push($year))
+            ->unique()
+            ->sortDesc()
+            ->values();
+
+        return view('bookings.index', [
+            'bookings' => $query->get(),
+            'filter' => $filter,
+            'filterError' => $filterError ?? null,
+            'years' => $years,
+        ]);
     }
 
     public function create(Request $request): View

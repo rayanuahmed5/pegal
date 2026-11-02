@@ -387,3 +387,10 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 :root[data-theme="dark"] .theme-toggle .when-light { display: none; }
 :root[data-theme="dark"] .theme-toggle .when-dark { display: inline-flex; align-items: center; gap: .35rem; }
 .theme-toggle .when-light { display: inline-flex; align-items: center; gap: .35rem; }
+
+/* month and year filter above a list */
+.filter { display: flex; flex-wrap: wrap; align-items: flex-end; gap: .75rem 1rem; margin: 0 0 1rem; }
+.filter label { margin: 0; display: flex; flex-direction: column; gap: .2rem; font-size: .85rem; font-weight: 600; }
+.filter select { min-width: 9rem; }
+.filter button { margin: 0; }
+.filter .cancel { margin: 0 0 .5rem; }
