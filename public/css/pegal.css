@@ -1,0 +1,132 @@
+/*
+  Pegal styles. One file on purpose, so there is nothing to build (see docs/adr/0004).
+  The look is calm and precise: a pale page, white cards and one teal accent.
+  Amber, red and green are kept for the budget traffic light only.
+*/
+
+:root {
+    --page: #f4f6f5;
+    --card: #ffffff;
+    --ink: #1c2b2d;
+    --muted: #5d6f72;
+    --line: #dbe3e1;
+    --accent: #0f6b6e;
+    --accent-dark: #0b5254;
+    --green: #2f7d4f;
+    --amber: #c98a12;
+    --red: #b3392f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+}
+
+h1 { font-size: 1.6rem; margin: 0 0 .25rem; }
+h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
+
+.muted { color: var(--muted); }
+
+/* top bar */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .75rem 1.5rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: .02em;
+}
+
+.who { display: flex; align-items: center; gap: .75rem; font-size: .95rem; }
+.who form { margin: 0; }
+
+.role {
+    padding: .1rem .6rem;
+    border-radius: 999px;
+    background: #e3f0ef;
+    color: var(--accent-dark);
+    font-size: .8rem;
+}
+
+/* page and cards */
+.page { max-width: 60rem; margin: 2rem auto; padding: 0 1.5rem; }
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: .6rem;
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.25rem;
+}
+
+/* forms */
+label { display: block; margin: .9rem 0 .25rem; font-weight: 600; font-size: .9rem; }
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: .55rem .7rem;
+    border: 1px solid var(--line);
+    border-radius: .4rem;
+    font: inherit;
+    background: #fff;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+}
+
+.check { display: flex; align-items: center; gap: .5rem; font-weight: 400; }
+
+button, .button {
+    margin-top: 1.1rem;
+    padding: .6rem 1.2rem;
+    border: 0;
+    border-radius: .4rem;
+    background: var(--accent);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover, .button:hover { background: var(--accent-dark); }
+
+/* a button that looks like a link, used for "Sign out" */
+button.link {
+    margin: 0;
+    padding: 0;
+    background: none;
+    color: var(--accent);
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.error { color: var(--red); font-size: .9rem; margin: .3rem 0 0; }
+
+/* login page */
+.login { max-width: 26rem; margin: 3rem auto; }
+.login .card { margin-top: 1rem; }
+
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: .35rem .5rem; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 600; }
