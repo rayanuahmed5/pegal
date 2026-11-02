@@ -33,6 +33,7 @@ All items need the Laravel dependencies from Packagist. To unblock, the scaffold
 
 ## Sprint Retrospective
 
+- **Keep:** writing the ADRs and the permission concept before code (done before this sprint).
 - **Keep:** very small commits, every step run on Mohammed's machine with the output shared, tests written together with the feature.
 - **Change:** removing the two example tests also removed the `tests/Unit` folder, and `phpunit.xml` still pointed at it, so `php artisan test` broke for one round. After deleting files, check the config that mentions them.
 - **Constraint:** the code can only be run on Mohammed's machine. Every change costs one round trip, so we keep steps small.
