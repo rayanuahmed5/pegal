@@ -17,7 +17,7 @@ class BookingController extends Controller
     public function index(Request $request): View
     {
         $bookings = $request->user()->bookings()
-            ->with('order')
+            ->with(['order', 'decidedBy'])
             ->orderByDesc('worked_on')
             ->orderByDesc('id')
             ->limit(50)
