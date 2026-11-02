@@ -185,3 +185,6 @@ button.danger:hover { background: #8f2d25; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: .75rem; margin-bottom: 1rem; }
 .stats .card { margin: 0; padding: .8rem 1rem; }
 .stat-number { font-size: 1.8rem; font-weight: 700; color: var(--accent-dark); line-height: 1.1; }
+
+/* the follow-up order draft is plain text, easy to copy */
+.draft { white-space: pre-wrap; margin: 0; font-family: inherit; font-size: .9rem; line-height: 1.5; }

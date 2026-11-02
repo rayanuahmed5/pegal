@@ -9,6 +9,10 @@
         most urgent first.
     </p>
 
+    @error('proposal')
+        <p class="alert" role="alert">{{ $message }}</p>
+    @enderror
+
     <div class="card">
         @if ($rows->isEmpty())
             <p>No order needs a follow-up order in the next {{ \App\Domain\FollowUp::WITHIN_WEEKS }} weeks.</p>
@@ -22,6 +26,7 @@
                         <th>Runs out</th>
                         <th>Reorder by</th>
                         <th>When</th>
+                        <th>Proposal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +52,7 @@
                                     @endif
                                 </span>
                             </td>
+                            <td><a href="{{ route('follow-ups.proposal', $row['order']) }}">Draft</a></td>
                         </tr>
                     @endforeach
                 </tbody>
