@@ -152,6 +152,46 @@ class BookingTest extends TestCase
         $this->assertDatabaseCount('bookings', 0);
     }
 
+    public function test_a_booking_over_the_remaining_budget_shows_the_message(): void
+    {
+        [$consultant, $order] = $this->consultantWithOrder();
+        $order->update(['budget_pd' => 1]);
+
+        $this->actingAs($consultant)
+            ->from('/bookings/create')
+            ->post('/bookings', $this->validBooking($order, ['hours' => '9']))
+            ->assertRedirect('/bookings/create')
+            ->assertSessionHasErrors(['booking' => 'Booking rejected: only 1 PD left on order 4500000001.']);
+
+        $this->assertDatabaseCount('bookings', 0);
+    }
+
+    public function test_a_booking_over_ten_hours_a_day_shows_the_message(): void
+    {
+        [$consultant, $order] = $this->consultantWithOrder();
+
+        $this->actingAs($consultant)
+            ->from('/bookings/create')
+            ->post('/bookings', $this->validBooking($order, ['hours' => '11']))
+            ->assertRedirect('/bookings/create')
+            ->assertSessionHasErrors('booking');
+
+        $this->assertDatabaseCount('bookings', 0);
+    }
+
+    public function test_a_booking_outside_the_order_period_shows_the_message(): void
+    {
+        [$consultant, $order] = $this->consultantWithOrder();
+
+        $this->actingAs($consultant)
+            ->from('/bookings/create')
+            ->post('/bookings', $this->validBooking($order, ['worked_on' => '2027-01-05']))
+            ->assertRedirect('/bookings/create')
+            ->assertSessionHasErrors('booking');
+
+        $this->assertDatabaseCount('bookings', 0);
+    }
+
     public function test_a_guest_is_sent_to_the_login_page(): void
     {
         $this->get('/bookings')->assertRedirect('/login');
