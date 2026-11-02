@@ -64,7 +64,7 @@ class ProofOfWorkTest extends TestCase
         return CarbonImmutable::parse('2026-10-15');
     }
 
-    private function status(User $user, string $day): BookingStatus
+    private function statusOf(User $user, string $day): BookingStatus
     {
         return Booking::where('user_id', $user->id)->where('worked_on', $day)->firstOrFail()->status;
     }
@@ -114,10 +114,10 @@ class ProofOfWorkTest extends TestCase
         $decided = (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Approved);
 
         $this->assertSame(2, $decided);
-        $this->assertSame(BookingStatus::Approved, $this->status($this->ama, '2026-10-01'));
-        $this->assertSame(BookingStatus::Approved, $this->status($this->ama, '2026-10-02'));
-        $this->assertSame(BookingStatus::Submitted, $this->status($this->jonas, '2026-10-01'));
-        $this->assertSame(BookingStatus::Submitted, $this->status($this->ama, '2026-11-02'));
+        $this->assertSame(BookingStatus::Approved, $this->statusOf($this->ama, '2026-10-01'));
+        $this->assertSame(BookingStatus::Approved, $this->statusOf($this->ama, '2026-10-02'));
+        $this->assertSame(BookingStatus::Submitted, $this->statusOf($this->jonas, '2026-10-01'));
+        $this->assertSame(BookingStatus::Submitted, $this->statusOf($this->ama, '2026-11-02'));
     }
 
     public function test_rejecting_marks_the_hours_as_rejected(): void
@@ -126,7 +126,7 @@ class ProofOfWorkTest extends TestCase
 
         (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected);
 
-        $this->assertSame(BookingStatus::Rejected, $this->status($this->ama, '2026-10-01'));
+        $this->assertSame(BookingStatus::Rejected, $this->statusOf($this->ama, '2026-10-01'));
     }
 
     public function test_rejected_hours_give_their_budget_back(): void
@@ -149,8 +149,8 @@ class ProofOfWorkTest extends TestCase
 
         (new ProofOfWork())->decide($this->order, $this->ama, $this->october(), BookingStatus::Rejected);
 
-        $this->assertSame(BookingStatus::Approved, $this->status($this->ama, '2026-10-01'));
-        $this->assertSame(BookingStatus::Rejected, $this->status($this->ama, '2026-10-02'));
+        $this->assertSame(BookingStatus::Approved, $this->statusOf($this->ama, '2026-10-01'));
+        $this->assertSame(BookingStatus::Rejected, $this->statusOf($this->ama, '2026-10-02'));
     }
 
     public function test_deciding_with_nothing_submitted_is_refused_with_a_message(): void
