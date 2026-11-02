@@ -84,7 +84,7 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 | Name | Scrum role |
 |---|---|
 | Abdulai Umar Faruk ([@tadashihamada-chetty](https://github.com/tadashihamada-chetty)) | Product Owner |
-| Brakoh Kennet (`brakokenneth199-cmyk`, invitation pending) | Scrum Master |
+| Brakoh Kennet ([@brakokenneth199-cmyk](https://github.com/brakokenneth199-cmyk)) | Scrum Master |
 | Mohammed Raiyan Ahmed ([@rayanuahmed5](https://github.com/rayanuahmed5)) | Developer |
 | Mohammed Awal ([@Ustarz-Maltiti](https://github.com/Ustarz-Maltiti)) | Developer |
 | Adam Imoro ([@AdamImoro](https://github.com/AdamImoro)) | Developer |
