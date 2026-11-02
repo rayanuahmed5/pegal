@@ -29,7 +29,7 @@
 Entities we **build now** are marked `(now)`, entities of the **next expansion stage** `(later)`.
 
 - **Now:** Supplier, Purchase order, Order item, Consultant, Assignment, Accounting object, Time booking, Absence, Public holiday, Budget forecast. These cover the core flow: a consultant books time against an order and the client sees the effect on that order's budget, including the look-ahead with vacations and holidays.
-- **Later:** Framework agreement, Proof of work, Invoice, Client user, Rule violation. These cover approval before payment, invoice checking, user roles and ArbZG checks.
+- **Later:** Framework agreement, Invoice, Rule violation. Proof of work and the user roles already exist in a first form, see "Implemented schema" below.
 
 ```mermaid
 erDiagram
@@ -178,6 +178,50 @@ erDiagram
     PURCHASE_ORDER ||--o{ BUDGET_FORECAST : "projects burn-down"
     TIME_BOOKING ||--o{ RULE_VIOLATION : "may trigger"
 ```
+
+## Implemented schema (what the migrations create)
+
+The diagram above is the **target model**: what the product grows into. The first stage that runs today is smaller. This is the schema of the migrations in `database/migrations`:
+
+```mermaid
+erDiagram
+    SUPPLIER_now ||--o{ USER_now : "employs"
+    SUPPLIER_now ||--o{ ORDER_now : "delivers"
+    USER_now ||--o{ ASSIGNMENT_now : "is assigned"
+    ORDER_now ||--o{ ASSIGNMENT_now : "allows"
+    USER_now ||--o{ BOOKING_now : "books"
+    ORDER_now ||--o{ BOOKING_now : "has"
+    USER_now ||--o{ ABSENCE_now : "plans"
+    PUBLIC_HOLIDAY_now
+    FRAMEWORK_AGREEMENT_later ||--o{ ORDER_now : "funds"
+    ORDER_now ||--o{ FOLLOW_UP_PROPOSAL_later : "triggers"
+    ORDER_now ||--o{ INVOICE_later : "is invoiced by"
+```
+
+Tables (MySQL):
+
+- `suppliers(id, name)`
+- `users(id, name, email, password, role, supplier_id null)` where role is `consultant`, `project_lead`, `purchasing`, `finance` or `admin`
+- `orders(id, number, title, supplier_id, cost_center, project_element, budget_pd, starts_on, ends_on, reorder_lead_weeks)`
+- `assignments(id, order_id, user_id)` unique on order and user
+- `bookings(id, order_id, user_id, worked_on, starts_at null, ends_at null, hours, description, status, decided_by null, decided_at null, decision_reason null)` with status `submitted`, `approved` or `rejected`; `decided_by` is the finance user who approved or rejected, the reason is required for a rejection
+- `absences(id, user_id, starts_on, ends_on)`
+- `public_holidays(id, holiday_on, name)`
+
+How the target model maps to the implemented tables:
+
+| Target model | Implemented as |
+|---|---|
+| SUPPLIER | `suppliers` |
+| PURCHASE_ORDER | `orders` (one level, no order items yet; the budget is on the order) |
+| CONSULTANT, CLIENT_USER | `users`, told apart by `role` (`consultant`, `project_lead`, `purchasing`, `finance`, `admin`) |
+| ASSIGNMENT | `assignments` |
+| TIME_BOOKING | `bookings` (hours per day, optional start and end time, status, decision with reason) |
+| ABSENCE | `absences` (vacation; no sick leave) |
+| PUBLIC_HOLIDAY | `public_holidays` (one list, not yet per federal state) |
+| BUDGET_FORECAST | calculated on demand by `app/Domain/BudgetForecast.php`, not stored |
+| PROOF_OF_WORK | calculated per month from `bookings`; approving or rejecting sets the status of the bookings |
+| FRAMEWORK_AGREEMENT, INVOICE, RULE_VIOLATION | later |
 
 ## Notes
 
