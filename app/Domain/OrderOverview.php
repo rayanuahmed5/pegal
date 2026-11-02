@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\PublicHoliday;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 // loads every order with its budget and (if asked) its forecast
 // two pages need exactly this, the budget page and the follow-up list, so it lives in one place
@@ -39,8 +40,12 @@ class OrderOverview
             ->orderBy('number')
             ->get();
 
-        return $orders->map(function (Order $order) use ($forecaster, $today) {
+        $weekly = $withForecast ? $this->weeklyBurn($today) : [];
+
+        return $orders->map(function (Order $order) use ($forecaster, $today, $weekly) {
             $budget = OrderBudget::fromHours((float) $order->budget_pd, (float) $order->used_hours);
+
+            [$slow, $fast] = BurnRate::slowestAndFastest($weekly[$order->id] ?? []);
 
             $forecast = $forecaster?->calculate(
                 orderedPd: $budget->orderedPd,
@@ -50,6 +55,8 @@ class OrderOverview
                 orderEnd: CarbonImmutable::parse($order->ends_on->toDateString()),
                 reorderLeadWeeks: $order->reorder_lead_weeks,
                 consultantIds: $order->consultants->pluck('id')->all(),
+                slowBurnPerWeek: $slow,
+                fastBurnPerWeek: $fast,
             );
 
             return ['order' => $order, 'budget' => $budget, 'forecast' => $forecast];
@@ -73,6 +80,31 @@ class OrderOverview
             // earliest reorder date first, so the overdue ones sit at the top
             ->sortBy(fn (array $row) => $row['forecast']->reorderDate->toDateString())
             ->values();
+    }
+
+    /**
+     * Person-days per week of the burn rate window, one group of numbers per order.
+     * Only weeks with bookings show up, BurnRate counts the others as 0.
+     *
+     * @return array<int, array<int, float>> order id => person-days of each week with bookings
+     */
+    private function weeklyBurn(CarbonImmutable $today): array
+    {
+        $start = BurnRate::windowStart($today)->toDateString();
+
+        $rows = DB::table('bookings')
+            ->selectRaw('order_id, FLOOR(DATEDIFF(worked_on, ?) / 7) AS week_no, SUM(hours) AS hours', [$start])
+            ->where('status', '!=', BookingStatus::Rejected->value)
+            ->whereBetween('worked_on', [$start, BurnRate::windowEnd($today)->toDateString()])
+            ->groupBy('order_id', 'week_no')
+            ->get();
+
+        $perOrder = [];
+        foreach ($rows as $row) {
+            $perOrder[$row->order_id][] = (float) $row->hours / TimeBooking::HOURS_PER_PERSON_DAY;
+        }
+
+        return $perOrder;
     }
 
     // holidays and vacations as plain arrays, the forecast classes know nothing about the database
