@@ -77,6 +77,73 @@ class OrderPageTest extends TestCase
             ->assertSee('4500000001');
     }
 
+    // an order of 10 PD, 5 PD booked in the four weeks before 2 Nov: 1.25 PD per week,
+    // 5 PD left lasts 20 working days, so it runs out on 27 Nov and the reorder date (30 Oct) has passed
+    private function orderThatRunsOutSoon(): void
+    {
+        $this->travelTo('2026-11-02');
+
+        $supplier = Supplier::create(['name' => 'Test Consulting']);
+        $consultant = User::factory()->create(['role' => Role::Consultant, 'supplier_id' => $supplier->id]);
+        $order = Order::create([
+            'number' => '4500000002',
+            'title' => 'Forecast order',
+            'supplier_id' => $supplier->id,
+            'cost_center' => 'CC-2',
+            'budget_pd' => 10,
+            'starts_on' => '2026-10-01',
+            'ends_on' => '2026-12-31',
+            'reorder_lead_weeks' => 4,
+        ]);
+        $order->consultants()->attach($consultant);
+
+        foreach (['2026-10-12', '2026-10-13', '2026-10-14', '2026-10-15', '2026-10-16'] as $day) {
+            Booking::create([
+                'order_id' => $order->id,
+                'user_id' => $consultant->id,
+                'worked_on' => $day,
+                'hours' => 8,
+                'description' => 'Work',
+                'status' => BookingStatus::Approved,
+            ]);
+        }
+    }
+
+    public static function forecastRoles(): array
+    {
+        return [
+            'project lead' => [Role::ProjectLead],
+            'purchasing' => [Role::Purchasing],
+        ];
+    }
+
+    #[DataProvider('forecastRoles')]
+    public function test_project_lead_and_purchasing_see_the_forecast(Role $role): void
+    {
+        $this->orderThatRunsOutSoon();
+
+        $this->actingAs($this->user($role))
+            ->get('/orders')
+            ->assertOk()
+            ->assertSee('Runs out 27 Nov 2026')
+            ->assertSee('Reorder by 30 Oct 2026')
+            ->assertSee('Reorder now')
+            ->assertSee('Assumptions');
+    }
+
+    public function test_finance_does_not_get_the_forecast(): void
+    {
+        $this->orderThatRunsOutSoon();
+
+        $this->actingAs($this->user(Role::Finance))
+            ->get('/orders')
+            ->assertOk()
+            ->assertSee('4500000002')
+            ->assertDontSee('Runs out')
+            ->assertDontSee('Reorder')
+            ->assertDontSee('Assumptions');
+    }
+
     public function test_a_consultant_gets_a_403(): void
     {
         $this->actingAs($this->user(Role::Consultant))
