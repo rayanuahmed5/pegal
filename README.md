@@ -64,10 +64,10 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 
 | Criterion | Evidence |
 |---|---|
-| 1 · Persistence and data model | TODO – schema / migrations, [ER diagram](docs/domain.md) |
-| 2 · Business rules and unit tests | TODO – domain rule files, test folder |
-| 3 · Roles, permissions and privacy | [Permission concept](docs/roles-and-privacy.md), TODO – mockup views / enforcement code |
-| 4 · Architecture and engineering | TODO – A structure · B [ADRs](docs/adr/) · C Git history · D API docs · E compose file · F [mockup](docs/mockup/) |
+| 1 · Persistence and data model | [Migrations](database/migrations) (suppliers, users with role, orders, assignments, bookings, absences, public holidays), [ER diagram](docs/domain.md), [seeders](database/seeders) |
+| 2 · Business rules and unit tests | Input checks in [BookingController](app/Http/Controllers/BookingController.php), tests in [tests/Feature/BookingTest.php](tests/Feature/BookingTest.php) and [tests/Unit](tests/Unit). The budget, daily hours and order period rules are planned for Sprint 2 and will live in `app/Domain` |
+| 3 · Roles, permissions and privacy | [Permission concept](docs/roles-and-privacy.md), enforced by [EnsureUserHasRole](app/Http/Middleware/EnsureUserHasRole.php) and [routes/web.php](routes/web.php), 403 tests in [BookingTest](tests/Feature/BookingTest.php) |
+| 4 · Architecture and engineering | A structure: `app/Http`, `app/Domain`, `app/Models` · B [ADRs](docs/adr/) 0001 to 0004 · C Git history (many small commits since Mon 2 Nov) · D API docs: planned · E compose file: planned · F [mockup](docs/mockup): planned |
 
 ## Team
 
