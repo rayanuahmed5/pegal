@@ -140,6 +140,29 @@ class BudgetForecastTest extends TestCase
         $this->assertSame('green', $result->light);
     }
 
+    public function test_it_counts_the_person_days_missing_until_the_order_ends(): void
+    {
+        // runs out on Fri 13 Nov, from Mon 16 Nov to Thu 31 Dec are 34 working days at 1 PD each
+        $result = $this->forecast(10, 5, 20, end: '2026-12-31');
+
+        $this->assertSame(34.0, $result->missingPd);
+    }
+
+    public function test_a_holiday_in_the_gap_means_less_is_missing(): void
+    {
+        // Friday 25 Dec is a holiday: 33 working days instead of 34
+        $result = $this->forecast(10, 5, 20, new WorkCalendar(['2026-12-25']), end: '2026-12-31');
+
+        $this->assertSame(33.0, $result->missingPd);
+    }
+
+    public function test_nothing_is_missing_when_the_budget_lasts_until_the_end(): void
+    {
+        $result = $this->forecast(100, 5);
+
+        $this->assertSame(0.0, $result->missingPd);
+    }
+
     public function test_the_assumptions_are_part_of_the_result(): void
     {
         $result = $this->forecast(40, 5);
