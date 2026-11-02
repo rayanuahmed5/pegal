@@ -6,6 +6,7 @@ use App\Domain\BookingRejected;
 use App\Domain\BookingStatus;
 use App\Domain\Role;
 use App\Domain\TimeBooking;
+use App\Models\Absence;
 use App\Models\Booking;
 use App\Models\Order;
 use App\Models\Supplier;
@@ -196,6 +197,62 @@ class TimeBookingTest extends TestCase
     }
 
     // assignment
+
+    // planned absence
+
+    public function test_it_rejects_a_day_inside_a_planned_absence(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        Absence::create(['user_id' => $consultant->id, 'starts_on' => '2026-11-16', 'ends_on' => '2026-11-20']);
+
+        $this->expectException(BookingRejected::class);
+        $this->expectExceptionMessage('you have a planned absence from 16 Nov 2026 to 20 Nov 2026, which includes 18 Nov 2026');
+
+        $this->book($consultant, $order, '2026-11-18', 4);
+    }
+
+    public function test_the_first_and_last_day_of_an_absence_are_blocked_too(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        Absence::create(['user_id' => $consultant->id, 'starts_on' => '2026-11-16', 'ends_on' => '2026-11-20']);
+
+        foreach (['2026-11-16', '2026-11-20'] as $day) {
+            try {
+                $this->book($consultant, $order, $day, 4);
+                $this->fail("{$day} should have been rejected");
+            } catch (BookingRejected) {
+                // expected
+            }
+        }
+
+        $this->assertDatabaseCount('bookings', 0);
+    }
+
+    public function test_the_days_around_an_absence_can_be_booked(): void
+    {
+        $consultant = $this->consultant();
+        $order = $this->order($consultant);
+        Absence::create(['user_id' => $consultant->id, 'starts_on' => '2026-11-16', 'ends_on' => '2026-11-20']);
+
+        $this->book($consultant, $order, '2026-11-13', 4);
+        $this->book($consultant, $order, '2026-11-23', 4);
+
+        $this->assertDatabaseCount('bookings', 2);
+    }
+
+    public function test_the_absence_of_a_colleague_does_not_block_booking(): void
+    {
+        $consultant = $this->consultant();
+        $colleague = $this->consultant();
+        $order = $this->order($consultant);
+        Absence::create(['user_id' => $colleague->id, 'starts_on' => '2026-11-16', 'ends_on' => '2026-11-20']);
+
+        $this->book($consultant, $order, '2026-11-18', 4);
+
+        $this->assertDatabaseCount('bookings', 1);
+    }
 
     public function test_it_rejects_a_consultant_who_is_not_assigned_to_the_order(): void
     {
