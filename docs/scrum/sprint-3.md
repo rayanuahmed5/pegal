@@ -8,10 +8,10 @@
 | Item | Tasks | Status |
 |---|---|---|
 | PBI-08 Forecast | Burn rate, working calendar, exhaustion and reorder date, traffic light, shown on the orders page with assumptions; unit tests | done (75 tests green) |
-| PBI-09 Follow-up list | Orders whose reorder date is within 6 weeks, most urgent first, for purchasing (all orders) and project lead | done (built Mon 08:50, tests pending local run) |
-| PBI-10 Proof of work | Finance sees monthly hours per person per order without times and approves or rejects | built, waiting for the local test run |
+| PBI-09 Follow-up list | Orders whose reorder date is within 6 weeks, most urgent first, for purchasing (all orders) and project lead | done |
+| PBI-10 Proof of work | Finance sees monthly hours per person per order without times and approves or rejects | done |
 | PBI-11 Mockup | Clickable HTML screens per role in `docs/mockup/` | todo |
-| PBI-12 API docs | Two JSON endpoints (`/api/orders`, `/api/follow-ups`) with a resource class as DTO, OpenAPI file, Swagger UI page | built, waiting for the local test run |
+| PBI-12 API docs | Two JSON endpoints (`/api/orders`, `/api/follow-ups`) with a resource class as DTO, OpenAPI file, Swagger UI page | done |
 | PBI-13 Compose | `compose.yaml` with MySQL and the app | built, not yet run on a machine with Docker |
 | PBI-14 README run check | Fresh clone, the six README sections, evidence map links | todo |
 
@@ -28,6 +28,8 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 **Mon 2 Nov, 08:20** PBI-08 is done: `WorkCalendar`, `BurnRate`, `BudgetForecast` and `ForecastResult` in `app/Domain`, forecast column on `/orders`. `php artisan test` shows 75 passed. Next: PBI-09, the follow-up list.
 
 **Mon 2 Nov, 08:25** PBI-08 checked in the browser as the project lead. Customer portal: burn 6 PD per week, runs out 18 Jan 2027, reorder by 21 Dec 2026 (amber). Data warehouse: runs out 13 Nov 2026, reorder date 16 Oct has passed (red). Mobile app relaunch: runs out 23 Mar 2027, reorder by 9 Feb 2027 (amber). The numbers match a hand calculation: warehouse burns 4 PD per week with 8 PD left, which is ten working days.
+
+**Mon 2 Nov, 09:05** PBI-09, PBI-10 and PBI-12 are done and green on the local machine (feature tests for the follow-up list, proof of work and the JSON API all pass). Impediment on the way: a test helper named `status()` clashed with a final PHPUnit method and stopped the whole test run; renamed, noted for the retrospective. PBI-13 (compose) is built but not yet run with Docker. Next: PBI-11 mockup, then PBI-14 README run check.
 
 ## Review and retrospective
 
