@@ -71,4 +71,4 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 
 ## Team
 
-TODO – names and GitHub handles.
+Mohammed ([@rayanuahmed5](https://github.com/rayanuahmed5)), with Claude as AI pair programmer. The process is Scrum, see [docs/scrum](docs/scrum/README.md).
