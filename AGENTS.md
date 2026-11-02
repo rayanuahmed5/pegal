@@ -38,6 +38,8 @@ These rules come from the technical scoring. Follow them without being asked.
 6. **Configuration** lives in `.env.example` with safe defaults. Never commit secrets or real personal data. Nothing may require a paid account or API key; AI features need a mock switch.
 7. **README first.** When a command to install, run or test changes, update the README sections *Prerequisites · Setup · Run · Test · Demo users* in the same step. Keep the *Evidence map* current.
 8. **Git.** Suggest small commits with clear messages (`feat|fix|docs|test: …`) and feature branches for larger work. Remind the team to push regularly: commits must be spread over the hackathon days.
+9. **Commit and push every small change.** Each addition, change or removal gets its own commit and is pushed to GitHub right away, not saved up for a big batch.
+10. **Comments sound human.** Write code comments the way a teammate would: short, plain, saying why something is done. No robotic phrasing, no comments that only repeat the code.
 
 ## Skills and guide sections
 
