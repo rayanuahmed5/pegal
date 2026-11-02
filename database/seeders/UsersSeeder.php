@@ -22,6 +22,7 @@ class UsersSeeder extends Seeder
         $this->makeUser('Katrin Weber', 'lead@pegal.test', Role::ProjectLead);
         $this->makeUser('Stefan Braun', 'purchasing@pegal.test', Role::Purchasing);
         $this->makeUser('Miriam Schulz', 'finance@pegal.test', Role::Finance);
+        $this->makeUser('Ruth Admin', 'admin@pegal.test', Role::Admin);
 
         // three more consultants so the orders have a team
         $this->makeUser('Jonas Keller', 'jonas.keller@nordlicht.test', Role::Consultant, $nordlicht);
