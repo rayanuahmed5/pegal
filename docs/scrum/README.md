@@ -6,8 +6,8 @@ We use Scrum, compressed to fit the hackathon window (ends **Tuesday 3 Nov 2026,
 
 | Scrum role | Who |
 |---|---|
-| Product Owner | Mohammed: owns the [product backlog](product-backlog.md) and accepts work |
-| Scrum Master | Mohammed (or a teammate): protects the process and removes blockers |
+| Product Owner | Abdulai Umar Faruk: owns the [product backlog](product-backlog.md) and accepts work |
+| Scrum Master | Brakoh Kennet: protects the process and removes blockers |
 | Developers | Claude as AI pair-programmer together with the team members |
 
 ## Events

@@ -81,4 +81,12 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 
 ## Team
 
-Mohammed ([@rayanuahmed5](https://github.com/rayanuahmed5)), with Claude as AI pair programmer. The process is Scrum, see [docs/scrum](docs/scrum/README.md).
+| Name | Scrum role |
+|---|---|
+| Abdulai Umar Faruk | Product Owner |
+| Brakoh Kennet | Scrum Master |
+| Mohammed Raiyan Ahmed ([@rayanuahmed5](https://github.com/rayanuahmed5)) | Developer |
+| Mohammed Awal | Developer |
+| Adam Imoro | Developer |
+
+Claude is used as AI pair programmer. The process is Scrum, see [docs/scrum](docs/scrum/README.md).
