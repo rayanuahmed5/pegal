@@ -24,5 +24,6 @@ Ordered by value. Estimates are story points (1, 2, 3, 5, 8). Status: `todo`, `d
 | PBI-18 | purchasing, how many PD are missing until the order ends, and the calendar weeks | Forecast shows missing PD and ISO weeks on the pages and in the API | 3 | 3 | done |
 | PBI-19 | consultant, to know who rejected my hours and why | Finance must give a reason; consultant sees decider, date and reason under My bookings | 3 | 3 | done |
 | PBI-20 | consultant, optional start and end times with overlap and 11-hour rest checks | ADR 0008; rules enforced on the server with accept and reject tests; times visible to the consultant only | 5 | 3 | done |
+| PBI-21 | administrator, a dashboard with all users, their roles, assigned and spent PD, and a form to add users | ADR 0009; `/admin` for admins only (403 for others); account rule with accept and reject tests; demo user `admin@pegal.test` | 5 | 3 | done |
 
 Done in Sprint 0: vision, domain model, roles and privacy concept, ADRs 0001 to 0003, Scrum setup.

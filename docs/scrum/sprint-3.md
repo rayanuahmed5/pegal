@@ -37,6 +37,8 @@ Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a
 
 **Mon 2 Nov, 12:30** Comparison with the Pegel build (the other team repository). Picked four ideas and added them as separate small commits: the planned-absence booking rule (PBI-17), missing PD until the order ends and ISO weeks in the forecast, page and API (PBI-18), a required reason and the decider on a rejection (PBI-19), and optional start and end times with the overlap and 11-hour rest rules (PBI-20, [ADR 0008](../adr/0008-optional-start-and-end-times.md)). The test workflow for GitHub Actions came from the same comparison. Two new migrations, so existing databases need `php artisan migrate`.
 
+**Mon 2 Nov, 13:00** Product Owner request: an administrator with a dashboard (users in total, role of every user, assigned and spent amount per user) who can add users. Pegal has no prices, so the amounts are person-days. Built as PBI-21: `Role::Admin`, demo user `admin@pegal.test`, `UserOverview` and `UserAccounts` in the domain with unit tests, `/admin` and `/admin/users/create` behind `role:admin`, feature tests, [ADR 0009](../adr/0009-administrator-role-and-user-management.md). The seeder only runs on an empty database, so an existing local database needs `php artisan migrate:fresh --seed` to get the admin user.
+
 ## Review and retrospective
 
 ### Review (Mon 2 Nov, 09:40)
