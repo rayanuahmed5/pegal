@@ -37,7 +37,7 @@ The first Product Backlog was prepared before Sprint 1 started (Mon 2 Nov, 01:30
 |---|---|---|
 | [Sprint 1](sprint-1.md) | Mon 2 Nov 03:00 to 07:15 (closed early, goal met) | Walking skeleton: a consultant can book time and the data is stored in MySQL |
 | [Sprint 2](sprint-2.md) | Mon 2 Nov 07:30 to 08:10 (closed early, goal met) | Bookings follow the rules (with tests) and the project lead sees the budget per order |
-| [Sprint 3](sprint-3.md) | Mon 2 Nov 08:10 (started early) to Tue 3 Nov 08:00 | Forecast, follow-up list, proof of work, mockup, API docs, README |
+| [Sprint 3](sprint-3.md) | Mon 2 Nov 08:10 (started early) to Tue 3 Nov 08:00 | The client side sees early when a budget runs out and what to do about it, finance approves or rejects with a reason, an administrator manages accounts, the product starts from the README |
 | Freeze | Tue 3 Nov 08:00 to 11:00 | Run check from a fresh clone, final review against scoring, no new features |
 
 ## Board

@@ -1,7 +1,13 @@
 # Sprint 3: forecast, follow-up list, proof of work and the hand-in
 
 **Window:** Mon 2 Nov 2026, 08:10 (started early, Sprint 2 finished ahead of plan) to Tue 3 Nov, 08:00. Tue 08:00 to 11:00 is the freeze: no new features, only the fresh-clone run check and fixes.
-**Goal:** The project lead and purchasing see early when a budget runs out, finance can approve proof of work, and the jury can start and read everything from the README.
+
+## Sprint Goal
+
+> The client side sees early when a budget will run out and what to do about it (forecast with a range, follow-up list and a draft order), finance can approve or reject the hours with a reason, an administrator manages the accounts, and anyone can start the product from the README.
+
+**Why this goal:** this answers the challenge's central question, "how long will the budget last?", for the people who must act on it, and makes the product checkable by someone outside the team.
+**Goal met:** to be confirmed by the Product Owner at the Sprint Review.
 
 ## Sprint backlog
 
