@@ -8,8 +8,8 @@
 | Item | Tasks | Status |
 |---|---|---|
 | PBI-05 Booking rules | One domain class that books time and checks the rules; the controller only calls it. Rules: not more than the remaining budget, not more than 10 hours per person per day, day inside the order period (the "order must be assigned" check already exists). Unit tests for every rule, accept and reject, plus one feature test per rule | done (31 tests green) |
-| PBI-06 Budget per order | Used, remaining and ordered person-days per order; a gauge bar; a page for the project lead, purchasing and finance | todo |
-| PBI-07 Permissions | Who may open the order pages, checked on the server, with 403 tests (consultants see no order budgets, as in the role matrix) | todo |
+| PBI-06 Budget per order | Used, remaining and ordered person-days per order; a gauge bar; a page for the project lead, purchasing and finance | done |
+| PBI-07 Permissions | Who may open the order pages, checked on the server, with 403 tests (consultants see no order budgets, as in the role matrix) | done |
 
 Planned order of work: PBI-05 first, because PBI-06 reads the same "used budget" the rules use.
 
@@ -22,6 +22,8 @@ Planned order of work: PBI-05 first, because PBI-06 reads the same "used budget"
 ## Daily Scrum log
 
 **Mon 2 Nov, 07:50** PBI-05 is done. `TimeBooking` in `app/Domain` holds the four rules, the form only calls it and shows its message. 13 unit tests and 3 form tests added, `php artisan test` shows 31 passed. Next: PBI-06, the budget per order with a gauge bar.
+
+**Mon 2 Nov, 08:05** PBI-06 and PBI-07 are done. `OrderBudget` in `app/Domain` works out ordered, used and remaining PD and the green, amber, red level. The `/orders` page is open to project lead, purchasing and finance only; a consultant gets a 403. `php artisan test` shows 44 passed. Still to do: look at the page in the browser, then the Sprint 2 review and retrospective.
 
 ## Review and retrospective
 
