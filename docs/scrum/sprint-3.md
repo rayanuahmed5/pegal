@@ -12,7 +12,7 @@
 | PBI-10 Proof of work | Finance sees monthly hours per person per order without times and approves or rejects | built, waiting for the local test run |
 | PBI-11 Mockup | Clickable HTML screens per role in `docs/mockup/` | todo |
 | PBI-12 API docs | OpenAPI file for the JSON endpoints, viewable in the browser | todo |
-| PBI-13 Compose | `compose.yaml` with MySQL and the app | todo |
+| PBI-13 Compose | `compose.yaml` with MySQL and the app | built, not yet run on a machine with Docker |
 | PBI-14 README run check | Fresh clone, the six README sections, evidence map links | todo |
 
 Planned order: PBI-09 and PBI-10 (they finish the roles), then PBI-14 early so a fresh-clone check can happen twice, then PBI-13, PBI-12 and PBI-11. Stretch items PBI-15 and PBI-16 only if time is left.
