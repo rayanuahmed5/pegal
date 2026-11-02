@@ -147,3 +147,13 @@ th { color: var(--muted); font-weight: 600; }
 .status { font-size: .8rem; padding: .1rem .55rem; border-radius: 999px; background: var(--line); }
 .status-approved { background: #dcefe3; color: var(--green); }
 .status-rejected { background: #f6dcd9; color: var(--red); }
+
+/* a booking the rules said no to, needs to catch the eye */
+.alert {
+    background: #fdecea;
+    border: 1px solid #e5a29b;
+    border-radius: 6px;
+    color: #8a1f17;
+    margin: 0 0 1rem;
+    padding: 0.75rem 1rem;
+}
