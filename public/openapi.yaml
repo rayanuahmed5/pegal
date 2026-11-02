@@ -50,7 +50,10 @@ paths:
                     forecast:
                       burnPerWeek: 4
                       exhaustionDate: '2026-11-13'
+                      exhaustionWeek: 46
                       reorderDate: '2026-10-16'
+                      reorderWeek: 42
+                      missingPd: 21.5
                       light: red
                       assumptions:
                         - 'Burn rate: 4 PD per week, the average of the last 4 weeks.'
@@ -144,6 +147,20 @@ components:
               format: date
               nullable: true
               description: Latest day to place a follow-up order (exhaustion date minus the lead time)
+            exhaustionWeek:
+              type: integer
+              nullable: true
+              description: ISO calendar week of the exhaustion date
+              example: 46
+            reorderWeek:
+              type: integer
+              nullable: true
+              description: ISO calendar week of the reorder date
+              example: 42
+            missingPd:
+              type: number
+              description: Person-days still needed between the exhaustion date and the end of the order, at the current pace
+              example: 21.5
             light:
               type: string
               enum: [green, amber, red]

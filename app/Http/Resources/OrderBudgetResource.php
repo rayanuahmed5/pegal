@@ -36,7 +36,10 @@ class OrderBudgetResource extends JsonResource
             'forecast' => $forecast ? [
                 'burnPerWeek' => round($forecast->burnPerWeek, 2),
                 'exhaustionDate' => $forecast->exhaustionDate?->toDateString(),
+                'exhaustionWeek' => $forecast->exhaustionWeek(),
                 'reorderDate' => $forecast->reorderDate?->toDateString(),
+                'reorderWeek' => $forecast->reorderWeek(),
+                'missingPd' => $forecast->missingPd,
                 'light' => $forecast->light,
                 'assumptions' => $forecast->assumptions,
             ] : null,
