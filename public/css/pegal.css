@@ -15,6 +15,19 @@
     --green: #2f7d4f;
     --amber: #c98a12;
     --red: #b3392f;
+
+    /* tints and text colours that used to be written out in place */
+    --on-accent: #ffffff;
+    --tint: #e3f0ef;
+    --green-bg: #dcefe3;
+    --amber-bg: #f7e8c8;
+    --amber-ink: #8a5d00;
+    --red-bg: #f6dcd9;
+    --red-dark: #8f2d25;
+    --alert-bg: #fdecea;
+    --alert-line: #e5a29b;
+    --alert-ink: #8a1f17;
+    --shadow: rgba(28, 43, 45, .08);
 }
 
 * { box-sizing: border-box; }
@@ -59,7 +72,7 @@ h2 { font-size: 1.1rem; margin: 0 0 .5rem; }
 .role {
     padding: .1rem .6rem;
     border-radius: 999px;
-    background: #e3f0ef;
+    background: var(--tint);
     color: var(--accent-dark);
     font-size: .8rem;
 }
@@ -90,7 +103,7 @@ textarea {
     border: 1px solid var(--line);
     border-radius: .4rem;
     font: inherit;
-    background: #fff;
+    background: var(--card);
 }
 
 input:focus, select:focus, textarea:focus {
@@ -106,7 +119,7 @@ button, .button {
     border: 0;
     border-radius: .4rem;
     background: var(--accent);
-    color: #fff;
+    color: var(--on-accent);
     font: inherit;
     font-weight: 600;
     cursor: pointer;
@@ -138,7 +151,7 @@ th { color: var(--muted); font-weight: 600; }
 .flash {
     padding: .6rem .9rem;
     border-radius: .4rem;
-    background: #e3f0ef;
+    background: var(--tint);
     color: var(--accent-dark);
 }
 
@@ -148,15 +161,15 @@ th { color: var(--muted); font-weight: 600; }
 
 /* booking status, plain words with a colour hint */
 .status { font-size: .8rem; padding: .1rem .55rem; border-radius: 999px; background: var(--line); }
-.status-approved { background: #dcefe3; color: var(--green); }
-.status-rejected { background: #f6dcd9; color: var(--red); }
+.status-approved { background: var(--green-bg); color: var(--green); }
+.status-rejected { background: var(--red-bg); color: var(--red); }
 
 /* a booking the rules said no to, needs to catch the eye */
 .alert {
-    background: #fdecea;
-    border: 1px solid #e5a29b;
+    background: var(--alert-bg);
+    border: 1px solid var(--alert-line);
     border-radius: 6px;
-    color: #8a1f17;
+    color: var(--alert-ink);
     margin: 0 0 1rem;
     padding: 0.75rem 1rem;
 }
@@ -170,9 +183,9 @@ th { color: var(--muted); font-weight: 600; }
 
 /* traffic light chip in the forecast column, the words carry the meaning, the colour is a hint */
 .light { font-size: .8rem; font-weight: 600; padding: .1rem .6rem; border-radius: 999px; }
-.light-green { background: #dcefe3; color: var(--green); }
-.light-amber { background: #f7e8c8; color: #8a5d00; }
-.light-red { background: #f6dcd9; color: var(--red); }
+.light-green { background: var(--green-bg); color: var(--green); }
+.light-amber { background: var(--amber-bg); color: var(--amber-ink); }
+.light-red { background: var(--red-bg); color: var(--red); }
 details ul { margin: .3rem 0 0; padding-left: 1.1rem; }
 summary { cursor: pointer; color: var(--accent); }
 
@@ -182,7 +195,7 @@ summary { cursor: pointer; color: var(--accent); }
 .row-actions form { display: inline; }
 .row-actions button { padding: .25rem .7rem; font-size: .85rem; margin-right: .3rem; }
 button.danger { background: var(--red); }
-button.danger:hover { background: #8f2d25; }
+button.danger:hover { background: var(--red-dark); }
 
 /* administration: small number cards above the user table */
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: .75rem; margin-bottom: 1rem; }
@@ -206,7 +219,7 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .topbar-signin:hover { text-decoration: underline; }
 
 .landing { margin: 0; }
-.band { background: #fff; padding: 4rem 1.5rem; }
+.band { background: var(--card); padding: 4rem 1.5rem; }
 .band-soft { background: var(--page); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .band-inner { max-width: 66rem; margin: 0 auto; }
 .band-title { font-size: 1.6rem; margin: 0 0 .3rem; text-align: center; }
@@ -221,15 +234,15 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .hero-actions .button { margin: 0; }
 
 .button { display: inline-flex; align-items: center; gap: .3rem; text-decoration: none; }
-.button-ghost { background: #fff; color: var(--accent-dark); border: 1px solid var(--line); }
+.button-ghost { background: var(--card); color: var(--accent-dark); border: 1px solid var(--line); }
 .button-ghost:hover { background: var(--page); }
 
 .hero-gauge {
-    background: #fff;
+    background: var(--card);
     border: 1px solid var(--line);
     border-radius: 1rem;
     padding: 1.6rem 1.75rem;
-    box-shadow: 0 12px 32px rgba(28, 43, 45, .08);
+    box-shadow: 0 12px 32px var(--shadow);
 }
 .hero-gauge-head { display: flex; justify-content: space-between; align-items: center; }
 .hero-gauge h2 { font-size: 1.25rem; margin: .4rem 0 1.1rem; }
@@ -241,7 +254,7 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .hero-gauge-foot strong { color: var(--ink); }
 
 /* the white boxes with an icon on top, used for the steps and the roles */
-.tile { background: #fff; border: 1px solid var(--line); border-radius: .8rem; padding: 1.4rem; }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: .8rem; padding: 1.4rem; }
 .tile p { margin: 0; font-size: .95rem; }
 .tile h3 { margin-top: .9rem; }
 .tile-icon {
@@ -250,7 +263,7 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
     width: 2.5rem;
     height: 2.5rem;
     border-radius: .6rem;
-    background: #e3f0ef;
+    background: var(--tint);
     color: var(--accent-dark);
 }
 .tile-icon-big { width: 3.25rem; height: 3.25rem; }
@@ -265,7 +278,7 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .privacy div { flex: 1; }
 .privacy .button { margin: 0; }
 
-.landing-footer { padding: 1.5rem; border-top: 1px solid var(--line); background: #fff; color: var(--muted); font-size: .85rem; text-align: center; }
+.landing-footer { padding: 1.5rem; border-top: 1px solid var(--line); background: var(--card); color: var(--muted); font-size: .85rem; text-align: center; }
 
 /* tablets: two columns for the roles, the hero stacks */
 @media (max-width: 900px) {
@@ -296,7 +309,7 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
     transition: border-color .15s, box-shadow .15s;
 }
 .action-tile .tile-icon { margin-bottom: .5rem; }
-.action-tile:hover, .action-tile:focus-visible { border-color: var(--accent); box-shadow: 0 6px 18px rgba(28, 43, 45, .08); }
+.action-tile:hover, .action-tile:focus-visible { border-color: var(--accent); box-shadow: 0 6px 18px var(--shadow); }
 .action-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* the name in the top bar opens the profile */
@@ -315,7 +328,7 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .icon-link:hover { text-decoration: underline; }
 .icon-link .icon { width: 16px; height: 16px; }
 .back { margin-left: 0; text-decoration: none; }
-.danger-zone { border-color: #e5a29b; }
+.danger-zone { border-color: var(--alert-line); }
 .danger-zone h2 .icon { color: var(--red); }
 
 /* text only screen readers hear, e.g. the header of the actions column */
