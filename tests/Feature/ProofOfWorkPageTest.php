@@ -77,6 +77,28 @@ class ProofOfWorkPageTest extends TestCase
             ->assertSee('16'); // 2 days x 8 hours, still to check
     }
 
+    public function test_the_month_box_opens_the_chosen_month_and_year(): void
+    {
+        $this->submittedOctober();
+
+        // the form sends month=YYYY-MM, the box on the page starts at the month being shown
+        $this->actingAs($this->finance())->get('/proof-of-work?month=2026-10')
+            ->assertOk()
+            ->assertSee('name="month"', false)
+            ->assertSee('value="2026-10"', false)
+            ->assertSee('Ama Mensah');
+    }
+
+    public function test_another_month_shows_no_hours_from_october(): void
+    {
+        $this->submittedOctober();
+
+        $this->actingAs($this->finance())->get('/proof-of-work?month=2025-03')
+            ->assertOk()
+            ->assertSee('March 2025')
+            ->assertDontSee('Ama Mensah');
+    }
+
     public function test_the_page_shows_no_single_days_and_no_descriptions(): void
     {
         $this->submittedOctober();
