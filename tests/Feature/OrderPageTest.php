@@ -129,6 +129,8 @@ class OrderPageTest extends TestCase
             ->assertSee('Reorder by 30 Oct 2026 (week 44)', false)
             ->assertSee('Reorder now')
             ->assertSee('PD missing until the order ends')
+            ->assertSee('Fast pace: runs out 6 Nov 2026 (week 45)', false)
+            ->assertSee('Slow pace: lasts until the order ends', false)
             ->assertSee('Assumptions');
     }
 

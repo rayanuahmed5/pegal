@@ -59,6 +59,10 @@
                                             <br>About {{ rtrim(rtrim(number_format($forecast->missingPd, 1), '0'), '.') }} PD missing until the order ends
                                         @endif
                                     @endif
+                                    @if ($forecast->hasRange())
+                                        <br>Fast pace: {{ $forecast->earliestExhaustionDate ? 'runs out '.$forecast->earliestExhaustionDate->format('j M Y').' (week '.$forecast->earliestWeek().')' : 'lasts until the order ends' }}
+                                        <br>Slow pace: {{ $forecast->latestExhaustionDate ? 'runs out '.$forecast->latestExhaustionDate->format('j M Y').' (week '.$forecast->latestWeek().')' : 'lasts until the order ends' }}
+                                    @endif
                                 </div>
                                 <details class="small">
                                     <summary>Assumptions</summary>
