@@ -16,7 +16,7 @@
 
 ## Decision
 
-We choose **option 2**. Pegal is a standard Laravel application: `composer install`, set the environment, `php artisan migrate`, serve it with PHP's built-in server for the demo or with Nginx/Apache and PHP-FPM in production. All configuration comes from environment variables (`.env.example`), so the same code runs in the cloud and on the customer's servers. The README describes exactly these steps; `php artisan pegal:create-database` creates the empty database.
+We choose **option 2**. The team hosts it locally with **Laragon** on Windows (PHP, Composer, MySQL and a local web server in one install). Pegal is a standard Laravel application: `composer install`, set the environment, `php artisan migrate`, serve it with PHP's built-in server for the demo or with Nginx/Apache and PHP-FPM in production. All configuration comes from environment variables (`.env.example`), so the same code runs in the cloud and on the customer's servers. The README describes exactly these steps; `php artisan pegal:create-database` creates the empty database.
 
 ## Consequences
 
