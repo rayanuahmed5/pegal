@@ -3,36 +3,59 @@
 @section('title', 'Home · Pegal')
 
 @section('content')
+    @php($role = $user->role)
+    @php($Role = \App\Domain\Role::class)
+
     <h1>Hello, {{ $user->name }}</h1>
     <p class="muted">
-        You are signed in as <strong>{{ $user->role->label() }}</strong>@if ($user->supplier) at {{ $user->supplier->name }}@endif.
+        You are signed in as <strong>{{ $role->label() }}</strong>@if ($user->supplier) at {{ $user->supplier->name }}@endif.
+        {{ $role->intro() }}
     </p>
 
-    <div class="card">
-        <h2>What you do here</h2>
-        <p>{{ $user->role->intro() }}</p>
-
-        @if ($user->role === \App\Domain\Role::Consultant)
-            <p>
-                <a class="button" href="{{ route('bookings.create') }}">Book time</a>
-                <a class="cancel" href="{{ route('bookings.index') }}">My bookings</a>
-            </p>
-        @elseif ($user->role === \App\Domain\Role::Admin)
-            <p>
-                <a class="button" href="{{ route('admin.dashboard') }}">Administration</a>
-                <a class="cancel" href="{{ route('admin.users.create') }}">Add user</a>
-            </p>
+    {{-- one tile per thing this role can do, the routes check the role again on the server --}}
+    <div class="action-grid">
+        @if ($role === $Role::Consultant)
+            <a class="action-tile" href="{{ route('bookings.create') }}">
+                <span class="tile-icon"><x-icon name="clock" /></span>
+                <strong>Book time</strong>
+                <span class="muted small">Date, hours and a short note on one of your orders.</span>
+            </a>
+            <a class="action-tile" href="{{ route('bookings.index') }}">
+                <span class="tile-icon"><x-icon name="list" /></span>
+                <strong>My bookings</strong>
+                <span class="muted small">Everything you booked and whether it was approved.</span>
+            </a>
+        @elseif ($role === $Role::Admin)
+            <a class="action-tile" href="{{ route('admin.dashboard') }}">
+                <span class="tile-icon"><x-icon name="users" /></span>
+                <strong>Administration</strong>
+                <span class="muted small">All accounts with their role and person-days.</span>
+            </a>
+            <a class="action-tile" href="{{ route('admin.users.create') }}">
+                <span class="tile-icon"><x-icon name="plus" /></span>
+                <strong>Add user</strong>
+                <span class="muted small">Give a new person access to Pegal.</span>
+            </a>
         @else
-            <p>
-                <a class="button" href="{{ route('orders.index') }}">Orders and budget</a>
-                @if (in_array($user->role, [\App\Domain\Role::ProjectLead, \App\Domain\Role::Purchasing], true))
-                    <a class="cancel" href="{{ route('follow-ups.index') }}">Follow-up orders</a>
-                @endif
-                @if ($user->role === \App\Domain\Role::Finance)
-                    <a class="cancel" href="{{ route('proof-of-work.index') }}">Proof of work</a>
-                @endif
-            </p>
-            <p class="muted small">Forecast and approvals are being built, one step at a time.</p>
+            <a class="action-tile" href="{{ route('orders.index') }}">
+                <span class="tile-icon"><x-icon name="gauge" /></span>
+                <strong>Orders and budget</strong>
+                <span class="muted small">Used and remaining budget, traffic light and forecast.</span>
+            </a>
+            @if (in_array($role, [$Role::ProjectLead, $Role::Purchasing], true))
+                <a class="action-tile" href="{{ route('follow-ups.index') }}">
+                    <span class="tile-icon"><x-icon name="bell" /></span>
+                    <strong>Follow-up orders</strong>
+                    <span class="muted small">Orders that need a reorder soon, most urgent first.</span>
+                </a>
+            @endif
+            @if ($role === $Role::Finance)
+                <a class="action-tile" href="{{ route('proof-of-work.index') }}">
+                    <span class="tile-icon"><x-icon name="file" /></span>
+                    <strong>Proof of work</strong>
+                    <span class="muted small">Approve or reject the monthly hours per order.</span>
+                </a>
+            @endif
         @endif
     </div>
 @endsection
