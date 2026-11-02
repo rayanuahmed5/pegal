@@ -38,11 +38,7 @@
                         <td>
                             <span class="status status-{{ $booking->status->value }}">{{ ucfirst($booking->status->value) }}</span>
                             @if ($booking->decided_at)
-                                <div class="muted small">
-                                    {{ $booking->status->value === 'rejected' ? 'Rejected' : 'Approved' }}
-                                    by {{ $booking->decidedBy?->name ?? 'finance' }}
-                                    on {{ $booking->decided_at->format('j M Y') }}
-                                </div>
+                                <div class="muted small">{{ $booking->status->value === 'rejected' ? 'Rejected' : 'Approved' }} by {{ $booking->decidedBy?->name ?? 'finance' }} on {{ $booking->decided_at->format('j M Y') }}</div>
                             @endif
                             @if ($booking->decision_reason)
                                 <div class="small">Reason: {{ $booking->decision_reason }}</div>
