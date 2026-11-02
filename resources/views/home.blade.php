@@ -17,6 +17,11 @@
                 <a class="button" href="{{ route('bookings.create') }}">Book time</a>
                 <a class="cancel" href="{{ route('bookings.index') }}">My bookings</a>
             </p>
+        @elseif ($user->role === \App\Domain\Role::Admin)
+            <p>
+                <a class="button" href="{{ route('admin.dashboard') }}">Administration</a>
+                <a class="cancel" href="{{ route('admin.users.create') }}">Add user</a>
+            </p>
         @else
             <p>
                 <a class="button" href="{{ route('orders.index') }}">Orders and budget</a>
