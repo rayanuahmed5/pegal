@@ -1,0 +1,39 @@
+/* Mockup styles: same palette as the app (public/css/pegal.css), but self-contained so the files open from the folder. */
+:root { --page:#f4f6f5; --card:#fff; --ink:#1c2b2d; --muted:#5d6f72; --line:#dbe3e1; --accent:#0f6b6e; --accent-dark:#0b5254; --green:#2f7d4f; --amber:#c98a12; --red:#b3392f; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--page); color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; line-height:1.5; }
+.note { background:#fff8e1; border-bottom:1px solid #ecd9a0; padding:.4rem 1.5rem; font-size:.85rem; }
+.topbar { display:flex; justify-content:space-between; align-items:center; padding:.8rem 1.5rem; background:var(--card); border-bottom:1px solid var(--line); }
+.brand { font-weight:700; font-size:1.4rem; color:var(--accent); text-decoration:none; }
+.who { display:flex; gap:.8rem; align-items:center; }
+.role { background:#e3f0ef; color:var(--accent-dark); padding:.15rem .7rem; border-radius:999px; font-size:.85rem; }
+.page { max-width:64rem; margin:1.5rem auto; padding:0 1.5rem; }
+h1 { font-size:1.6rem; margin:0 0 .25rem; }
+.muted { color:var(--muted); }
+.small { font-size:.85rem; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:.6rem; padding:1.2rem 1.4rem; margin-top:1rem; }
+.button, button { display:inline-block; background:var(--accent); color:#fff; border:0; border-radius:.4rem; padding:.5rem 1rem; font:inherit; text-decoration:none; cursor:pointer; }
+button.danger { background:var(--red); }
+.cancel { margin-left:.75rem; color:var(--accent); }
+a { color:var(--accent); }
+table { width:100%; border-collapse:collapse; font-size:.9rem; }
+th, td { text-align:left; padding:.45rem .5rem; border-bottom:1px solid var(--line); vertical-align:top; }
+th { color:var(--muted); font-weight:600; }
+.num { text-align:right; white-space:nowrap; }
+.gauge { background:var(--line); border-radius:999px; height:.6rem; min-width:8rem; overflow:hidden; }
+.gauge-fill { height:100%; background:var(--green); }
+.gauge-warning .gauge-fill { background:var(--amber); }
+.gauge-full .gauge-fill { background:var(--red); }
+.light { font-size:.8rem; font-weight:600; padding:.1rem .6rem; border-radius:999px; }
+.light-green { background:#dcefe3; color:var(--green); }
+.light-amber { background:#f7e8c8; color:#8a5d00; }
+.light-red { background:#f6dcd9; color:var(--red); }
+.status { font-size:.8rem; padding:.1rem .55rem; border-radius:999px; background:var(--line); }
+.status-approved { background:#dcefe3; color:var(--green); }
+.alert { background:#fdecea; border:1px solid #e5a29b; border-radius:6px; color:#8a1f17; margin:0 0 1rem; padding:.75rem 1rem; }
+label { display:block; margin-top:.8rem; font-weight:600; }
+input, select { width:100%; max-width:26rem; padding:.45rem .6rem; border:1px solid var(--line); border-radius:.4rem; font:inherit; }
+.roles { display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr)); gap:1rem; margin-top:1rem; }
+.roles .card { margin:0; }
+.month-nav { display:flex; gap:1rem; align-items:center; margin:1rem 0; }
+.row-actions button { padding:.25rem .7rem; font-size:.85rem; margin-right:.3rem; }
