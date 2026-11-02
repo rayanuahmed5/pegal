@@ -2,7 +2,7 @@
 
 Pegal is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md).
 
-> **Status (Mon 2 Nov 2026):** Sprints 1 and 2 are done. Sprint 3 is running: forecast with traffic light, follow-up list and proof of work are built. Still to come: mockup, API docs, compose file and the final run check.
+> **Status (Mon 2 Nov 2026):** Sprints 1 and 2 are done. Sprint 3 is running: forecast with traffic light, follow-up list and proof of work are built. The mockup and API docs are in. Still to come: the final checks before the freeze.
 
 ## Prerequisites
 
@@ -42,16 +42,6 @@ Open http://127.0.0.1:8000 and sign in with one of the demo users below.
 
 Two JSON endpoints show the same data as the pages: `GET /api/orders` and `GET /api/follow-ups`. They use the sign-in session and the same role checks. The OpenAPI file is [public/openapi.yaml](public/openapi.yaml); with the app running, open http://127.0.0.1:8000/api-docs.html (needs internet for the Swagger UI script), sign in first, then use "Try it out".
 
-## Run with Docker
-
-No PHP or MySQL on your machine? Docker is enough:
-
-```bash
-docker compose up --build
-```
-
-The first start builds the image, creates the tables and loads the demo data (later starts skip that). Open http://localhost:8000 and use the demo users below. The data is kept in a Docker volume; `docker compose down -v` wipes it.
-
 ## Test
 
 ```bash
@@ -82,7 +72,7 @@ Where the technical jury finds the evidence for each [technical criterion](docs/
 | 1 · Persistence and data model | [Migrations](database/migrations) (suppliers, users with role, orders, assignments, bookings, absences, public holidays), [ER diagram](docs/domain.md), [seeders](database/seeders) |
 | 2 · Business rules and unit tests | Rules (assignment, order period, 10 h per person and day, remaining budget) in [app/Domain/TimeBooking.php](app/Domain/TimeBooking.php), unit tests in [tests/Unit/TimeBookingTest.php](tests/Unit/TimeBookingTest.php), form-level tests in [tests/Feature/BookingTest.php](tests/Feature/BookingTest.php). Forecast: [BudgetForecast](app/Domain/BudgetForecast.php), [BurnRate](app/Domain/BurnRate.php), [WorkCalendar](app/Domain/WorkCalendar.php), [FollowUp](app/Domain/FollowUp.php) with their unit tests in [tests/Unit](tests/Unit). Proof of work: [ProofOfWork](app/Domain/ProofOfWork.php) and [its tests](tests/Unit/ProofOfWorkTest.php) |
 | 3 · Roles, permissions and privacy | [Permission concept](docs/roles-and-privacy.md), enforced on the server by [EnsureUserHasRole](app/Http/Middleware/EnsureUserHasRole.php) and [routes/web.php](routes/web.php), 403 tests in [BookingTest](tests/Feature/BookingTest.php), [OrderPageTest](tests/Feature/OrderPageTest.php), [FollowUpPageTest](tests/Feature/FollowUpPageTest.php) and [ProofOfWorkPageTest](tests/Feature/ProofOfWorkPageTest.php) |
-| 4 · Architecture and engineering | A structure: `app/Http`, `app/Domain`, `app/Models` · B [ADRs](docs/adr/) 0001 to 0006 · C Git history (many small commits since Mon 2 Nov) · D API docs: [openapi.yaml](public/openapi.yaml), in the browser at `/api-docs.html` · E [compose.yaml](compose.yaml) with [Dockerfile](Dockerfile) · F [clickable mockup](docs/mockup/README.md) (open `docs/mockup/index.html`) |
+| 4 · Architecture and engineering | A structure: `app/Http`, `app/Domain`, `app/Models` · B [ADRs](docs/adr/) 0001 to 0007 · C Git history (many small commits since Mon 2 Nov) · D API docs: [openapi.yaml](public/openapi.yaml), in the browser at `/api-docs.html` · E containers: not used, see [ADR 0007](docs/adr/0007-operation-php-and-mysql-without-containers.md) · F [clickable mockup](docs/mockup/README.md) (open `docs/mockup/index.html`) |
 
 ## Team
 
