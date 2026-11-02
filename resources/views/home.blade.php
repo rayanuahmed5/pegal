@@ -23,6 +23,9 @@
                 @if (in_array($user->role, [\App\Domain\Role::ProjectLead, \App\Domain\Role::Purchasing], true))
                     <a class="cancel" href="{{ route('follow-ups.index') }}">Follow-up orders</a>
                 @endif
+                @if ($user->role === \App\Domain\Role::Finance)
+                    <a class="cancel" href="{{ route('proof-of-work.index') }}">Proof of work</a>
+                @endif
             </p>
             <p class="muted small">Forecast and approvals are being built, one step at a time.</p>
         @endif
