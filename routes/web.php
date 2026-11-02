@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\FollowUpController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -29,5 +30,10 @@ Route::middleware('auth')->group(function () {
     // budget per order is for the client side only, the consultant gets a 403
     Route::middleware('role:project_lead,purchasing,finance')->group(function () {
         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    });
+
+    // follow-up list: purchasing and project lead (role matrix), not finance
+    Route::middleware('role:project_lead,purchasing')->group(function () {
+        Route::get('/follow-ups', [FollowUpController::class, 'index'])->name('follow-ups.index');
     });
 });
