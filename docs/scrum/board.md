@@ -38,7 +38,6 @@ This table is a snapshot; the issues are the live board. The backlog with story 
 
 | Milestone | Goal | Sprint document |
 |---|---|---|
-| Sprint 0 | Vision, backlog, domain, roles, ADRs, working environment | [sprint-0.md](sprint-0.md) |
 | Sprint 1 | Walking skeleton: a consultant can book time, data in MySQL | [sprint-1.md](sprint-1.md) |
 | Sprint 2 | Bookings follow the rules, budget per order | [sprint-2.md](sprint-2.md) |
 | Sprint 3 | Forecast, follow-up list, proof of work, mockup, API docs, README | [sprint-3.md](sprint-3.md) |
