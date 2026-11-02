@@ -26,4 +26,15 @@ class BurnRateTest extends TestCase
         $this->assertSame('2026-10-05', BurnRate::windowStart($today)->toDateString());
         $this->assertSame('2026-11-01', BurnRate::windowEnd($today)->toDateString());
     }
+
+    public function test_it_finds_the_slowest_and_the_fastest_week(): void
+    {
+        $this->assertSame([2.0, 8.0], BurnRate::slowestAndFastest([6, 2, 4, 8]));
+    }
+
+    public function test_a_week_without_bookings_counts_as_zero(): void
+    {
+        $this->assertSame([0.0, 5.0], BurnRate::slowestAndFastest([5]));
+        $this->assertSame([0.0, 0.0], BurnRate::slowestAndFastest([]));
+    }
 }
