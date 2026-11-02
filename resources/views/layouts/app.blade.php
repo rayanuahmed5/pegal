@@ -31,7 +31,8 @@
         @endguest
     </header>
 
-    <main class="page">
+    {{-- most pages sit in one narrow column, the landing page swaps this for full-width bands --}}
+    <main class="@yield('main_class', 'page')">
         @yield('content')
     </main>
 </body>
