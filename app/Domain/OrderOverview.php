@@ -107,6 +107,27 @@ class OrderOverview
         return $perOrder;
     }
 
+    /**
+     * One order with its budget, forecast and the proposal for its follow-up order.
+     *
+     * @return array{order: Order, budget: OrderBudget, forecast: ForecastResult, proposal: FollowUpProposal}
+     *
+     * @throws NoProposalNeeded when the order does not need a follow-up order
+     */
+    public function proposalFor(Order $order, CarbonImmutable $today): array
+    {
+        $row = $this->rows($today, withForecast: true)->first(fn (array $row) => $row['order']->is($order));
+
+        $proposal = FollowUpProposal::create(
+            $row['forecast'],
+            $this->workCalendar(),
+            CarbonImmutable::parse($order->ends_on->toDateString()),
+            $order->reorder_lead_weeks,
+        );
+
+        return $row + ['proposal' => $proposal];
+    }
+
     // holidays and vacations as plain arrays, the forecast classes know nothing about the database
     private function workCalendar(): WorkCalendar
     {

@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     // follow-up list: purchasing and project lead (role matrix), not finance
     Route::middleware('role:project_lead,purchasing')->group(function () {
         Route::get('/follow-ups', [FollowUpController::class, 'index'])->name('follow-ups.index');
+        Route::get('/follow-ups/{order}/proposal', [FollowUpController::class, 'proposal'])->name('follow-ups.proposal');
     });
 
     // proof of work is for finance only: approve or reject the monthly hours
