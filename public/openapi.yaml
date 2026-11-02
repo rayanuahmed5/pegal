@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: Pegal API
+  version: 1.0.0
+  description: |
+    JSON view of the budget and forecast data that the Pegal pages show.
+
+    **Sign-in:** the API uses the same session cookie as the web pages (see ADR 0002, demo sign-in).
+    Sign in at `/login` in the browser, then open or "Try out" these endpoints in the same browser.
+    Send `Accept: application/json`, otherwise a missing sign-in is answered with a redirect to the
+    login page instead of a 401.
+
+    **Permissions** follow the role matrix in `docs/roles-and-privacy.md` and are checked on the server.
+    The API only shows order-level numbers, never a person.
+servers:
+  - url: http://127.0.0.1:8000
+    description: Local development (php artisan serve)
+  - url: http://localhost:8000
+    description: Docker Compose
+tags:
+  - name: Orders
+    description: Budget and forecast per order
+paths:
+  /api/orders:
+    get:
+      tags: [Orders]
+      summary: All orders with used and remaining budget
+      description: |
+        For project lead, purchasing and finance. The `forecast` field is filled for project lead and
+        purchasing and is `null` for finance, who is not allowed to see forecasts.
+      security:
+        - sessionCookie: []
+      responses:
+        '200':
+          description: The orders, sorted by order number
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderBudget'
+              example:
+                data:
+                  - number: '4500012390'
+                    title: Data warehouse reporting
+                    supplier: Brückenwerk Software
+                    period: { from: '2026-09-01', to: '2026-12-18' }
+                    budget: { orderedPd: 40, usedPd: 32, remainingPd: 8, percentUsed: 80, level: warning }
+                    forecast:
+                      burnPerWeek: 4
+                      exhaustionDate: '2026-11-13'
+                      reorderDate: '2026-10-16'
+                      light: red
+                      assumptions:
+                        - 'Burn rate: 4 PD per week, the average of the last 4 weeks.'
+                    followUp: null
+        '401':
+          $ref: '#/components/responses/NotSignedIn'
+        '403':
+          $ref: '#/components/responses/WrongRole'
+  /api/follow-ups:
+    get:
+      tags: [Orders]
+      summary: Orders that need a follow-up order
+      description: |
+        Orders whose latest reorder date has passed or falls within the next 6 weeks, most urgent first.
+        For project lead and purchasing. Finance and consultants get 403.
+      security:
+        - sessionCookie: []
+      responses:
+        '200':
+          description: The orders that need a follow-up, each with a `followUp` block
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OrderBudget'
+        '401':
+          $ref: '#/components/responses/NotSignedIn'
+        '403':
+          $ref: '#/components/responses/WrongRole'
+components:
+  securitySchemes:
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: pegal-session
+      description: The session cookie set by the demo sign-in. The browser sends it by itself.
+  responses:
+    NotSignedIn:
+      description: Not signed in (only when the request has `Accept - application/json`)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    WrongRole:
+      description: Signed in, but this role is not allowed to see this (role matrix)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    OrderBudget:
+      type: object
+      properties:
+        number: { type: string, example: '4500012345' }
+        title: { type: string, example: Customer portal migration }
+        supplier: { type: string, example: Nordlicht Consulting }
+        period:
+          type: object
+          properties:
+            from: { type: string, format: date }
+            to: { type: string, format: date }
+        budget:
+          type: object
+          description: Person-days (PD), one PD is 8 hours. Rejected bookings do not count as used.
+          properties:
+            orderedPd: { type: number, example: 140 }
+            usedPd: { type: number, example: 84 }
+            remainingPd: { type: number, example: 56 }
+            percentUsed: { type: number, description: 'Capped at 100', example: 60 }
+            level:
+              type: string
+              enum: [ok, warning, full]
+              description: ok below 80 percent used, warning from 80, full at 100
+        forecast:
+          nullable: true
+          description: Null for finance
+          type: object
+          properties:
+            burnPerWeek: { type: number, description: 'PD per calendar week, average of the last 4 weeks', example: 6 }
+            exhaustionDate:
+              type: string
+              format: date
+              nullable: true
+              description: Day the budget runs out, null when it lasts until the order ends
+            reorderDate:
+              type: string
+              format: date
+              nullable: true
+              description: Latest day to place a follow-up order (exhaustion date minus the lead time)
+            light:
+              type: string
+              enum: [green, amber, red]
+            assumptions:
+              type: array
+              items: { type: string }
+        followUp:
+          nullable: true
+          description: Only set on the follow-up list
+          type: object
+          properties:
+            status:
+              type: string
+              enum: [overdue, soon]
+            daysUntilReorder:
+              type: integer
+              description: Negative when the reorder date has passed
+    Error:
+      type: object
+      properties:
+        message: { type: string }
