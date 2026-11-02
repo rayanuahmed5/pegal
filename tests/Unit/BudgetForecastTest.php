@@ -64,6 +64,23 @@ class BudgetForecastTest extends TestCase
         $this->assertSame('2026-11-27', $result->reorderDate->toDateString());
     }
 
+    public function test_it_names_the_iso_weeks_of_both_dates(): void
+    {
+        // Fri 25 Dec 2026 is in week 52, Fri 27 Nov 2026 in week 48
+        $result = $this->forecast(40, 5);
+
+        $this->assertSame(52, $result->exhaustionWeek());
+        $this->assertSame(48, $result->reorderWeek());
+    }
+
+    public function test_there_are_no_weeks_when_the_budget_lasts(): void
+    {
+        $result = $this->forecast(100, 5);
+
+        $this->assertNull($result->exhaustionWeek());
+        $this->assertNull($result->reorderWeek());
+    }
+
     public function test_it_is_green_when_the_budget_lasts_until_the_order_ends(): void
     {
         // about 14 weeks left on the order, 70 PD burn, 100 PD in the pot

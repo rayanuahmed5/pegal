@@ -23,6 +23,18 @@ final class ForecastResult
     ) {
     }
 
+    // ISO calendar week of the exhaustion date, planners at the client talk in weeks
+    public function exhaustionWeek(): ?int
+    {
+        return $this->exhaustionDate === null ? null : (int) $this->exhaustionDate->format('W');
+    }
+
+    // ISO calendar week of the latest day to place the follow-up order
+    public function reorderWeek(): ?int
+    {
+        return $this->reorderDate === null ? null : (int) $this->reorderDate->format('W');
+    }
+
     // true when the budget is enough until the order ends (or nothing is being booked)
     public function lastsUntilEnd(): bool
     {
