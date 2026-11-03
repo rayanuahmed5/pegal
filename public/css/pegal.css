@@ -394,6 +394,3 @@ h3 { font-size: 1rem; margin: 0 0 .35rem; }
 .filter select { min-width: 9rem; }
 .filter button { margin: 0; }
 .filter .cancel { margin: 0 0 .5rem; }
-
-/* the short note on the landing page about what the name means */
-.name-meaning { max-width: 34rem; margin-top: 1rem; }
