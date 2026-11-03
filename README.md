@@ -8,13 +8,13 @@ Pegel is a time booking and budget forecast web app: external consultants book h
 
 | Tool | Version | Check |
 |---|---|---|
-| PHP (with the `pdo_mysql` extension) | 8.3 or newer | `php --version` |
+| PHP (with the `pdo_mysql` extension) | 8.4 or newer | `php --version` |
 | Composer | 2.x | `composer --version` |
 | MySQL | 8.0, running on `127.0.0.1:3306` | `mysql --version` |
 
 `.env.example` expects the MySQL user `root` with an empty password. If yours is different, change `DB_USERNAME` and `DB_PASSWORD` in `.env` after the copy step below.
 
-**The team's own setup is [Laragon](https://laragon.org) on Windows** (PHP 8.3 or newer, Composer and MySQL 8 come with it; start its services before the setup steps). Laragon's MySQL uses `root` without a password, so `.env.example` works unchanged. No Docker is used (see [ADR 0007](docs/adr/0007-operation-php-and-mysql-without-containers.md)).
+**The team's own setup is [Laragon](https://laragon.org) on Windows** (PHP 8.4 or newer, Composer and MySQL 8 come with it; start its services before the setup steps). Laragon's MySQL uses `root` without a password, so `.env.example` works unchanged. No Docker is used (see [ADR 0007](docs/adr/0007-operation-php-and-mysql-without-containers.md)).
 
 ## Setup
 
