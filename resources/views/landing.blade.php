@@ -13,6 +13,10 @@
                     External consultants book their hours, and every hour shows up on the order budget right away.
                     Pegel warns you when the budget will run out and tells you the latest date to reorder.
                 </p>
+                <p class="small muted name-meaning">
+                    <strong>Why “Pegel”?</strong> It is German for a water-level gauge, the marks on a river that show how high the water stands.
+                    Here the gauge shows how much of an order’s budget is used.
+                </p>
                 <p class="hero-actions">
                     <a class="button" href="{{ route('login') }}">Sign in <x-icon name="arrow" /></a>
                     <a class="button button-ghost" href="#how">How it works</a>
