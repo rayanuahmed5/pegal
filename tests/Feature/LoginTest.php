@@ -11,6 +11,14 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_the_landing_page_explains_what_the_name_pegel_means(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Why “Pegel”?', false)
+            ->assertSee('German for a water-level gauge');
+    }
+
     public function test_a_guest_sees_the_landing_page_with_a_way_to_sign_in(): void
     {
         $this->get('/')
