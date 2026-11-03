@@ -50,4 +50,4 @@ The **client's project lead**: the person who must know "will my budget last unt
 
 ## Our stack
 
-**Laravel (PHP 8.3) with MySQL 8**, see [ADR 0001](adr/0001-stack-laravel-mysql.md). Scrum process: [docs/scrum](scrum/README.md).
+**Laravel (PHP 8.4) with MySQL 8**, see [ADR 0001](adr/0001-stack-laravel-mysql.md). Scrum process: [docs/scrum](scrum/README.md).

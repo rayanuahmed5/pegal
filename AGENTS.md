@@ -64,7 +64,7 @@ The team fills this in once the stack is chosen. Keep it short and exact.
 
 - Product: Pegel, time booking and budget forecast for a client buying external consulting work
 - Track: code (clickable HTML mockup as fallback)
-- Stack: Laravel 13 (PHP 8.3) with MySQL 8, see `docs/adr/0001-stack-laravel-mysql.md`
+- Stack: Laravel 13 (PHP 8.4) with MySQL 8, see `docs/adr/0001-stack-laravel-mysql.md`
 - Process: Scrum, see `docs/scrum/README.md` (backlog, sprints, Definition of Done)
 - Install: `composer install`, `cp .env.example .env`, `php artisan key:generate`, `php artisan pegal:create-database`, `php artisan migrate --seed`
 - Run: `php artisan serve` (http://127.0.0.1:8000); the team hosts it locally with Laragon on Windows (project in `C:\laragon\www\pegal`, usually http://pegal.test)

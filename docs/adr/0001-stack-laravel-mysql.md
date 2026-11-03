@@ -16,7 +16,7 @@ We need a stack that gives us routing, validation, authentication, migrations, s
 
 ## Decision
 
-We choose **Laravel 13 on PHP 8.3 with MySQL 8**, because the team set this stack for the hackathon and Laravel covers most needs without extra libraries. The jury needs PHP, Composer and a MySQL server; the README lists the exact commands.
+We choose **Laravel 13 on PHP 8.4 with MySQL 8**, because the team set this stack for the hackathon and Laravel covers most needs without extra libraries. The jury needs PHP, Composer and a MySQL server; the README lists the exact commands.
 
 ## Consequences
 
