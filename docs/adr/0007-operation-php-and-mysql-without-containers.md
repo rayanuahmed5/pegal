@@ -11,7 +11,7 @@
 ## Options considered
 
 1. **Containers (Docker Compose)** – one image everywhere, but the team does not use Docker and could not test it.
-2. **Plain PHP application with MySQL on a normal host (chosen)** – runs on a cloud VM, a PHP platform or the customer's own server. Needs PHP 8.3 with `pdo_mysql`, Composer and MySQL 8.
+2. **Plain PHP application with MySQL on a normal host (chosen)** – runs on a cloud VM, a PHP platform or the customer's own server. Needs PHP 8.4 with `pdo_mysql`, Composer and MySQL 8.
 3. **Managed cloud platform only** – simple to operate, but excludes customers that need the product in their own network.
 
 ## Decision
