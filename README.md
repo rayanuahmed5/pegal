@@ -1,7 +1,5 @@
 # Pegel
 
-*Pegel* is German for a water-level gauge, like the marks on a river that show how high the water stands. Here the gauge shows how much of an order's budget is used.
-
 Pegel is a time booking and budget forecast web app: external consultants book hours on a client's purchase orders, and the client's project lead sees used and remaining budget, a traffic light and the latest date to place a follow-up order. See the [product vision](docs/product-vision.md) and the [Scrum plan](docs/scrum/README.md); the Scrum board is a [GitHub Project](https://github.com/users/rayanuahmed5/projects/3) over the repository's [issues](https://github.com/rayanuahmed5/pegal/issues) ([how it works](docs/scrum/board.md)).
 
 > **Status (Mon 2 Nov 2026):** Sprints 1 to 3 are done: booking with rules, budget and forecast, follow-up list, proof of work, JSON API with OpenAPI docs, a clickable mockup, working time rules (absence, overlap, 11 h rest), rejection reasons and an administrator dashboard with edit, password reset and delete, a landing page and a profile page with change password, a month and year filter on bookings and a dark and light mode switch. Run `php artisan test` to check everything. Left: the final checks before the Tuesday freeze.
